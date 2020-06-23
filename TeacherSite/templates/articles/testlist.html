@@ -28,7 +28,7 @@
     {% if category_test_list|index:category.id %}
 
         {% for test in category_test_list|index:category.id %}
-             <a class="simple_href" style="font-size:1.1em;" href="{% url 'GoTest' test.id%}">{{test.test_name}}<a/> <br/>
+             <a class="simple_href" style="font-size:1.1em;" href="{% url 'GoTest' test.id%}" test_id={{test.id}}>{{test.test_name}}<a/> <br/>
 
         {% endfor %}
 
@@ -39,7 +39,9 @@
   {% endfor %}
 
 
-
+  <span>
+  {{passed_attempts_dict}}
+  </span>
 
 
 
