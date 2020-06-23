@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'lk/lk_base.html' %}
+{% load static %}
+
+{% block title %} Мой профиль {% endblock %}
+{% block header-content %} Данные моего профиля{% endblock %}
+
+{% block article-content %}
+
+<table style="width:20%;">
+  <tr class="table_header">
+     <th colspan="2">Данные моего профиля</th>
+    </tr>
+ <tr>
+<td style="width:25%;"> Имя:</td>
+<td>{{f_name}}</td>
+</tr>
+<tr>
+<td> Фамилия</td>
+<td>{{s_name}}</td>
+</tr>
+<tr>
+<td> Почта: </td>
+<td>{{email}}</td>
+</tr>
+
+</table>
+
+<br/>
+<p>Мои группы:</p>
+{% for g in groups %}
+<p>{{g.name}}</p>
+{% endfor %}
+
+ {% endblock %}

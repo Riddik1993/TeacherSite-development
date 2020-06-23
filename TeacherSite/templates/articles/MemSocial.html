@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Памятка по обществознанию {% endblock %}
+{% block header-content %} Полезная информация по обществознанию {% endblock %}
+
+{% block article-header %}
+  Памятки по обществознанию
+{% endblock %}
+
+
+{% block article-content %}
+<style>
+
+
+  #btn2:active {
+     margin-right:2.2px;
+   }
+
+</style>
+
+
+<script type="text/javascript" src="{% static 'js\reminder-hint.js' %}">   </script>
+  {% if articles %}
+    {% for a in articles %}
+      <div id="article-block">
+          <ul  class="article_list">
+              <a class="simple_href" href="{% url 'MemSocialDetail' a.id%}" class="simple_href">  <li> &nbsp{{a.article_title}} <span class="article_description" style="display:none">{{a.article_description}}</span></li> </a>
+          </ul>
+         <div id="hint" "display:none"> </div>
+      </div>
+    {% endfor %}
+    <div class="paginator_reminders">
+        {% if articles.has_previous %}
+          <a href='?page={{articles.previous_page_number}}' class="button" id="btn2"><<</a>
+        {% endif %}
+          Страница {{articles.number}} из {{articles.paginator.num_pages}}
+        {% if articles.has_next %}
+          <a href='?page={{articles.next_page_number}}' class="button">>></a>
+        {% endif %}
+    </div>
+
+  {% else %}
+      <p>Пока памяток нет...</p>
+  {% endif %}
+
+{% endblock %}

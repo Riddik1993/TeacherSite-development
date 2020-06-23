@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная {% endblock %}
+{% block header-content %} Главная  {% endblock %}
+
+{% block article-header %}
+    {{article.article_title}}
+{% endblock %}
+
+
+{% block article-content %}
+<div class="main_foto">
+
+<img  alt="Фото А.О.Фроловой" src="{{MEDIA_URL}}{{article.image.url}}" />
+
+
+
+
+<hr size="4" color="brown">
+<p style="margin-bottom:0.4em;">Последние публикации:</p>
+{% if task_list %}
+  {% for task in task_list %}
+    <b style="color:red">Задание:</b><a class="simple_href" href="{{task.file.url}}">{{task.task_name}}</a>
+    <em>({{task.pub_date}})</em><br/>
+  {% endfor %}
+{% endif %}
+{% if MemHistory_list %}
+  {% for article in MemHistory_list %}
+    <b style="color:red">Памятка по истории:</b><a class="simple_href" href="{% if article.file %}{{article.file.url}} {% endif %}">{{article.article_title}}</a>
+    <em>({{article.pub_date}})</em>
+    <br/>
+  {% endfor %}
+{% endif %}
+{% if MemSocial_list %}
+  {% for article in MemSocial_list %}
+    <b style="color:red">Памятка по общ-ю:</b><a class="simple_href" href="{% if article.file %}{{article.file.url}} {% endif %}">{{article.article_title}}</a>
+    <em>({{article.pub_date}})</em>
+    <br/>
+  {% endfor %}
+{% endif %}
+{% if Shema_list %}
+  {% for sh in Shema_list %}
+    <b style="color:red">Схема:</b><a class="simple_href" href="{% if sh.shema_image %}{{sh.shema_image.url}} {% endif %}">{{sh.shema_title}}</a>
+    <em>({{sh.pub_date}})</em><br/>
+  {% endfor %}
+{% endif %}
+
+</div>
+
+<div style="width:69%">
+  <p>{{article.article_text|linebreaks}}</p>
+</div>
+
+
+
+
+
+{% endblock %}

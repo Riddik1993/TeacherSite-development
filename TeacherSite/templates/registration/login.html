@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Вход на сайт {% endblock %}
+{% block header-content %} Вход на сайт  {% endblock %}
+{% block reg_content %}
+
+
+{% endblock %}
+
+
+{% block article-content %}
+
+{% if form.errors %}
+
+<b style="color:red;">Логин или пароль неверны.<br/>Пожалуйста, попробуйте еще раз</b>
+
+
+{% endif %}
+
+
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+
+<tr>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+
+
+<tr>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</tr>
+</table>
+<br/>
+<input type="submit" value="Войти" class="button" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+<br/>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}" class="simple_href">Забыли пароль?</a></p>
+
+
+
+
+
+
+
+{% endblock %}

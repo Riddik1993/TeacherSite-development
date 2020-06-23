@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Запись на занятие {% endblock %}
+{% block header-content %} Запись на занятие {% endblock %}
+{% block article-header %}Спасибо за Ваш комментарий! Он обязательно будет опубликован после модерации{% endblock %}
+
+
+
+{% block article-content %}
+  <a href="{{request.META.HTTP_REFERER}}">Вернуться к памятке</a> <br/>
+{% endblock %}

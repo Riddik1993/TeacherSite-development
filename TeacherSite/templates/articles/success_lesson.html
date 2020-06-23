@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Запись на занятие {% endblock %}
+{% block header-content %} Запись на занятие {% endblock %}
+{% block article-header %}Спасибо за заявку! Я свяжусь с Вами в ближайшее время{% endblock %}
+
+
+
+{% block article-content %}
+  <a href="{% url 'SelfInfo' %}">Вернуться на главную</a> <br/>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %} Памятка по истории {% endblock %}
+{% block header-content %} Полезная информация по истории {% endblock %}
+
+{% block article-header %}
+    {{article.article_title}}
+{% endblock %}
+
+
+{% block article-content %}
+  <p>{{article.article_text|linebreaks}}</p>
+  {% if article.file %}
+  <a href="{{article.file.url}}" class="button">Скачать памятку</a>
+  {% endif %}
+  <br/>
+  <br/>
+
+  <em>Дата публикации: <br/>{{article.pub_date}}</em>
+  <br/>
+  <a href="{% url 'MemHistory' %}">Вернуться к списку памяток</a>
+  <hr>
+  <br>
+  <p>Комментарии:</p>
+
+  {% if comments_list %}
+    {% for com in comments_list %}
+     <div class="feedback">
+       <div class="feed_text">
+       {{com.comments}}
+       </div>
+       <div class="feedback_sign">
+       <em>{{com.Person_name}}</em><BR/>
+       <em>{{com.pub_date}}</em>
+       </div>
+    </div>
+    {% endfor %}
+
+    
+  {% else %}
+    <p>Пока комментариев нет...</p>
+  {% endif %}
+  </div>
+<br/>
+<hr>
+
+<div style="clear: both" class="comments_form">
+<p>Оставьте свой комментарий к статье:</p>
+<form  method="POST">
+  {% csrf_token %}
+
+  {% for field in comment_form %}
+
+        <p>{{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </p>
+  {% endfor %}
+
+  <input type="submit" class="button"  value="оставить комментарий"/>
+</form>
+</div>
+
+
+{% endblock %}

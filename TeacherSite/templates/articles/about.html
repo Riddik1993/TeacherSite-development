@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Обо мне {% endblock %}
+{% block header-content %} Обо мне  {% endblock %}
+
+{% block article-header %}
+    {{article.article_title}}
+{% endblock %}
+
+
+{% block article-content %}
+
+<script type="text/javascript" src="{% static 'js\image-change.js' %}">   </script>
+
+
+
+<div id='imgarea' class='main_foto' >
+  <img id='main_foto' src="{{article.image.url}}"/>
+</div>
+
+
+
+
+<div id='imgtoPaste1' style="display:none">
+    <img id='img1'   src="{{article.image.url}}"/>
+</div>
+
+<div id='imgtoPaste2' style="display:none">
+    <img id='img2' src="{{article.image2.url}}"/>
+</div>
+
+<div id='imgtoPaste3' style="display:none">
+    <img id='img3' src="{{article.image3.url}}"/>
+</div>
+
+<div id='imgtoPaste4' style="display:none">
+    <img id='img4' src="{{article.image4.url}}"/>
+</div>
+
+<div id='imgtoPaste5' style="display:none">
+    <img id='img5' src="{{article.image5.url}}"/>
+</div>
+
+
+<div style="width:69%">
+  <p>{{article.article_text|linebreaks}}</p>
+</div>
+
+
+
+{% endblock %}

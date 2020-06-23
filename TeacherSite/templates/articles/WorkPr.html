@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Литература {% endblock %}
+{% block header-content %} Литература {% endblock %}
+
+{% block article-header %}
+  Литература
+{% endblock %}
+
+
+{% block article-content %}
+<style>
+#btn2:active {
+   margin-right:8.5px;
+ }
+</style>
+{% for category in category_list %}
+    <a class="button" id="btn2" href="{% url "workprograms" category.id %}">{{category.category_name}}</a>
+{% endfor %}
+<br />
+<br />
+{% if Workpr_list %}
+  <table>
+    <tr class="table_header">
+       <th>Название</th>
+       <th>Направление </th>
+       <th>Ссылка для скачивания</th>
+    </tr>
+    {% for  wp in Workpr_list %}
+    <tr>
+       <td>{{wp.lit_name}}</td>
+       <td>{{wp.lit_direct}}</td>
+       <td>{% if wp.file %} <a href="{{wp.file.url}}" class="simple_href">{{wp.lit_name}}</a>{% endif %}</td>
+    </tr>
+        {% endfor %}
+  </table>
+{% else %}
+<p>Литературы пока нет...</p>
+{% endif %}
+
+
+    {% endblock %}

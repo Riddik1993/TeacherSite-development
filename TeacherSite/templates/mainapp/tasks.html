@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load add_temp_tags %}
+{% block title %} Задания {% endblock %}
+{% block header-content %} Задания {% endblock %}
+{% block article-header %}
+Задания
+{% endblock %}
+
+
+{% block article-content %}
+<style>
+#btn2:active {
+   margin-right:8.5px;
+ }
+</style>
+
+  {% for direction in direction_list %}
+      <a class="button" id="btn2" href="{{ direction.id }}">{{direction.direction_name}}</a>
+   {% endfor %}
+
+
+  {% for category in category_list %}
+
+
+    {% if category_task_list|index:category.id %}
+    <p>{{category.category_name}}</p>
+    <table>
+      <tr class="table_header">
+         <th>Название задания</th>
+         <th>Описание задания</th>
+         <th>Ссылка для скачивания</th>
+      </tr>
+
+      {% for task in category_task_list|index:category.id %}
+      <tr>
+         <td>{{task.task_name}}</td>
+         <td>{{task.task_descr}}</td>
+         <td>{% if task.file %} <a href="{{task.file.url}}" class="simple_href">{{task.task_name}}</a>  {% endif %}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br/>
+    {% endif %}
+
+
+
+
+  {% endfor %}
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Запись на занятие {% endblock %}
+{% block header-content %} Запись на занятие {% endblock %}
+{% block article-header %}Спасибо за обратную связь! Ваш отзыв будет опубликован сразу после модерации{% endblock %}
+
+
+
+{% block article-content %}
+  <a href="{% url 'FeedBackListing' %}">Вернуться к списку отзывов</a> <br/>
+{% endblock %}

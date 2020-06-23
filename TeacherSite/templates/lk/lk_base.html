@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+
+    <title>{% block title %} Персональный сайт учителя {% endblock %}</title>
+    <!-- Подключаем стили-->
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <!-- Подключаем jquery-->
+    <script type="text/javascript" src="{% static "js\jquery-3.4.1.min.js" %}"> </script>
+    <!-- файл с JS-->
+    <script type="text/javascript" src="{% static "js\Main.js" %}">   </script>
+
+
+
+  </head>
+  <body>
+      <div id="head">{% block header-content %} {% endblock %}
+
+      {% block reg_content %}
+      {% if user.is_authenticated %}
+      <span style="font-size:0.7em; float:right;">Пользователь: {{ user.get_username }} &nbsp
+      <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
+        <a href="{% url 'main'%}" class="simple_href" >Вернуться на сайт</a>
+    {% endif %}
+      </span>
+      {% endblock %}
+
+      </div>
+
+    <aside>
+      <ul id="main_menu">
+      <li><a href="{% url 'Profile'%}" >Мой профиль</a></li>
+      <li><a href="{% url 'LK_Tests'%}" >Мои тесты</a></li>
+      <li> <a href="{% url 'LK_favor'%}"> Избранное</a>
+
+
+
+
+
+    </aside>
+
+    <article>
+
+    <h1>{% block article-header %}{% endblock %}</h1>
+    <p>{% block article-content %} В настоящий момент раздел в разработке {% endblock %}</p>
+    </article>
+
+    {% block out-of-article %}{% endblock %}
+
+  </body>
+
+<footer>
+  <p style="margin-top:-0.3em;">Персональный сайт учителя А.О.Фроловой </p>
+</footer>
+
+</html>
