@@ -59,7 +59,7 @@
   {% csrf_token %}
 
   {% regroup answer_list by question as answer_list2 %}
-  <ol>
+  <ul>
   {% for ans in answer_list2 %}
 
         <li quest='{{ans.grouper.id}}' style="width:50%;padding:2px;font-size:1.1em;" ><b>{{ ans.grouper }} </b><br/>
@@ -69,7 +69,7 @@
         </li>
         <br/>
   {% endfor %}
-   </ol>
+   </ul>
   <input type="submit" class="button" value="Проверить"/>
 </form>
 
