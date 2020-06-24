@@ -19,8 +19,8 @@
 </style>
 <script type="text/javascript" src="{% static 'js\test_atmp_counter.js' %}">   </script>
 
-{% if passed_att_dict %}
-{{passed_att_dict|json_script:"attempts"}}
+{% if alltest_att_dict %}
+{{alltest_att_dict|json_script:"attempts"}}
 {% endif %}
 
   {% for direction in direction_list %}
