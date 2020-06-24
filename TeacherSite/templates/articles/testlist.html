@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load add_temp_tags %}
 {% block title %} Online-тесты {% endblock %}
 {% block header-content %} Online-тесты {% endblock %}
@@ -16,6 +17,7 @@
    }
 
 </style>
+<script type="text/javascript" src="{% static 'js\test_atmp_counter.js' %}">   </script>
 
 {{passed_att_dict|json_script:"attempts"}}
 
