@@ -215,9 +215,9 @@ def OnlineTestList(request,direct_id='1'):
             passed_tests_ids.append(t.test.id)
         uniq_pt_ids=set(passed_tests_ids)
 
-        passed_attempts_dict={}
-        passed_attempts_dict=dict.fromkeys(uniq_pt_ids)
-        for k in passed_attempts_dict.keys():
+        passed_att_dict={}
+        passed_att_dict=dict.fromkeys(uniq_pt_ids)
+        for k in passed_att_dict.keys():
             #смотрим максимальное количество возможных попыток в тесте
             cur_test=OnlineTest.objects.get(id=k)
             total_test_attempts=int(cur_test.max_attempts)
@@ -227,10 +227,10 @@ def OnlineTestList(request,direct_id='1'):
             for a in exist_atmpts:
                 exist_atmpts_list.append(int(a.attempt_number))
             last_attempt=max(exist_atmpts_list)
-            passed_attempts_dict[k]=total_test_attempts-last_attempt
+            passed_att_dict[k]=total_test_attempts-last_attempt
 
     return render(request,'articles/testlist.html',{'category_list':category_list,'direction_list':direction_list,
-    'category_test_list':category_test_list,'passed_attempts_dict':passed_attempts_dict})
+    'category_test_list':category_test_list,'passed_att_dict':passed_att_dict})
 
 #регистрация пользователей
 def signup(request):

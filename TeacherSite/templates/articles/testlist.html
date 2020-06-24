@@ -17,6 +17,8 @@
 
 </style>
 
+{{passed_att_dict|json_script:"attempts"}}
+
   {% for direction in direction_list %}
       <a class="button" id="btn2" href="{{ direction.id }}">{{direction.direction_name}}</a>
    {% endfor %}
@@ -40,7 +42,7 @@
 
 
   <span>
-  {{passed_attempts_dict}}
+
   </span>
 
 
