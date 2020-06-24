@@ -209,15 +209,17 @@ def OnlineTestList(request,direct_id='1'):
         category_test_list.append(test_list)
     #формируем данные об уже пройденых тестах
     if request.user.is_authenticated:
-        passed_tests=Test_result.objects.filter(tested_user=request.user,test_direction=direct_id)
-        passed_tests_ids=[]
-        for t in passed_tests:
-            passed_tests_ids.append(t.test.id)
-        uniq_pt_ids=set(passed_tests_ids)
+        all_tests=OnlineTest.objects.filter(test_direct=direct_id)
+        all_tests_ids=[]
 
-        passed_att_dict={}
-        passed_att_dict=dict.fromkeys(uniq_pt_ids)
-        for k in passed_att_dict.keys():
+        for t in all_tests:
+            all_tests_ids.append(t.id)
+        uniq_allt_ids=set(all_tests_ids)
+
+        alltest_att_dict={}
+        alltest_att_dict=dict.fromkeys(uniq_allt_ids)
+
+        for k in alltest_att_dict.keys():
             #смотрим максимальное количество возможных попыток в тесте
             cur_test=OnlineTest.objects.get(id=k)
             total_test_attempts=int(cur_test.max_attempts)
@@ -226,13 +228,16 @@ def OnlineTestList(request,direct_id='1'):
             exist_atmpts_list=[]
             for a in exist_atmpts:
                 exist_atmpts_list.append(int(a.attempt_number))
-            last_attempt=max(exist_atmpts_list)
-            passed_att_dict[k]=total_test_attempts-last_attempt
+            if len(exist_atmpts_list)>0:
+                last_attempt=max(exist_atmpts_list)
+            else:
+                last_attempt=0
+            alltest_att_dict[k]=total_test_attempts-last_attempt
     else:
-        passed_att_dict={}
+        alltest_att_dict={}
 
     return render(request,'articles/testlist.html',{'category_list':category_list,'direction_list':direction_list,
-    'category_test_list':category_test_list,'passed_att_dict':passed_att_dict})
+    'category_test_list':category_test_list,'alltest_att_dict':alltest_att_dict})
 
 #регистрация пользователей
 def signup(request):
