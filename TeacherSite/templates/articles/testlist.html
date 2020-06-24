@@ -19,7 +19,9 @@
 </style>
 <script type="text/javascript" src="{% static 'js\test_atmp_counter.js' %}">   </script>
 
+{% if passed_att_dict %}
 {{passed_att_dict|json_script:"attempts"}}
+{% endif %}
 
   {% for direction in direction_list %}
       <a class="button" id="btn2" href="{{ direction.id }}">{{direction.direction_name}}</a>
@@ -30,22 +32,19 @@
 
   <p>{{category.category_name}}</p>
     {% if category_test_list|index:category.id %}
-
+        <table>
         {% for test in category_test_list|index:category.id %}
-             <a class="simple_href" style="font-size:1.1em;" href="{% url 'GoTest' test.id%}" test_id={{test.id}}>{{test.test_name}}<a/> <br/>
+
+            <tr><td> <a class="simple_href" style="font-size:1.1em;" href="{% url 'GoTest' test.id%}" test_id={{test.id}}>{{test.test_name}}</a> </td></tr>
 
         {% endfor %}
-
+       </table>
     <br/>
     {% endif %}
 
 
   {% endfor %}
 
-
-  <span>
-
-  </span>
 
 
 

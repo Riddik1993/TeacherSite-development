@@ -228,6 +228,8 @@ def OnlineTestList(request,direct_id='1'):
                 exist_atmpts_list.append(int(a.attempt_number))
             last_attempt=max(exist_atmpts_list)
             passed_att_dict[k]=total_test_attempts-last_attempt
+    else:
+        passed_att_dict={}
 
     return render(request,'articles/testlist.html',{'category_list':category_list,'direction_list':direction_list,
     'category_test_list':category_test_list,'passed_att_dict':passed_att_dict})
