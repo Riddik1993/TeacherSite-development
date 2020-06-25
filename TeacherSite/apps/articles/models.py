@@ -25,7 +25,7 @@ class Test_result(models.Model):
     t_user_name=models.CharField('имя',max_length=200,null=True)
     t_user_surname=models.CharField('Фамилия',max_length=200,null=True)
     t_user_group=models.ForeignKey(Group,on_delete=models.PROTECT,verbose_name='Группа', blank=True,null=True,related_name="t_user_group")
-    test=models.ForeignKey('OnlineTest',on_delete=models.PROTECT,verbose_name='Тест')
+    test=models.ForeignKey('OnlineTest',on_delete=models.CASCADE,verbose_name='Тест')
     test_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет теста')
     test_direction=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление теста')
     test_data=models.DateTimeField('дата прохождения')
@@ -244,7 +244,7 @@ class OnlineTest(models.Model):
 
 class TestQuestion(models.Model):
     question=models.CharField('вопрос', max_length=400)
-    test=models.ForeignKey('articles.OnlineTest',null=True,on_delete=models.PROTECT,verbose_name='тест')
+    test=models.ForeignKey('articles.OnlineTest',null=True,on_delete=models.CASCADE,verbose_name='тест')
     points=models.IntegerField('Количество баллов',validators=[MinValueValidator(1), MaxValueValidator(100)])
 
     def __str__(self):
