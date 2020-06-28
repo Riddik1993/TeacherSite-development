@@ -30,7 +30,9 @@
 
 
       <span id="authent_panel" style="font-size:0.7em; float:right;">
-           <button id="mobile_menu_button" >Меню</button>
+
+           <button id="mobile_menu_button" class="button">Меню</button>
+
         Пользователь: {{ user.get_username }} &nbsp
       <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
         <a href="{% url 'main'%}" class="simple_href" >Вернуться на сайт</a>

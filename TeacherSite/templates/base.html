@@ -33,14 +33,14 @@
 
       {% if user.is_authenticated %}
 
-      <span id="authent_panel" style="font-size:0.7em; float:right;">
 
-            <button id="mobile_menu_button" >Меню</button>
+      <span id="authent_panel" style="float:right;">
+            <button id="mobile_menu_button" class="button">Меню</button>
+
                  Пользователь: {{ user.get_username }} &nbsp
          <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
          <a href="{% url 'Profile'%}" class="simple_href" >Личный кабинет</a>
        </span>
-
 
     {% else %}
        <span id="authent_panel" style="font-size:0.7em; float:right;">
@@ -94,7 +94,7 @@
 
     <article>
 
-    <h1>{% block article-header %}{% endblock %}</h1>
+    <h1 class="article_header">{% block article-header %}{% endblock %}</h1>
     <p>{% block article-content %} В настоящий момент раздел в разработке {% endblock %}</p>
     </article>
 
