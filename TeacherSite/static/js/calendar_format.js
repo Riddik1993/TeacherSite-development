@@ -22,7 +22,12 @@ $(document).ready(function() {
 
 
 
+
+
+
+
  $('td:not(.noday)').mousemove(function(e) {
+
                    $(this).css("opacity","0.7");
                    $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'rgb(235, 155, 175)'});
                    $('#hint').show(200).text('Свободных явок нет');
@@ -37,7 +42,9 @@ $(document).ready(function() {
                   $(this).css("opacity","0.7");
                    if (html_num==now_month) {
                    $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'red'});
-                   $('#hint').show().text('Запись закрыта');
+                   if (document.body.clientWidth<=650) {
+                     $('#hint').show().text('Запись закрыта');
+                   }
                    }
                                }
 
@@ -59,6 +66,11 @@ $(document).ready(function() {
                        $(this).css("opacity","1");
                                              }
                                  );
+
+
+                                 {
+                                     $('#hint').hide();
+                                   }
 
 /*обработка кликов на дни*/
                                  $('td').click(function(){
@@ -92,6 +104,9 @@ $(document).ready(function() {
                                 }
 
 
+/*меняем местами календарь и форму для мобильных устройств*/
+if (document.body.clientWidth<=950) {
+$('#calendar').insertBefore('.comments_form');
 
-
+}
       });

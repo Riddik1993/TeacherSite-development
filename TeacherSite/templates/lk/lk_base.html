@@ -10,20 +10,26 @@
     <title>{% block title %} Персональный сайт учителя {% endblock %}</title>
     <!-- Подключаем стили-->
     <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <link rel="stylesheet" href="{% static "css/media-queries.css" %}" />
     <!-- Подключаем jquery-->
     <script type="text/javascript" src="{% static "js\jquery-3.4.1.min.js" %}"> </script>
     <!-- файл с JS-->
     <script type="text/javascript" src="{% static "js\Main.js" %}">   </script>
+    <script type="text/javascript" src="{% static "js\show_adaptive_menu.js" %}">   </script>
 
 
 
   </head>
-  <body>
+  <body id="pagewrap">
       <div id="head">{% block header-content %} {% endblock %}
 
       {% block reg_content %}
       {% if user.is_authenticated %}
-      <span style="font-size:0.7em; float:right;">Пользователь: {{ user.get_username }} &nbsp
+
+
+      <span id="authent_panel" style="font-size:0.7em; float:right;">
+           <button id="mobile_menu_button" >Меню</button>
+        Пользователь: {{ user.get_username }} &nbsp
       <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
         <a href="{% url 'main'%}" class="simple_href" >Вернуться на сайт</a>
     {% endif %}

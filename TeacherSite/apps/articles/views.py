@@ -144,7 +144,7 @@ def GetLessonCreateView(request):
     Event.objects.filter(day__lt=d).delete()
     c = EventCalendar(locale='')
     html_calendar = c.formatmonth(d.year, d.month, withyear=True)
-    html_calendar = html_calendar.replace('<td ', '<td  width="35px" height="35px"')
+    #html_calendar = html_calendar.replace('<td ', '<td  width="35px" height="35px"')
     month_num=d.month;
 
     return render(request,'articles/getlesson.html',{'form':form_getlesson,'html_calendar':html_calendar,'month_num':month_num})
