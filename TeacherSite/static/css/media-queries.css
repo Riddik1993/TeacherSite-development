@@ -21,8 +21,8 @@
          font-size: 0.6em;
    }
 
-#article_header{
-
+.article_header{
+  display:none;
   font-size:0.7em;
 }
 
@@ -70,6 +70,7 @@ aside ul li a {
     height:33px;
 }
 
+
 #hint {
   display:none;
 }
@@ -77,7 +78,8 @@ aside ul li a {
 #mobile_menu_button{
 
   display:inline;
-  margin-top: 5px;
+  margin-top: 1px;
+
   float:left;
 }
 .button{
@@ -99,20 +101,23 @@ aside ul li a {
 }
 #header_content{
   display:block;
+  font-size: 0.7em;
 }
 
-
 .simple_href {
-  font-size: 0.8em;
+  font-size: 0.7em;
+
 }
 
 #authent_panel{
   display:block;
   font-size:0.7em;
 
+  margin-top:13px;
   width:100%;
-  margin-top:5px;
+
   border-bottom:2px solid rgba(85, 24, 0, 0.932);
+  overflow:hidden;
 
 
 }
@@ -132,7 +137,6 @@ aside ul li a {
 
 
 }
-
 
 
 #head{
@@ -157,7 +161,6 @@ aside ul li a {
     margin-top:10px;
 
   }
-
 
 
 }
