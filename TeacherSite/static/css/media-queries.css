@@ -32,27 +32,33 @@
   }
 
 .paginator_reminders {
-
 top:95%;
-}
+  }
+
+
+  
+
 
 #hint {
   display:none;
 }
 
 #mobile_menu_button{
-  display:inline;
+
+  display:block;
+
+
 }
 #header_content{
   display:block;
 }
 #authent_panel{
   display:block;
- 
+
+
   width:100%;
   margin-top:5px;
   border-bottom:2px solid rgba(85, 24, 0, 0.932);
-
 
 }
 .comments_form {
@@ -60,25 +66,35 @@ top:95%;
   margin-top:10%;
 
 
+
+
 }
 
 #calendar {
   position:relative;
 
-
-
+  float:left;
+  width:90%;
 }
-
 
 #head{
   margin-bottom:15px;
 }
 
 
+.cal_button {
+padding:3px 10px;
 
+}.cal_button:hover{
+  padding:3px 10px;
+}.cal_button:active{
+padding:3px 10px;
 }
 
-@media screen and (max-width: 950px) {
+};
+
+@media screen and (max-width: 1100px) {
+
   .comments_form {
     position:static;
     margin-top:10%;
@@ -91,5 +107,8 @@ top:95%;
 
   }
 
+};
 
-}
+
+
+
