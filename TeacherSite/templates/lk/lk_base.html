@@ -6,7 +6,6 @@
   <head>
     <meta charset="utf-8">
 
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <title>{% block title %} Персональный сайт учителя {% endblock %}</title>
@@ -31,6 +30,7 @@
 
       <span id="authent_panel" style="font-size:0.7em; float:right;">
 
+           <button id="mobile_menu_button" class="button">Меню</button>
 
         Пользователь: {{ user.get_username }} &nbsp
       <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
