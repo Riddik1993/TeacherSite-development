@@ -34,7 +34,7 @@
 
 
       <span id="authent_panel" style="float:right;">
-            <button id="mobile_menu_button" class="button">Меню</button>
+            <button id="mobile_menu_button" >Меню</button>
 
                  Пользователь: {{ user.get_username }} &nbsp
          <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
@@ -47,6 +47,7 @@
       <a href="{% url 'login'%}?next={{request.path}}" class="simple_href"  >Вход на сайт</a>&nbsp
       <a href="{% url 'signup'%}" class="simple_href"  >Зарегистрироваться</a>
         </span>
+
 
 
 

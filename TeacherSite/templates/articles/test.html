@@ -55,7 +55,7 @@
 {% endif %}
 <a href="{% url 'tests' 1 %}" class="simple_href">Вернуться к списку тестов</a>
 
-<form method="POST"  >
+<form method="POST" id='test_form'  >
   {% csrf_token %}
 
   {% regroup answer_list by question as answer_list2 %}
