@@ -550,7 +550,9 @@ footer {width:calc(100% - 20px);
 
       .fadeBlock {
         position: absolute;
-        width:75%;
+
+        width:95%;
+
         height:150%;
         z-index:100;
         background-color: rgba(0,0,0,0.5);
