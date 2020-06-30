@@ -203,7 +203,7 @@ background: linear-gradient(to bottom right, #EFF080, #F0EEDB);*/
        border-bottom: 2px solid rgba(110, 56, 5, 0.979);
        font-style:italic;
        font-weight:bold;
-       font-size: 1.5em;
+       font-size: 1.3em;
        color:rgba(109, 47, 11, 0.932);
        text-align:center;
        float:left;
@@ -235,7 +235,7 @@ article  {
 }
 
  article H1,  article H2 {
-
+      font-size:1.3em;
       font-weight:bold;
       color:rgba(85, 24, 0, 0.932) !important;
       font-style:italic;
@@ -246,7 +246,7 @@ article p {
 
       font-weight:bold;
       color:rgba(85, 24, 0, 0.932) !important;
-      font-size:1.1em;
+      font-size:0.9em;
       text-align:justify;
       margin-top:-0.5em;
 }
@@ -687,3 +687,6 @@ color:red;
   display:inline;
 }
 
+.article_header{
+  font-size:1.1em;
+}
