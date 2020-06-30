@@ -550,7 +550,7 @@ footer {width:calc(100% - 20px);
 
       .fadeBlock {
         position: absolute;
-        width:100%;
+        width:75%;
         height:150%;
         z-index:100;
         background-color: rgba(0,0,0,0.5);
@@ -562,7 +562,7 @@ footer {width:calc(100% - 20px);
          max-width:50%;
          max-height:75%;
          margin:0 25% 0 25%;
-         align-content: center;
+
       }
 
 .scheme_block {
