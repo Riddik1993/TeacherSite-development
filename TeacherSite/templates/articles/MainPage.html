@@ -15,6 +15,9 @@
 <script type="text/javascript" src="{% static "js\img_chg_main_page.js" %}"> </script>
 
 
+<script type="text/javascript" src="{% static "js\img_chg_main_page.js" %}"> </script>
+
+
     <div style="clear:both;">
       <img  id="main_foto2" alt="Фото А.О.Фроловой" src="{{MEDIA_URL}}{{article.image2.url}}" />
       <p>{{article.article_text2|linebreaks}}</p>
@@ -35,6 +38,7 @@
             <br/>
 
 
+
 <div id="main_info_block" style="width:69%">
     <div style="clear:both;">
       <img  id="main_foto1" alt="Фото А.О.Фроловой" src="{{MEDIA_URL}}{{article.image.url}}" />
@@ -49,8 +53,9 @@
       <p><em>{{article.signature|linebreaks}}</em></p>
     </div>
 
-</div>
 
+</div>
+  
 
 <div id="mp_news_block">
   {% if news_list %}
@@ -102,6 +107,7 @@
         {% endif %}
      </div>
 </div>
+
 
 
 
