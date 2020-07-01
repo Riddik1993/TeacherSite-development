@@ -142,15 +142,16 @@ aside ul li a {
   width:90%;
 }
 
-.button{text-decoration:none; text-align:center;
- padding:1px 5px;
+.button{
+text-decoration:none; text-align:center;
+ padding:6px 8px;
 
  border:1px solid rgb(161, 94, 32);
  -webkit-border-radius:4px;
  -moz-border-radius:4px;
  border-radius: 4px;
 
- font-size:0.7em;
+ font-size:0.9em;
 
  font-weight:bold;
  color:#423237;
@@ -167,14 +168,14 @@ aside ul li a {
 
   }.button:hover{
 
- padding:1px 5px;
+ padding:6px 8px;
 
  border:1px solid rgb(161, 94, 32);
  -webkit-border-radius:4px;
  -moz-border-radius:4px;
  border-radius: 4px;
 
- font-size:0.7em;
+ font-size:0.9em;
 
  font-weight:bold;
  color:#423237;
@@ -192,14 +193,14 @@ aside ul li a {
 
  }.button:active{
 
- padding:1px 5px;
+padding:6px 8px;
 
  border:1px solid rgb(161, 94, 32);
  -webkit-border-radius:4px;
  -moz-border-radius:4px;
  border-radius: 4px;
 
-font-size:0.7em;
+font-size:0.9em;
 
  font-weight:bold;
  color:#423237;
@@ -303,7 +304,10 @@ font-size:0.7em;
 
 }
 
-
+#area_for_new{
+  height:110px;
+  overflow-y: hidden;
+}
 
 
 }
@@ -321,6 +325,14 @@ font-size:0.7em;
     margin-top:10px;
 
   }
+
+  #btn2:active {
+     margin-right:auto !important;
+   }
+
+   #btn1:active {
+      margin-right:auto !important;
+    }
 
 
 }

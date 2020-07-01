@@ -726,8 +726,11 @@ color:red;
 #mp_news_block{
   float:right;
   padding:1%;
-  min-height:95%;
+
+
+
   width:25%;
+
 
 
 
@@ -736,11 +739,36 @@ color:red;
 border:2px solid brown;
 padding:1.5%;
 text-align:center;
+
 }
 
 
 .news_img{
   width:95%;
-  margin:1.5%;
+
+
+
+
+}
+
+
+
+.ind_new{
+  display:none;
+  position:absolute;
+}
+
+#area_for_new{
+  height:300px;
+  overflow-y: hidden;
+}
+
+#main_page_news{
+  min-height:50%;
+}
+
+#publications{
+  float:bottom;
+  margin-bottom:10px;
 
 }
