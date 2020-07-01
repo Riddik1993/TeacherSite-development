@@ -1,7 +1,8 @@
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
-from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result
+from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
+Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.edit import CreateView
@@ -92,8 +93,10 @@ def ShowMainInfo(request):
     MemHistory_list=Memhis_Article.objects.order_by('pub_date')[:2]
     MemSocial_list=MemSocial_Article.objects.order_by('pub_date')[:2]
     Shema_list=Shema.objects.order_by('pub_date')[:2]
+    news_list=MP_new.objects.all()
 
-    return render(request,"articles/MainPage.html",{'article':a,'task_list':task_list,'MemHistory_list':MemHistory_list,'Shema_list':Shema_list,'MemSocial_list':MemSocial_list})
+    return render(request,"articles/MainPage.html",{'article':a,'task_list':task_list,'MemHistory_list':MemHistory_list,'Shema_list':Shema_list,
+    'MemSocial_list':MemSocial_list,'news_list':news_list})
 
 #Выводит список литературы
 def ShowLiteratureList(request):

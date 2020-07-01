@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.urls import reverse
-from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Shema,Category,Lesson,ArticleComment,Direction,Event,Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result
+from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Shema,Category,Lesson,ArticleComment,Direction,Event,Conspect,\
+LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result,MP_new
 
 # класс, позволяющий вкладывать ссылки в админке на форму другой модели
 class EditLinkToInlineObject(object):
@@ -80,7 +81,11 @@ class Test_resultAdmin(admin.ModelAdmin):
     list_display_links=('t_user_name',)
     list_filter=('t_user_group','test_category','test','test_direction','t_user_surname')
     search_fields=('tested_user','test')
-
+#новости
+class MP_newAdmin(admin.ModelAdmin):
+    list_display=('new_title','new_description')
+    list_display_links=('new_title','new_description')
+    search_fields=('new_title','new_description')
 
 admin.site.register(MemSocial_Article)
 admin.site.register(Memhis_Article)
@@ -99,3 +104,4 @@ admin.site.register(CHeckList,CHeckListAdmin)
 admin.site.register(OnlineTest,OnlineTestAdmin)
 admin.site.register(TestQuestion,TestQuestionAdmin)
 admin.site.register(Test_result,Test_resultAdmin)
+admin.site.register(MP_new,MP_newAdmin)

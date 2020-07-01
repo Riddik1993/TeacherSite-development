@@ -75,8 +75,10 @@ class SelfInfo(models.Model):
 class MainInfo(models.Model):
     article_title=models.CharField('Название статьи',max_length=200)
     article_text=models.TextField('текст статьи')
+    article_text2=models.TextField('текст статьи2',default="text")
+    signature=models.TextField('Подпись',max_length=100,default=" ")
     image=models.ImageField(upload_to='images/',blank=True)
-
+    image2=models.ImageField(upload_to='images/',blank=True)
 
     def __str__(self):
       return self.article_title
@@ -266,3 +268,16 @@ class Answer(models.Model):
     class Meta:
         verbose_name='Ответ'
         verbose_name_plural='Ответы'
+
+
+class MP_new(models.Model):
+    new_title=models.CharField('Название новости',max_length=200)
+    new_description=models.TextField('Описание',max_length=800)
+    new_image=models.ImageField(upload_to='images/news',blank=True)
+
+    def __str__(self):
+        return self.new_title
+
+    class Meta:
+        verbose_name='Новость'
+        verbose_name_plural='Новости'

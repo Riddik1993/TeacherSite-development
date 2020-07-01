@@ -71,7 +71,7 @@ class CustomIndexDashboard(Dashboard):
             _('Личная информация'),
             column=3,
             collapsible=False,
-            models=('articles.models.MainInfo','articles.models.SelfInfo'),
+            models=('articles.models.MainInfo','articles.models.SelfInfo','articles.models.MP_new'),
         ))
 
 
