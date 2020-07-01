@@ -37,7 +37,7 @@ class Task(models.Model):
         task_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет')
         file=models.FileField(upload_to='examdocs/tasks',blank=True)
         task_direct=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление')
-        pub_date=models.DateTimeField('дата публикации',blank=True,default=datetime.now())
+        pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
         def __str__(self):
             return self.task_name
 

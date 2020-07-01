@@ -3,6 +3,7 @@ from datetime import datetime
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.safestring import mark_safe
+from django.utils.timezone import now
 from django.contrib.auth.models import User,Group
 
 #памятки по истории и обществознанию
@@ -10,7 +11,7 @@ class MemSocial_Article(models.Model):
     article_title=models.CharField('название статьи',max_length=200)
     article_description=models.TextField('Краткая информация',blank=True)
     article_text=models.TextField('текст статьи')
-    pub_date=models.DateTimeField('дата публикации')
+    pub_date=models.DateTimeField('дата публикации',auto_now_add=True)
     file=models.FileField(upload_to='socialdocs/',blank=True)
 
     def __str__(self):
@@ -46,7 +47,7 @@ class Memhis_Article(models.Model):
     article_title=models.CharField('название статьи', max_length=200)
     article_description=models.TextField('Краткая информация',blank=True)
     article_text=models.TextField('текст статьи')
-    pub_date=models.DateTimeField('дата публикации')
+    pub_date=models.DateTimeField('дата публикации',auto_now_add=True)
     file=models.FileField(upload_to='historydocs/',blank=True)
 
     def __str__(self):
@@ -95,7 +96,7 @@ class Shema(models.Model):
     shema_description=models.TextField('Краткое описание',max_length=400)
     shema_category=models.ForeignKey('Category',null=True,on_delete=models.PROTECT,verbose_name='Категория схемы')
     shema_image=models.ImageField(upload_to='images/shemas',blank=True)
-    pub_date=models.DateTimeField('дата публикации',blank=True,default=datetime.now())
+    pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
     def __str__(self):
         return self.shema_title
 
@@ -177,7 +178,7 @@ class Conspect(models.Model):
         cons_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет')
         file=models.FileField(upload_to='conspects/',blank=True)
         cons_direct=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление')
-        pub_date=models.DateTimeField('дата публикации',blank=True,default=datetime.now())
+        pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
         def __str__(self):
             return self.cons_name
 
@@ -191,7 +192,7 @@ class LiterSource(models.Model):
         lit_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет')
         file=models.FileField(upload_to='workprograms/',blank=True)
         lit_direct=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление')
-        pub_date=models.DateTimeField('дата публикации',blank=True,default=datetime.now())
+        pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
 
         def __str__(self):
             return self.lit_name
@@ -203,7 +204,7 @@ class CHeckList(models.Model):
     chl_name=models.CharField('название', max_length=200)
     chl_descr=models.CharField('описание', max_length=500)
     chl_direct=models.ForeignKey('articles.Direction_CHL',null=True,on_delete=models.PROTECT,verbose_name='Направление чек-листа')
-    pub_date=models.DateTimeField('дата публикации',blank=True,default=datetime.now())
+    pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
     file=models.FileField(upload_to='checklists/',blank=True)
 
     def __str__(self):
@@ -232,7 +233,7 @@ class OnlineTest(models.Model):
     test_descr=models.CharField('описание', max_length=500)
     test_direct=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление')
     test_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет')
-    pub_date=models.DateTimeField('дата публикации',blank=True,default=datetime.now())
+    pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
     max_attempts=models.IntegerField(default=2,verbose_name='Число попыток')
 
 
