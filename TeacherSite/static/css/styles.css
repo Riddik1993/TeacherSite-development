@@ -726,6 +726,7 @@ color:red;
 #mp_news_block{
   float:right;
   padding:1%;
+  border-left:2px solid brown;
 
 
 
@@ -736,7 +737,7 @@ color:red;
 
 }
 #main_page_news{
-border:2px solid brown;
+border:none;
 padding:1.5%;
 text-align:center;
 
@@ -759,7 +760,7 @@ text-align:center;
 }
 
 #area_for_new{
-  height:300px;
+  height:400px;
   overflow-y: hidden;
 }
 
