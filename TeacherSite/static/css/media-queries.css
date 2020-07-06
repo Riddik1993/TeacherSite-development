@@ -367,5 +367,9 @@ article, aside{
       display:inline-block;
 
       }
+    .scheme_block img {
+      width:55% !important;
+    }
+
 
 }
