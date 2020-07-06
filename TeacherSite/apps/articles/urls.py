@@ -14,7 +14,8 @@ urlpatterns = [
     path('about/',views.About,name='SelfInfo'),
     path('',views.ShowMainInfo,name='main'),
     path('literature/',views.ShowLiteratureList,name='literature'),
-    path('shemas/<int:cat_id>/',views.ShowShemas,name='shemas'),
+    path('shemas/<int:cat_id>/',views.ShowShemasSubcat,name='shemas_subcat'),
+    path('shemas/<int:cat_id>/<int:subcat_id>',views.ShowShemas,name='shemas'),
     path('getlesson/',views.GetLessonCreateView,name='getlesson'),
     path('getlesson/monthch',views.MonthChanger,name='MonthChanger'),
     path('successlesson/',TemplateView.as_view(template_name='articles/success_lesson.html'),name='success_lesson'),
@@ -22,7 +23,6 @@ urlpatterns = [
     path('conspects/<int:cat_id>/',views.ShowConspects,name='conspects'),
     path('workprograms/<int:cat_id>/',views.ShowWorkPr,name='workprograms'),
     path('chlists/<int:direct_id>/',views.ShowCheckLists,name='chlists'),
-    path('chlists/',views.ShowCheckLists2,name='chlists2'),
     path('onlinetests/<int:direct_id>',views.OnlineTestList,name='tests'),
     path('test/<int:test_id>',views.PassTest,name='GoTest'),
 

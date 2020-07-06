@@ -4,7 +4,7 @@
 {% block header-content %} Таблицы и схемы  {% endblock %}
 
 {% block article-header %}
-  Таблицы и схемы
+  {{cat_name}} : {{subcat_name}}
 {% endblock %}
 
 
@@ -22,12 +22,8 @@
    }
 
 </style>
-<br/>
-  {% for category in category_list %}
 
-      <a class="button" id="btn1"  href="{% url "shemas" category.id %}">{{category.category_name}}</a>
-
-  {% endfor %}
+  <a href="{% url "shemas_subcat"  cat_id %}"  class="button">Назад</a>
   <br />
   <br />
 
@@ -36,13 +32,15 @@
   {% if shemas %}
  <div class="list_of_blocks">
     {% for sh in shemas %}
+      {% if sh.shema_image %}
         <div class="scheme_block">
-        <div class="scheme_image">
-        <img class="" width=50%  src="{{MEDIA_URL}}{{sh.shema_image.url}}" /> <br/>
+            <div class="scheme_image">
+                <img class="" width=50%  src="{{MEDIA_URL}}{{sh.shema_image.url}}" /> <br/>
+            </div>
+            <div class="sheme_title">{{sh.shema_title}}</div>
+            <a href="{{sh.shema_image.url}}" download class="simple_href">Скачать</a>
         </div>
-        <div class="sheme_title">{{sh.shema_title}}</div>
-        <a href="{{sh.shema_image.url}}" download class="simple_href">Скачать</a>
-        </div>
+      {% endif %}
     {% endfor %}
  </div>
   {% else %}

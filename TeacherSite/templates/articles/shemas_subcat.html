@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Таблицы и схемы {% endblock %}
+{% block header-content %} Таблицы и схемы  {% endblock %}
+
+{% block article-header %}
+  Таблицы и схемы
+{% endblock %}
+
+
+
+
+{% block article-content %}
+
+<style>
+ #btn1:active {
+    margin-right:8.5px;
+  }
+
+
+  #btn2:active {
+     margin-right:2.2px;
+   }
+
+</style>
+<br/>
+  {% for category in category_list %}
+
+      <a class="button" id="btn1"  href="{% url "shemas_subcat" category.id %}">{{category.category_name}}</a>
+
+  {% endfor %}
+  <br />
+  <br />
+
+
+
+  {% if subcategories %}
+ <div class="list_of_blocks">
+    {% for folder in subcategories %}
+        <div class="scheme_block" style="width:20%;margin-right:5%;">
+
+        <a href="{{folder.id}}" ><img  width=35%  src="{% static 'media\images\shemas\sh_folder.png' %}" width="100%"  alt="{{folder.subcategory_name}}"/></a>
+        <br/>
+        <span style="margin-left:3px;"><b>{{folder.subcategory_name}}</b></span>
+
+        <br/>
+
+
+        </div>
+    {% endfor %}
+ </div>
+  {% else %}
+    <p>Пока схем нет...</p>
+  {% endif %}
+
+  <br />
+  <p>
+  <div class="paginator_shemas">
+      {% if subcategories.has_previous %}
+        <a href='?page={{subcategories.previous_page_number}}' class="button" id="btn2" ><<</a>
+      {% endif %}
+        Страница {{subcategories.number}} из {{subcategories.paginator.num_pages}}
+      {% if subcategories.has_next %}
+        <a href='?page={{subcategories.next_page_number}}' class="button">>></a>
+      {% endif %}
+  </div>
+  </p>
+{% endblock %}

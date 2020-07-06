@@ -38,7 +38,7 @@
 
 
 </div>
-  
+
 
 <div id="mp_news_block">
   {% if news_list %}
@@ -51,7 +51,9 @@
               <br/>
               <em>{{n.new_description}}</em>
               <br/><br/>
+              {% if n.new_image %}
               <img  class="news_img" alt="{{n.new_title}}" src="{{MEDIA_URL}}{{n.new_image.url}}" />
+              {% endif %}
           </div>
         {% endfor %}
 

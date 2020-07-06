@@ -65,7 +65,7 @@ class CustomIndexDashboard(Dashboard):
             _('Направления деятельности'),
             column=3,
             collapsible=False,
-            models=('articles.models.Category','articles.models.Direction','articles.models.Direction_CHL'),
+            models=('articles.models.Category','articles.models.Schema_subcategory','articles.models.Direction','articles.models.Direction_CHL'),
         ))
         self.children.append(modules.ModelList(
             _('Личная информация'),

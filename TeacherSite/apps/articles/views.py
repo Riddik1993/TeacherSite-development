@@ -2,7 +2,7 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
-Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new
+Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.edit import CreateView
@@ -103,12 +103,32 @@ def ShowLiteratureList(request):
     Lit_list=RecommendBook.objects.order_by('id')
     return render(request,'articles/literature.html',{'Lit_list':Lit_list})
 
+#подкатегории схем
+def   ShowShemasSubcat(request,cat_id):
+    category_list=Category.objects.all()
+    Subcat_list=Schema_subcategory.objects.filter(category=cat_id)
+    paginator=Paginator(Subcat_list,9)
+    num_page=request.GET.get('page')
+    try:
+        subcategories=paginator.page(num_page)
+    except EmptyPage:
+        subcategories=paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        subcategories=paginator.page(1)
+
+
+    return render(request,'articles/shemas_subcat.html',{'subcategories':subcategories,'category_list':category_list})
+
 
 #Пагинатор для схем
-def ShowShemas(request,cat_id):
-    shemas_list=Shema.objects.filter(shema_category=cat_id)
+def ShowShemas(request,cat_id,subcat_id):
+    subcat_obj=Schema_subcategory.objects.get(id=subcat_id)
+    subcat_name=subcat_obj.subcategory_name
+    cat_obj=Category.objects.get(id=cat_id)
+    cat_name=cat_obj.category_name
+    shemas_list=Shema.objects.filter(shema_category=cat_id,schema_subcategory=subcat_id)
     category_list=Category.objects.all()
-    paginator=Paginator(shemas_list,6)
+    paginator=Paginator(shemas_list,9)
     num_page=request.GET.get('page')
     try:
         shemas=paginator.page(num_page)
@@ -116,7 +136,8 @@ def ShowShemas(request,cat_id):
         shemas=paginator.page(paginator.num_pages)
     except PageNotAnInteger:
         shemas=paginator.page(1)
-    return render(request,'articles/shemas.html',{'shemas':shemas,'category_list':category_list})
+    return render(request,'articles/shemas.html',{'shemas':shemas,'category_list':category_list,
+                'subcat_name':subcat_name,'cat_name':cat_name,'cat_id':cat_id})
 
 #Обработка формы запроса на проведение занятия
 def GetLessonCreateView(request):
@@ -193,8 +214,7 @@ def ShowCheckLists(request,direct_id='1'):
         chl_list=None
     return render(request,'articles/CheckLists.html',{'chl_list':chl_list,'current_dir':current_dir,'qty_dir':qty_dir})
 
-def ShowCheckLists2(request):
-    pass
+
 
 #онлан-тесты и их проверка
 def OnlineTestList(request,direct_id='1'):

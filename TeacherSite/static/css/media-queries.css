@@ -333,6 +333,9 @@ article, aside{
   min-height: 750px;
 }
 
+
+
+
 }
 
 @media screen and (max-width: 950px) {
@@ -356,6 +359,13 @@ article, aside{
    #btn1:active {
       margin-right:auto !important;
     }
+    .scheme_block {
+      width:32% !important;
+      height:17%;
 
+      margin-bottom:10px;
+      display:inline-block;
+
+      }
 
 }

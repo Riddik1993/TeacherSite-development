@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Shema,Category,Lesson,ArticleComment,Direction,Event,Conspect,\
-LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result,MP_new
+LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory
 
 # класс, позволяющий вкладывать ссылки в админке на форму другой модели
 class EditLinkToInlineObject(object):
@@ -20,9 +20,9 @@ class EventAdmin(admin.ModelAdmin):
     list_display=('day','notes')
 
 class ShemaAdmin(admin.ModelAdmin):
-    list_display=('shema_title','shema_category','shema_description')
+    list_display=('shema_title','shema_category','schema_subcategory','shema_description')
     list_display_links=('shema_title',)
-    list_filter=('shema_category',)
+    list_filter=('shema_category','schema_subcategory')
     search_fields=('shema_title','shema_category')
 
 class LessonAdmin(admin.ModelAdmin):
@@ -86,6 +86,13 @@ class MP_newAdmin(admin.ModelAdmin):
     list_display=('new_title','new_description')
     list_display_links=('new_title','new_description')
     search_fields=('new_title','new_description')
+#подкатегории схем
+class Schema_subcategoryAdmin(admin.ModelAdmin):
+    list_display=('category','subcategory_name')
+    list_filter=('category',)
+    list_display_links=('category','subcategory_name')
+
+
 
 admin.site.register(MemSocial_Article)
 admin.site.register(Memhis_Article)
@@ -105,3 +112,4 @@ admin.site.register(OnlineTest,OnlineTestAdmin)
 admin.site.register(TestQuestion,TestQuestionAdmin)
 admin.site.register(Test_result,Test_resultAdmin)
 admin.site.register(MP_new,MP_newAdmin)
+admin.site.register(Schema_subcategory,Schema_subcategoryAdmin)

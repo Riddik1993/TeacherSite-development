@@ -95,6 +95,7 @@ class Shema(models.Model):
     shema_title=models.CharField('Название_схемы',max_length=200)
     shema_description=models.TextField('Краткое описание',max_length=400)
     shema_category=models.ForeignKey('Category',null=True,on_delete=models.PROTECT,verbose_name='Категория схемы')
+    schema_subcategory=models.ForeignKey('Schema_subcategory',null=True,blank=True,on_delete=models.PROTECT,verbose_name='Подкатегория схемы')
     shema_image=models.ImageField(upload_to='images/shemas',blank=True)
     pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
     def __str__(self):
@@ -282,3 +283,14 @@ class MP_new(models.Model):
     class Meta:
         verbose_name='Новость'
         verbose_name_plural='Новости'
+
+class Schema_subcategory(models.Model):
+    category=models.ForeignKey('articles.Category',null=False,on_delete=models.CASCADE,verbose_name='Предмет')
+    subcategory_name=models.CharField('Название_подкатегории',max_length=100)
+
+    def __str__(self):
+        return self.subcategory_name
+
+    class Meta:
+        verbose_name='Подкатегория схем'
+        verbose_name_plural='Подкатегории схем'
