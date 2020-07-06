@@ -5,6 +5,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.contrib.auth.models import User,Group
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 #памятки по истории и обществознанию
 class MemSocial_Article(models.Model):
@@ -20,6 +22,10 @@ class MemSocial_Article(models.Model):
     class Meta:
         verbose_name='Памятка по обществознанию'
         verbose_name_plural='Памятки по обществознанию'
+
+@receiver(post_delete, sender=MemSocial_Article)
+def submission_delete4(sender, instance, **kwargs):
+    instance.file.delete(False)
 
 class Test_result(models.Model):
     tested_user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Пользователь', related_name="tested_user")
@@ -56,6 +62,10 @@ class Memhis_Article(models.Model):
     class Meta:
         verbose_name='Памятка по истории'
         verbose_name_plural='Памятки по истории'
+
+@receiver(post_delete, sender=Memhis_Article)
+def submission_delete3(sender, instance, **kwargs):
+    instance.file.delete(False)
 #информация о себе
 class SelfInfo(models.Model):
     article_title=models.CharField('Название статьи',max_length=200)
@@ -104,6 +114,10 @@ class Shema(models.Model):
     class Meta:
         verbose_name='Схема'
         verbose_name_plural='Схемы'
+
+@receiver(post_delete, sender=Shema)
+def submission_delete2(sender, instance, **kwargs):
+    instance.shema_image.delete(False)
 
 class Category(models.Model):
     category_name=models.CharField('Предмет',max_length=100)
@@ -187,6 +201,10 @@ class Conspect(models.Model):
             verbose_name='Конспект'
             verbose_name_plural='Конспекты'
 
+@receiver(post_delete, sender=Conspect)
+def submission_delete_consp(sender, instance, **kwargs):
+    instance.file.delete(False)
+
 #рабочие программы
 class LiterSource(models.Model):
         lit_name=models.CharField('название', max_length=200)
@@ -200,6 +218,10 @@ class LiterSource(models.Model):
         class Meta:
             verbose_name='Литература'
             verbose_name_plural='Литература'
+
+@receiver(post_delete, sender=LiterSource)
+def submission_delete_ls(sender, instance, **kwargs):
+    instance.file.delete(False)
 #чек-листы
 class CHeckList(models.Model):
     chl_name=models.CharField('название', max_length=200)
@@ -214,6 +236,10 @@ class CHeckList(models.Model):
     class Meta:
         verbose_name='CHECK-лист'
         verbose_name_plural='CHECK-листы'
+
+@receiver(post_delete, sender=CHeckList)
+def submission_delete_chk_list(sender, instance, **kwargs):
+    instance.file.delete(False)
 
 class Direction_CHL(models.Model):
     direction_name=models.CharField('Направление чек-листа',max_length=100)
@@ -280,9 +306,15 @@ class MP_new(models.Model):
     def __str__(self):
         return self.new_title
 
+
     class Meta:
         verbose_name='Новость'
         verbose_name_plural='Новости'
+
+@receiver(post_delete, sender=MP_new)
+def submission_delete(sender, instance, **kwargs):
+    instance.new_image.delete(False)
+
 
 class Schema_subcategory(models.Model):
     category=models.ForeignKey('articles.Category',null=False,on_delete=models.CASCADE,verbose_name='Предмет')
