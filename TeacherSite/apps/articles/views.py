@@ -214,7 +214,8 @@ def ShowCheckLists(request,direct_id='1'):
         chl_list=None
     return render(request,'articles/CheckLists.html',{'chl_list':chl_list,'current_dir':current_dir,'qty_dir':qty_dir})
 
-
+def ShowCheckLists2(request):
+    pass
 
 #онлан-тесты и их проверка
 def OnlineTestList(request,direct_id='1'):

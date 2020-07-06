@@ -23,6 +23,7 @@ urlpatterns = [
     path('conspects/<int:cat_id>/',views.ShowConspects,name='conspects'),
     path('workprograms/<int:cat_id>/',views.ShowWorkPr,name='workprograms'),
     path('chlists/<int:direct_id>/',views.ShowCheckLists,name='chlists'),
+    path('chlists/',views.ShowCheckLists2,name='chlists2'),
     path('onlinetests/<int:direct_id>',views.OnlineTestList,name='tests'),
     path('test/<int:test_id>',views.PassTest,name='GoTest'),
 
