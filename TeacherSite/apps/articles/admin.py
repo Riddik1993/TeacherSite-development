@@ -38,9 +38,9 @@ class ConspectAdmin(admin.ModelAdmin):
     search_fields=('cons_name',)
 
 class LiterSourceAdmin(admin.ModelAdmin):
-    list_display=('lit_name','lit_direct','pub_date',)
+    list_display=('lit_name','author','pub_date',)
     list_display_links=('lit_name',)
-    list_filter=('lit_category','lit_direct',)
+    list_filter=('lit_category','author',)
     search_fields=('lit_name',)
 
 class CHeckListAdmin(admin.ModelAdmin):

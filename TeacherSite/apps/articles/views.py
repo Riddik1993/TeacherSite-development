@@ -196,13 +196,21 @@ def ShowConspects(request,cat_id):
     return render(request,'articles/Conspects.html',{'Conspect_list':Conspect_list,'category_list':category_list,})
 
 
-def ShowWorkPr(request,cat_id):
+def ShowTeacherLS(request,cat_id):
     category_list=Category.objects.all()
     try:
         Workpr_list=LiterSource.objects.all().filter(lit_category=cat_id)
+        paginator=Paginator(Workpr_list,4)
+        num_page=request.GET.get('page')
+        try:
+            books=paginator.page(num_page)
+        except EmptyPage:
+            books=paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            books=paginator.page(1)
     except:
         Workpr_list=None
-    return render(request,'articles/WorkPr.html',{'Workpr_list':Workpr_list,'category_list':category_list,})
+    return render(request,'articles/TeacherLS.html',{'Workpr_list':Workpr_list,'category_list':category_list,'books':books})
 
 #чек-листы
 def ShowCheckLists(request,direct_id='1'):

@@ -205,23 +205,26 @@ class Conspect(models.Model):
 def submission_delete_consp(sender, instance, **kwargs):
     instance.file.delete(False)
 
-#рабочие программы
+#литература для учителей
 class LiterSource(models.Model):
         lit_name=models.CharField('название', max_length=200)
+        author=models.CharField('автор',blank=True,null=True, max_length=200)
+        lit_descr=models.TextField('Описание',blank=True,null=True, max_length=2000)
         lit_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет')
-        file=models.FileField(upload_to='workprograms/',blank=True)
-        lit_direct=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление')
+        img=models.ImageField(upload_to='images/teacherlit',blank=True,verbose_name='Скан книги')
+        file=models.FileField(upload_to='teacherlit/',blank=True,null=True,verbose_name='Файл(если есть)')
         pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
 
         def __str__(self):
             return self.lit_name
         class Meta:
-            verbose_name='Литература'
-            verbose_name_plural='Литература'
+            verbose_name='УМК'
+            verbose_name_plural='УМК'
 
 @receiver(post_delete, sender=LiterSource)
 def submission_delete_ls(sender, instance, **kwargs):
     instance.file.delete(False)
+    instance.img.delete(True)
 #чек-листы
 class CHeckList(models.Model):
     chl_name=models.CharField('название', max_length=200)

@@ -266,7 +266,7 @@ article table:not(.month) {
   border-collapse: collapse;
   border:1px solid black;
 }
-article table th  , article table  td {
+article table th  , article table  td:not(#teach_ls) {
     border:1px solid black;
     font-size: 0.9em;
     padding:4px;
@@ -768,4 +768,28 @@ text-align:center;
 
 #main_page_news{
   min-height:50%;
+}
+
+
+.teach_ls_imgtd {
+  text-align: center;
+  padding:5px;
+  width:10%;
+}
+
+.teach_ls_name{
+  width:15%;
+}
+
+.teach_ls_author{
+  width:10%;
+}
+.teach_ls_direct{
+  width:10%;
+}
+
+#teach_ls td {
+  color:brown;
+  font-size:1.0em !important;
+
 }

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} УМК {% endblock %}
+{% block header-content %} УМК {% endblock %}
+
+{% block article-header %}
+
+{% endblock %}
+
+
+{% block article-content %}
+<style>
+#btn2:active {
+   margin-right:8.5px;
+ }
+</style>
+{% for category in category_list %}
+    <a class="button" id="btn2" href="{% url "teacherls" category.id %}">{{category.category_name}}</a>
+{% endfor %}
+<br />
+<br />
+{% if Workpr_list %}
+  <table id="teach_ls">
+    <tr class="table_header">
+       <th >Источник</th>
+       <th class="teach_ls_author">Автор</th>
+       <th class="teach_ls_name">Название</th>
+
+
+
+    </tr>
+    {% for  wp in books %}
+      <tr>
+        <td class="teach_ls_imgtd">
+          {% if wp.img %}
+            <img class="" width=35%  src="{{MEDIA_URL}}{{wp.img.url}}" />
+          {% endif %}
+       </td>
+
+       <td >
+         {% if wp.author %}
+            {{wp.author}}
+         {% endif %}
+       </td>
+        <td >{{wp.lit_name}}</td>
+
+
+    </tr>
+  {% endfor %}
+  </table>
+{% else %}
+<p>УМК пока нет...</p>
+{% endif %}
+
+{% if books%}
+  <div class="paginator_shemas">
+    {% if books.has_previous %}
+      <a href='?page={{books.previous_page_number}}' class="button" id="btn2" ><<</a>
+    {% endif %}
+      Страница {{books.number}} из {{books.paginator.num_pages}}
+    {% if books.has_next %}
+      <a href='?page={{books.next_page_number}}' class="button">>></a>
+    {% endif %}
+  </div>
+{% endif %}
+
+    {% endblock %}
+
+    {% block out-of-article %}
+    <!--Блок с затемнением для картинок -->
+    <div class="fadeBlock">
+       <div class="content">
+          <img src="" class="full" style="width:750px"/>
+       </div>
+    </div>
+    {% endblock %}

@@ -21,7 +21,7 @@ urlpatterns = [
     path('successlesson/',TemplateView.as_view(template_name='articles/success_lesson.html'),name='success_lesson'),
     path('successcomment/',TemplateView.as_view(template_name='articles/success_comment.html'),name='success_comment'),
     path('conspects/<int:cat_id>/',views.ShowConspects,name='conspects'),
-    path('workprograms/<int:cat_id>/',views.ShowWorkPr,name='workprograms'),
+    path('teacherls/<int:cat_id>/',views.ShowTeacherLS,name='teacherls'),
     path('chlists/<int:direct_id>/',views.ShowCheckLists,name='chlists'),
     path('chlists/',views.ShowCheckLists2,name='chlists2'),
     path('onlinetests/<int:direct_id>',views.OnlineTestList,name='tests'),
