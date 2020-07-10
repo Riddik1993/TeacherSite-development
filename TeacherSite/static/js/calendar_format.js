@@ -10,6 +10,7 @@ $(document).ready(function() {
  if (html_num==now_month) {
  $('.expired').parent().css('background-color','rgb(179, 179, 179)');
 };
+ $(".cal_ev_ex").parent().parent().css('background-color','rgb(143, 232, 135)');
  $(".cal_ev_ex").parent().css('background-color','rgb(143, 232, 135)');
 
  if (html_num==now_month) {
@@ -29,8 +30,11 @@ $(document).ready(function() {
  $('td:not(.noday)').mousemove(function(e) {
 
                    $(this).css("opacity","0.7");
-                   $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'rgb(235, 155, 175)'});
-                   $('#hint').show(200).text('Свободных явок нет');
+
+                   if($(this).find('div').hasClass('expired')==false) {
+                          $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'rgb(235, 155, 175)'});
+                          $('#hint').show(200).text('Свободных мест нет');
+                     }
                                }
                    ).mouseout(function() {
                                  $('#hint').hide();
@@ -40,17 +44,9 @@ $(document).ready(function() {
 
  $('td').has('.expired').mousemove(function(e) {
                   $(this).css("opacity","0.7");
-                   if (html_num==now_month) {
-                   $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'red'});
-                   if (document.body.clientWidth<=650) {
-                     $('#hint').show().text('Запись закрыта');
-                   }
-                   }
-                               }
 
-                   ).mouseout(function() {
-                                 $('#hint').hide();
-                                 $(this).css("opacity","1");
+                        }).mouseout(function() {
+                              $(this).css("opacity","1");
                              }
                    );
 
@@ -58,8 +54,10 @@ $(document).ready(function() {
 
  $('td').has('.cal_ev_ex').mousemove(function(e) {
                $(this).css("opacity","0.7");
-               $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'rgb(80, 247, 54)'});
-                   $('#hint').show().text('Запись открыта');
+               var info=$(this).find('.cal_ev_ex').text()
+               $('#hint').css({'left':e.clientX-coords.left+10,'top':e.clientY-coords.top+10,'background-color':'rgb(143, 232, 135)',
+                  });
+                   $('#hint').show().text(info);
                                                  }
                    ).mouseout(function() {
                        $('#hint').hide();

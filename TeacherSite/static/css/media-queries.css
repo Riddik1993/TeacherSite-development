@@ -352,6 +352,16 @@ article, aside{
 
   }
 
+  #calendar table td{
+    vertical-align: top;
+    border:1px solid grey;
+    overflow: hidden;
+    height:30px;
+    min-width: 30px;
+    width:30px;
+
+    }
+
   #btn2:active {
      margin-right:auto !important;
    }

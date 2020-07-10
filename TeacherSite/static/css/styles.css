@@ -148,11 +148,13 @@ background: linear-gradient(to bottom right, #EFF080, #F0EEDB);*/
   float:right;
   margin-right: 5%;
   min-width:25%;
+  width:35%;
   position:relative;
   height:40%;
 }
 #calendar_data table{
-  min-width:95%;
+  min-width:85%;
+  width:85%;
 }
 
 
@@ -160,8 +162,11 @@ background: linear-gradient(to bottom right, #EFF080, #F0EEDB);*/
   #calendar table td{
     vertical-align: top;
     border:1px solid grey;
-    overflow: auto;
+    overflow: hidden;
     height:40px;
+    min-width: 40px;
+    width:40px;
+
     }
 
 #calendar table {
@@ -184,15 +189,18 @@ background: linear-gradient(to bottom right, #EFF080, #F0EEDB);*/
 .cal_ev_ex{
   font-size: 0.8em;
   font-style: italic;
+  display:none;
 }
 
 #hint{
   position:absolute;
   display:none;
+  overflow: hidden;
   border:1px solid black;
-  min-width:80px;
+  width:70px;
+
   z-index: 100;
-  padding:2px;
+  padding:4px;
   font-size:0.8em;
 }
 

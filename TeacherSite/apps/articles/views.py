@@ -200,7 +200,9 @@ def ShowTeacherLS(request,cat_id):
     category_list=Category.objects.all()
     try:
         Workpr_list=LiterSource.objects.all().filter(lit_category=cat_id)
-        paginator=Paginator(Workpr_list,4)
+
+        paginator=Paginator(Workpr_list,6)
+
         num_page=request.GET.get('page')
         try:
             books=paginator.page(num_page)
