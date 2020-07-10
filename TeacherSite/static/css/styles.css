@@ -594,6 +594,12 @@ footer {width:calc(100% - 20px);
   color:rgba(85, 24, 0, 0.932);
   font-weight: bold;
 }
+.paginator_ls{
+  position:absolute;
+  bottom:2px;
+  color:rgba(85, 24, 0, 0.932);
+  font-weight: bold;
+}
 
 .article_list {
   list-style-type:none;
