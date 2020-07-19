@@ -25,6 +25,10 @@ def MemSocialList(request):
     num_page=request.GET.get('page')
     image=Img_reminder.objects.get(type='S')
     try:
+        image=Img_reminder.objects.get(type='S')
+    except:
+        image=()
+    try:
         articles=paginator.page(num_page)
     except EmptyPage:
         articles=paginator.page(paginator.num_pages)
@@ -41,7 +45,15 @@ def MemHistory(request):
     Memhis_Article_list= Memhis_Article.objects.order_by('-pub_date')
     paginator=Paginator(Memhis_Article_list,5)
     num_page=request.GET.get('page')
-    image=Img_reminder.objects.get(type='H')
+
+
+    try:
+        image=Img_reminder.objects.get(type='H')
+    except:
+        image=()
+
+
+
     try:
         articles=paginator.page(num_page)
     except EmptyPage:
