@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Shema,Category,Lesson,ArticleComment,Direction,Event,Conspect,\
-LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory
+LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory,Img_reminder
 
 # класс, позволяющий вкладывать ссылки в админке на форму другой модели
 class EditLinkToInlineObject(object):
@@ -92,6 +92,10 @@ class Schema_subcategoryAdmin(admin.ModelAdmin):
     list_filter=('category',)
     list_display_links=('category','subcategory_name')
 
+#картинке к страницам с памятками
+class Img_reminderAdmin(admin.ModelAdmin):
+    list_display=('img','type')
+
 
 
 admin.site.register(MemSocial_Article)
@@ -113,3 +117,4 @@ admin.site.register(TestQuestion,TestQuestionAdmin)
 admin.site.register(Test_result,Test_resultAdmin)
 admin.site.register(MP_new,MP_newAdmin)
 admin.site.register(Schema_subcategory,Schema_subcategoryAdmin)
+admin.site.register(Img_reminder,Img_reminderAdmin)

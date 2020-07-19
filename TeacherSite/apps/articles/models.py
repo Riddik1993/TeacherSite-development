@@ -315,7 +315,7 @@ class MP_new(models.Model):
         verbose_name_plural='Новости'
 
 @receiver(post_delete, sender=MP_new)
-def submission_delete(sender, instance, **kwargs):
+def submission_delete_MP_new(sender, instance, **kwargs):
     instance.new_image.delete(False)
 
 
@@ -329,3 +329,17 @@ class Schema_subcategory(models.Model):
     class Meta:
         verbose_name='Подкатегория схем'
         verbose_name_plural='Подкатегории схем'
+
+class Img_reminder(models.Model):
+    reminder_types=[('H','Памятки по истории'),('S','Памятки по обществознанию')]
+    img=models.ImageField(upload_to='images/remindersimg',blank=True,verbose_name='Картинка')
+    type=models.CharField('тип памяток',max_length=40,choices=reminder_types,default='H')
+
+
+    class Meta:
+        verbose_name='Картинка к странице памяток'
+        verbose_name_plural='Картинки к странице памяток'
+
+@receiver(post_delete, sender=Img_reminder)
+def submission_delete_MP_new(sender, instance, **kwargs):
+    instance.img.delete(False)

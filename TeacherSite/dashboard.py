@@ -60,6 +60,12 @@ class CustomIndexDashboard(Dashboard):
             collapsible=False,
             models=('django.contrib.*',),
         ))
+        self.children.append(modules.ModelList(
+            _('Оформление'),
+            column=3,
+            collapsible=False,
+            models=('articles.models.Img_reminder',),
+        ))
         # append an app list module for "Administration"
         self.children.append(modules.ModelList(
             _('Направления деятельности'),

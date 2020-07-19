@@ -17,6 +17,11 @@
    }
 
 </style>
+{% if image %}
+
+  <img class="rmd_img" src="{{image.img.url}}"  />
+
+{% endif %}
 
 
 <script type="text/javascript" src="{% static 'js\reminder-hint.js' %}">   </script>

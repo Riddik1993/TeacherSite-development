@@ -2,7 +2,8 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
-Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory
+Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory, \
+Img_reminder
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.edit import CreateView
@@ -22,6 +23,7 @@ def MemSocialList(request):
     Memsocial_Article_list=MemSocial_Article.objects.order_by('-pub_date')
     paginator=Paginator(Memsocial_Article_list,5)
     num_page=request.GET.get('page')
+    image=Img_reminder.objects.get(type='S')
     try:
         articles=paginator.page(num_page)
     except EmptyPage:
@@ -29,7 +31,7 @@ def MemSocialList(request):
     except PageNotAnInteger:
         articles=paginator.page(1)
 
-    return render(request,'articles/MemSocial.html',{'articles':articles})
+    return render(request,'articles/MemSocial.html',{'articles':articles,'image':image})
 
 def MemSocialDetail(request,article_id):
     a=MemSocial_Article.objects.get(id=article_id)
@@ -39,6 +41,7 @@ def MemHistory(request):
     Memhis_Article_list= Memhis_Article.objects.order_by('-pub_date')
     paginator=Paginator(Memhis_Article_list,5)
     num_page=request.GET.get('page')
+    image=Img_reminder.objects.get(type='H')
     try:
         articles=paginator.page(num_page)
     except EmptyPage:
@@ -46,7 +49,7 @@ def MemHistory(request):
     except PageNotAnInteger:
         articles=paginator.page(1)
 
-    return render(request,'articles/MemHistory.html',{'articles':articles})
+    return render(request,'articles/MemHistory.html',{'articles':articles,'image':image})
 
 def MemHistoryDetail(request,article_id):
     comment_form=ArticleCommentForm(request.POST or None, request.FILES or None)
