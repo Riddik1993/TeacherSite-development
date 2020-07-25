@@ -32,6 +32,9 @@ class CustomIndexDashboard(Dashboard):
 
         )
 
+        
+
+
         self.children.append(modules.ModelList(
                     title='Информация для учителей',
                     column=2,
@@ -71,7 +74,8 @@ class CustomIndexDashboard(Dashboard):
             _('Направления деятельности'),
             column=3,
             collapsible=False,
-            models=('articles.models.Category','articles.models.Schema_subcategory','articles.models.Direction','articles.models.Direction_CHL'),
+            models=('articles.models.Category','articles.models.Schema_subcategory',
+            'articles.models.Direction','articles.models.Direction_CHL'),
         ))
         self.children.append(modules.ModelList(
             _('Личная информация'),

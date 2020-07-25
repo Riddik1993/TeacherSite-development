@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load add_temp_tags %}
+{% load static %}
+{% block title %} Просмотр результатов{% endblock %}
+{% block header-content %} Просмотр результатов теста {% endblock %}
+
+
+
+{% block article-content %}
+
+  <script type="text/javascript" src="{% static 'js\check_user_test_for_admin.js' %}">   </script>
+  <script type="text/javascript" src="{% static 'js\pdf_saver.js' %}">   </script>
+  <script type="text/javascript" src="{% static 'js\canvas_min.js' %}">   </script>
+  <script type="text/javascript" src="{% static 'js\js2pdf.js' %}">   </script>
+
+{% if recieved_answer_dict %}
+{{recieved_answer_dict|json_script:"received_answers"}}
+{% endif %}
+
+
+  {% block aside %}
+
+  {% endblock %}
+
+<button class="button" id="pdf_load">выгрузить в pdf</button>
+
+<div id="for_pdf_outer" >
+
+  <div id="for_pdf"   >
+    <div id="test_result_admin_header">
+      <h3 >Результаты теста</h3>
+      <h3 id="test_name">"{{test.test_name}}"</h3>
+    </div>
+
+    <br/>
+
+<table style="font-size:1.2em;">
+<tr  style="background-color:rgb(247, 136, 162);text-align:center;"> <td colspan="3"><b> Параметры</b></td></tr>
+<tr>
+  <td>Логин тестируемого:</td>
+  <td>{{result.tested_user}}</td>
+</tr>
+<tr>
+  <td>ФИО:</td>
+  <td id="FIO">{{result.tested_user.first_name}} {{result.tested_user.last_name}}</td>
+</tr>
+<tr>
+  <td > Дата прохождения</td>
+  <td id="pass_date">{{result.test_data}} </td>
+</tr>
+<tr>
+  <td>Номер попытки</td>
+  <td>{{result.attempt_number}} </td>
+</tr>
+<tr>
+  <td>Результат (%):</td>
+  <td>{{result.result_percentage}} </td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<H3 > Разбор ошибок:</h3>
+
+
+  {% regroup answer_list by question as answer_list2 %}
+  <ul >
+  {% for ans in answer_list2 %}
+
+        <li quest='{{ans.grouper.id}}' style="width:50%;padding:2px;font-size:1.1em;" ><b>{{ ans.grouper }} </b><br/>
+
+            {% for item in ans.list %}
+              <li  ans_id='{{item.id}}'>  {{item.answer}}</li> <br/>
+            {% endfor %}
+
+        </li>
+        <br/>
+  {% endfor %}
+   </ul>
+
+
+
+   </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

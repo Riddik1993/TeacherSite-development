@@ -77,10 +77,19 @@ class TestQuestionAdmin(admin.ModelAdmin):
 
 #результаты тестов по юзерам
 class Test_resultAdmin(admin.ModelAdmin):
-    list_display=('t_user_name','t_user_surname','t_user_group','test','test_data','result_percentage','attempt_number')
+    list_display=('t_user_name','t_user_surname','t_user_group','test','test_data',
+                 'result_percentage','attempt_number','result_link')
     list_display_links=('t_user_name',)
     list_filter=('t_user_group','test_category','test','test_direction','t_user_surname')
     search_fields=('tested_user','test')
+
+    def result_link(self,item):
+        return mark_safe('<a href="{}">подробные результаты</a>'.format(
+        reverse('UT_results',kwargs={'result_id':item.id})))
+
+
+
+
 #новости
 class MP_newAdmin(admin.ModelAdmin):
     list_display=('new_title','new_description')

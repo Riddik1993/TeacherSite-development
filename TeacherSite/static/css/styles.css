@@ -812,3 +812,20 @@ text-align:center;
   float:right;
   width:30%;
 }
+
+#for_pdf_outer{
+  border:1px solid black;
+  padding:2%;
+  background-color: rgb(254, 255, 240);
+  width:65%;
+}
+
+#for_pdf{
+  
+
+}
+
+#test_result_admin_header{
+  text-align:center;
+  line-height:1.2em;
+}

@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from articles.models import Test_result
-#памятки по истории и обществознанию
+from articles.models import Test_result,AnswerRecieved,OnlineTest
+from articles.services import generate_context_for_test_by_testid
+from django.contrib.admin.views.decorators import staff_member_required
+
 @login_required
 def ShowProfile(request):
     if request.user.is_authenticated:
@@ -23,6 +25,25 @@ def Show_LK_Tests(request):
 @login_required
 def Show_LK_Favor(request):
     return render(request,'lk/myfavor.html')
+
+@staff_member_required
+def show_result_of_test_by_resultid(request,result_id):
+    t_result=Test_result.objects.get(id=result_id)
+    test=t_result.test
+    test_context=generate_context_for_test_by_testid(test.id)
+
+    received_answers=AnswerRecieved.objects.filter(result=t_result)
+    recieved_answer_dict={}
+    for a in received_answers:
+        recieved_answer_dict.update({a.answer.id:a.isright})
+
+
+
+    context={'result':t_result,'recieved_answer_dict':recieved_answer_dict}
+    context.update(test_context)
+
+
+    return render(request,'lk/passedtestresult.html',context)
 
 
 # Create your views here.

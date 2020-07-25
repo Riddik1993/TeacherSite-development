@@ -7,6 +7,7 @@ from django.utils.timezone import now
 from django.contrib.auth.models import User,Group
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.contrib.postgres.fields import ArrayField
 
 #памятки по истории и обществознанию
 class MemSocial_Article(models.Model):
@@ -27,26 +28,7 @@ class MemSocial_Article(models.Model):
 def submission_delete4(sender, instance, **kwargs):
     instance.file.delete(False)
 
-class Test_result(models.Model):
-    tested_user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Пользователь', related_name="tested_user")
-    t_user_name=models.CharField('имя',max_length=200,null=True)
-    t_user_surname=models.CharField('Фамилия',max_length=200,null=True)
-    t_user_group=models.ForeignKey(Group,on_delete=models.PROTECT,verbose_name='Группа', blank=True,null=True,related_name="t_user_group")
-    test=models.ForeignKey('OnlineTest',on_delete=models.CASCADE,verbose_name='Тест')
-    test_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет теста')
-    test_direction=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление теста')
-    test_data=models.DateTimeField('дата прохождения')
-    attempt_number=models.IntegerField('Номер попытки')
-    result_points=models.FloatField('Набранные баллы')
-    test_points=models.FloatField('Максим.баллы в тесте')
-    result_percentage=models.FloatField('Результат в процентах')
 
-    def __str__(self):
-       return self.test.test_name
-
-    class Meta:
-        verbose_name='Результат теста'
-        verbose_name_plural='Результаты тестов'
 
 
 class Memhis_Article(models.Model):
@@ -299,6 +281,35 @@ class Answer(models.Model):
     class Meta:
         verbose_name='Ответ'
         verbose_name_plural='Ответы'
+
+
+class Test_result(models.Model):
+    tested_user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Пользователь', related_name="tested_user")
+    t_user_name=models.CharField('имя',max_length=200,null=True)
+    t_user_surname=models.CharField('Фамилия',max_length=200,null=True)
+    t_user_group=models.ForeignKey(Group,on_delete=models.PROTECT,verbose_name='Группа', blank=True,null=True,related_name="t_user_group")
+    test=models.ForeignKey('OnlineTest',on_delete=models.CASCADE,verbose_name='Тест')
+    test_category=models.ForeignKey('articles.Category',null=True,on_delete=models.PROTECT,verbose_name='Предмет теста')
+    test_direction=models.ForeignKey('articles.Direction',null=True,on_delete=models.PROTECT,verbose_name='Направление теста')
+    test_data=models.DateTimeField('дата прохождения')
+    attempt_number=models.IntegerField('Номер попытки')
+    result_points=models.FloatField('Набранные баллы')
+    test_points=models.FloatField('Максим.баллы в тесте')
+    result_percentage=models.FloatField('Результат в процентах')
+
+
+    def __str__(self):
+       return self.test.test_name
+
+    class Meta:
+        verbose_name='Результат теста'
+        verbose_name_plural='Результаты тестов'
+
+class AnswerRecieved(models.Model):
+     result=models.ForeignKey(Test_result,on_delete=models.CASCADE)
+     answer=models.ForeignKey(Answer,on_delete=models.CASCADE)
+     correct_choices=[('Y','Да'),('N','Нет')]
+     isright=models.CharField(max_length=3,choices=correct_choices)
 
 
 class MP_new(models.Model):

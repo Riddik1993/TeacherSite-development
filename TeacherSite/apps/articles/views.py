@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
 Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory, \
-Img_reminder
+Img_reminder,AnswerRecieved
+from .services import generate_context_for_test_by_testid
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.edit import CreateView
@@ -242,7 +243,7 @@ def ShowCheckLists(request,direct_id='1'):
 def ShowCheckLists2(request):
     pass
 
-#онлан-тесты и их проверка
+#онлаqн-тесты и их проверка
 def OnlineTestList(request,direct_id='1'):
 
     category_list=Category.objects.all()
@@ -300,14 +301,12 @@ def signup(request):
     form = SignUpForm()
   return render(request, 'articles/signup.html', {'form': form})
 
+
+
+
 @login_required
 def PassTest(request,test_id):
-    test=OnlineTest.objects.get(id=test_id)
-    question_list=TestQuestion.objects.filter(test=test_id)
-    quest_nums2=[0]
-    for q in question_list:
-        quest_nums2.append(q.id)
-    answer_list=Answer.objects.filter(question__in=quest_nums2)
+    context=generate_context_for_test_by_testid(test_id)
 
     if request.method == 'POST':
         total_points=0
@@ -400,14 +399,26 @@ def PassTest(request,test_id):
                 tr.result_percentage=percent
                 tr.save()
 
+                #сохраняем детально ответы
+                for ans in answers:
+                    answer_obj=Answer.objects.get(id=ans)
+                    useranswer=AnswerRecieved()
+                    useranswer.result=tr
+                    useranswer.answer=answer_obj
+                    useranswer.isright=answer_obj.iscorrect
+                    useranswer.save()
+
+
+            passed_test_context={'unansw_quest':unansw_quest,'answers':answers,
+            'total_points':total_points,'student_points':student_points,'percent':percent,
+            'error_quest_qty':error_quest_qty,'existing_atm':existing_atm,'total_attempts':total_attempts,'error_attempts':error_attempts}
+            context.update(passed_test_context)
 
 
 
 
-            return render(request,'articles/test.html',{'unansw_quest':unansw_quest,'question_list':question_list,'answers':answers,
-            'answer_list':answer_list,'total_points':total_points,'student_points':student_points,'percent':percent,
-            'error_quest_qty':error_quest_qty,'existing_atm':existing_atm,'total_attempts':total_attempts,'error_attempts':error_attempts})
+            return render(request,'articles/test.html',context)
 
 
 
-    return render(request,'articles/test.html',{'test':test,'question_list':question_list,'answer_list':answer_list})
+    return render(request,'articles/test.html',context)

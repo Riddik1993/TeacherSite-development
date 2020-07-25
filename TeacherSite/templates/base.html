@@ -75,7 +75,7 @@
       {% endblock %}
 </div>
 
-
+{% block aside %}
     <aside>
       <ul id="main_menu">
       <li><a href="{% url 'main' %}" >Главная страница</a></li>
@@ -109,7 +109,7 @@
       <li><a href="{% url 'FeedBackListing' %}" > Отзывы</a></li>
       </ul>
     </aside>
-
+{% endblock %}
     <article>
 
     <h1 class="article_header">{% block article-header %}{% endblock %}</h1>
