@@ -117,7 +117,7 @@ def ShowMainInfo(request):
     Conspects=Conspect.objects.all()
 
     publications_list=sorted(chain(MemHistory_list,MemSocial_list,Shema_list,CheckLists,
-                             OnlineTests,task_list,Conspect),
+                             OnlineTests,task_list,Conspects),
                              key=attrgetter('pub_date'),
                              reverse=True)[:5]
 

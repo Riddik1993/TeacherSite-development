@@ -77,7 +77,13 @@
                   <a class="simple_href" href="{{p.file.url}}">{{p}}</a>
               {% else %}
                 {{p}}
-              {% endif %}<br/>
+              {% endif %}
+
+              {% if p.pub_date %}
+                <i>({{ p.pub_date }})</i>
+              {% endif %}
+              <br/>
+
         {% endfor %}
      </div>
 </div>
