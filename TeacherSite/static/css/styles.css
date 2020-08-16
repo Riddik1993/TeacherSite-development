@@ -821,11 +821,15 @@ text-align:center;
 }
 
 #for_pdf{
-  
+
 
 }
 
 #test_result_admin_header{
   text-align:center;
   line-height:1.2em;
+}
+
+#publications {
+  font-size:1.1em;
 }
