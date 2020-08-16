@@ -90,7 +90,7 @@ class Shema(models.Model):
     schema_subcategory=models.ForeignKey('Schema_subcategory',null=True,blank=True,on_delete=models.PROTECT,verbose_name='Подкатегория схемы')
     shema_image=models.ImageField(upload_to='images/shemas',blank=True)
     pub_date=models.DateTimeField('дата публикации',blank=True,auto_now_add=True)
-    
+
     def __str__(self):
         return self.shema_title
 

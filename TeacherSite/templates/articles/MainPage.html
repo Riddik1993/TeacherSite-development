@@ -75,6 +75,9 @@
             <b style="color:red">{{ p|get_class }}</b>:
               {% if p.file %}
                   <a class="simple_href" href="{{p.file.url}}">{{p}}</a>
+              {% elif p.shema_image %}
+
+                <a class="simple_href" href="{{p.shema_image.url}}">{{p}}</a>
               {% else %}
                 {{p}}
               {% endif %}
