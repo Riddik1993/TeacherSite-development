@@ -114,9 +114,10 @@ def ShowMainInfo(request):
     Shema_list=Shema.objects.all()
     CheckLists=CHeckList.objects.all()
     OnlineTests=OnlineTest.objects.all()
+    Conspects=Conspect.objects.all()
 
     publications_list=sorted(chain(MemHistory_list,MemSocial_list,Shema_list,CheckLists,
-                             OnlineTests),
+                             OnlineTests,task_list,Conspect),
                              key=attrgetter('pub_date'),
                              reverse=True)[:5]
 

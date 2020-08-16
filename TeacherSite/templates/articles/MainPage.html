@@ -72,11 +72,12 @@
         <hr size="4" color="brown">
         <p style="margin-bottom:0.4em;">Последние публикации:</p>
         {% for p in publications_list %}
-         <b style="color:red">{{ p|get_class }}</b>: {{ p }} <br/>
-         {% if p.file %}
-         {{ p.file }}
-         {% endif %}
-
+            <b style="color:red">{{ p|get_class }}</b>:
+              {% if p.file %}
+                  <a class="simple_href" href="{{p.file.url}}">{{p}}</a>
+              {% else %}
+                {{p}}
+              {% endif %}<br/>
         {% endfor %}
      </div>
 </div>
