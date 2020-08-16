@@ -17,6 +17,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
+from itertools import chain
+from operator import attrgetter
 import os
 
 #памятки по истории и обществознанию
@@ -105,14 +107,24 @@ def ShowMainInfo(request):
         a=MainInfo.objects.first()
     except:
         raise Http404("Информация на главную страницу пока не добавлена")
-    task_list=Task.objects.order_by('pub_date')[:2]
-    MemHistory_list=Memhis_Article.objects.order_by('pub_date')[:2]
-    MemSocial_list=MemSocial_Article.objects.order_by('pub_date')[:2]
-    Shema_list=Shema.objects.order_by('pub_date')[:2]
+
+    task_list=Task.objects.all()
+    MemHistory_list=Memhis_Article.objects.all()
+    MemSocial_list=MemSocial_Article.objects.all()
+    Shema_list=Shema.objects.all()
+    CheckLists=CHeckList.objects.all()
+    OnlineTests=OnlineTest.objects.all()
+
+    publications_list=sorted(chain(MemHistory_list,MemSocial_list,Shema_list,CheckLists,
+                             OnlineTests),
+                             key=attrgetter('pub_date'),
+                             reverse=True)[:5]
+
+
     news_list=MP_new.objects.all()
 
-    return render(request,"articles/MainPage.html",{'article':a,'task_list':task_list,'MemHistory_list':MemHistory_list,'Shema_list':Shema_list,
-    'MemSocial_list':MemSocial_list,'news_list':news_list})
+    return render(request,"articles/MainPage.html",{'article':a,'task_list':task_list,
+    'publications_list':publications_list,'news_list':news_list})
 
 #Выводит список литературы
 def ShowLiteratureList(request):
