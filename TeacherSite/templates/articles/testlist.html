@@ -30,8 +30,9 @@
 <br/><br/>
   {% for category in category_list %}
 
-  <p>{{category.category_name}}</p>
+
     {% if category_test_list|index:category.id %}
+    <p>{{category.category_name}}</p>
         <table>
         {% for test in category_test_list|index:category.id %}
 
