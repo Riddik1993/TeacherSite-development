@@ -115,9 +115,10 @@ def ShowMainInfo(request):
     CheckLists=CHeckList.objects.all()
     OnlineTests=OnlineTest.objects.all()
     Conspects=Conspect.objects.all()
+    LiterSources=LiterSource.objects.all()
 
     publications_list=sorted(chain(MemHistory_list,MemSocial_list,Shema_list,CheckLists,
-                             OnlineTests,task_list,Conspects),
+                             OnlineTests,task_list,Conspects,LiterSources),
                              key=attrgetter('pub_date'),
                              reverse=True)[:5]
 
