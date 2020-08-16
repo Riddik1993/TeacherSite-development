@@ -1,7 +1,6 @@
 $('document').ready(function(){
     $('#pdf_load').click(function() {
-            var div_height=$('#for_pdf').height();
-            var div_width=$('#for_pdf').width();
+
 
 
             html2canvas($("#for_pdf")[0]).then(function(canvas) {
@@ -10,7 +9,7 @@ $('document').ready(function(){
             //задаем максимальную высоту страницы
             var a4_height=1000;
             var list_number=canvas.height/a4_height;
-
+            
 
 
             var pdf = new jsPDF();
@@ -38,7 +37,7 @@ $('document').ready(function(){
               copyContext.drawImage(canvas, 0, i*a4_height, canvas.width, a4_height, 0, 0, canvas.width,a4_height);
               var imgCut=canvasCopy.toDataURL("image/png");
               pdf.addImage( imgCut, 'JPEG', 10, 10);
-              pdf.addPage();
+
               i+=1;
             }
 
