@@ -10,7 +10,7 @@ $(document).ready(function() {
  if (html_num==now_month) {
  $('.expired').parent().css('background-color','rgb(179, 179, 179)');
 };
- $(".cal_ev_ex").parent().parent().css('background-color','rgb(143, 232, 135)');
+ /*$(".cal_ev_ex").parent().parent().css('background-color','rgb(143, 232, 135)');*/
  $(".cal_ev_ex").parent().css('background-color','rgb(143, 232, 135)');
 
  if (html_num==now_month) {

@@ -195,7 +195,7 @@ def GetLessonCreateView(request):
             return redirect('success_lesson')
 
     d = datetime.date.today()
-    Event.objects.filter(day__lt=d).delete()
+    
     c = EventCalendar(locale='')
     html_calendar = c.formatmonth(d.year, d.month, withyear=True)
     #html_calendar = html_calendar.replace('<td ', '<td  width="35px" height="35px"')
