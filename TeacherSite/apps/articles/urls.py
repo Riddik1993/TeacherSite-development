@@ -25,7 +25,7 @@ urlpatterns = [
     path('chlists/<int:direct_id>/',views.ShowCheckLists,name='chlists'),
     path('chlists/',views.ShowCheckLists2,name='chlists2'),
     path('onlinetests/<int:direct_id>',views.OnlineTestList,name='tests'),
-    path('vpr/<int:cat_id>',views.ShowVpr,name='vpr'),
+    path('vpr/',views.ShowVpr,name='vpr'),
     #path('vpr/<int:cat_id>',views.PassTest,name='GoTest'),
 
 

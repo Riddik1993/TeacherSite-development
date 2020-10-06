@@ -8,7 +8,7 @@ from .services import generate_context_for_test_by_testid
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.edit import CreateView
-from .forms import LessonForm,ArticleCommentForm,SignUpForm
+from .forms import LessonForm,ArticleCommentForm,SignUpForm,VPRchoiceform
 from django.urls import reverse_lazy,reverse
 from django.shortcuts import redirect
 from calendar import HTMLCalendar
@@ -150,9 +150,15 @@ def   ShowShemasSubcat(request,cat_id):
     return render(request,'articles/shemas_subcat.html',{'subcategories':subcategories,'category_list':category_list})
 
 #VPR
-def   ShowVpr(request,cat_id):
-    category_list=Category.objects.all()
-    VPRs=VPR.objects.filter(category=cat_id)
+def   ShowVpr(request):
+    if request.method == 'GET':
+        form=VPRchoiceform(request.GET)
+        subject=request.GET.get('category')
+        direction=request.GET.get('direct')
+        type=request.GET.get('type')
+        VPRs=VPR.objects.filter(category=subject,direct=direction,
+                                          type=type)
+
 
     paginator=Paginator(VPRs,10)
     num_page=request.GET.get('page')
@@ -165,7 +171,7 @@ def   ShowVpr(request,cat_id):
         VPR_list=paginator.page(1)
 
 
-    return render(request,'articles/vpr.html',{'category_list':category_list,'VPR_list':VPR_list})
+    return render(request,'articles/vpr.html',{'VPR_list':VPR_list,'form':form})
 
 
 #Пагинатор для схем

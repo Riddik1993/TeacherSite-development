@@ -11,18 +11,29 @@
 {% block article-content %}
 
 <style>
-#btn2:active {
-   margin-right:8.5px;
- }
+
 </style>
-  {% for category in category_list %}
-      <a class="button" id="btn2" href="{% url "vpr" category.id %}">{{category.category_name}}</a>
-  {% endfor %}
-  <br />
-  <br />
+
+
+  <form method="GET" class="comments_form" style="position:relative">
+      {% csrf_token %}
+      {% for field in form %}
+
+            <div style="float:left">{{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+
+      <input type="submit" class="button" style="float:left" value="применить фильтр">
+
+
+  </form>
+
+
 
   {% if VPR_list %}
-    <table>
+    <table style="position:absolute;top:12%;">
       <tr class="table_header">
          <th>Название </th>
          <th>Описание </th>
@@ -41,7 +52,7 @@
           {% endfor %}
     </table>
 
-    <div class="paginator_reminders">
+    <div class="paginator_shemas">
         {% if VPR_list.has_previous %}
           <a href='?page={{VPR_list.previous_page_number}}' class="button" id="btn2"><<</a>
         {% endif %}
