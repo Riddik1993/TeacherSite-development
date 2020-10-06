@@ -27,6 +27,7 @@
          <th>Название </th>
          <th>Описание </th>
          <th>Направление </th>
+         <th>Тип </th>
          <th>Ссылка для скачивания</th>
       </tr>
       {% for  v in VPR_list %}
@@ -34,6 +35,7 @@
          <td>{{v.name}}</td>
          <td>{{v.descr}}</td>
          <td>{{v.direct}}</td>
+         <td>{{v.type}}</td>
          <td>{% if v.file %} <a href="{{v.file.url}}" class="simple_href">{{v.name}}</a>{% endif %}</td>
       </tr>
           {% endfor %}
