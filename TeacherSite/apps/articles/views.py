@@ -151,14 +151,16 @@ def   ShowShemasSubcat(request,cat_id):
 
 #VPR
 def   ShowVpr(request):
-    if request.method == 'GET':
-        form=VPRchoiceform(request.GET)
-        subject=request.GET.get('category')
-        direction=request.GET.get('direct')
-        type=request.GET.get('type')
+    if request.method == 'POST':
+        form=VPRchoiceform(request.POST)
+        subject=request.POST.get('category')
+        direction=request.POST.get('direct')
+        type=request.POST.get('type')
         VPRs=VPR.objects.filter(category=subject,direct=direction,
-                                          type=type)
-
+                                      type=type)
+    else:
+        VPRs=VPR.objects.all()
+        form=VPRchoiceform()
 
     paginator=Paginator(VPRs,10)
     num_page=request.GET.get('page')

@@ -15,7 +15,7 @@
 </style>
 
 
-  <form method="GET" class="comments_form" style="position:relative">
+  <form method="POST" class="comments_form" style="position:relative">
       {% csrf_token %}
       {% for field in form %}
 
@@ -65,7 +65,8 @@
 
 
   {% else %}
-  <p>ВПР пока нет...</p>
+  <br/>
+  <p style="float:left;top:12%;">ВПР по заданным параметрам нет ...</p>
   {% endif %}
 
 
