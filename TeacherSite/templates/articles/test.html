@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load add_temp_tags %}
+{% block title %} {{test.test_name}} {% endblock %}
+{% block header-content %} {{test.test_name}} {% endblock %}
+{% block article-header %}
+
+{% endblock %}
+
+
+{% block article-content %}
+<script type="text/javascript">
+  $(document).ready(function() {
+     $('#answered').children().each(function() {
+                                var answer=$(this).text();
+                                $("input[name='"+answer+"']").attr("checked","checked");
+
+
+                                });
+    $('#unansw_quest').children().each(function() {
+                                var q=$(this).text();
+                                $("li[quest='"+q+"']").css({"border":"2px solid red"});
+
+                                });
+
+
+  });
+
+</script>
+
+
+
+{% if total_points %}
+
+   {% if error_attempts %}
+   <div class="test_error">
+   <b >{{user.first_name}}, Вы уже исчерпали все {{total_attempts}} попытки</b><br/>
+   <b>Результат не будет зачтен</b><br/>
+   </div>
+   {% else %}
+   <div class="test_success">
+   Тест окончен.<br/>
+   {{user.first_name}},  Ваш результат <b>{{percent}}% </b> <br/>
+   Вы набрали: <b>{{student_points}}</b>  баллов из <b>{{total_points}}</b><br/>
+   Попытка {{existing_atm}} из {{total_attempts}}<br/>
+   </div>
+   {% endif %}
+
+{% endif %}
+
+{% if error_quest_qty %}
+<div class="test_error">
+<b>Вы ответили не на все вопросы теста!</b><br/>
+<b>Пожалуйста, будьте внимательны</b><br/><br/>
+</div>
+{% endif %}
+<a href="{% url 'tests' 1 %}" class="simple_href">Вернуться к списку тестов</a>
+
+<form method="POST" id='test_form'  >
+  {% csrf_token %}
+
+  {% regroup answer_list by question as answer_list2 %}
+  <ul>
+  {% for ans in answer_list2 %}
+
+        <li quest='{{ans.grouper.id}}' style="width:50%;padding:2px;font-size:1.1em;" ><b>{{ ans.grouper }} </b><br/>
+            {% for item in ans.list %}
+              <input type="checkbox" name='{{item.id}}' style="font-size:1.0em;" />  {{item.answer}} <br/>
+            {% endfor %}
+        </li>
+        <br/>
+  {% endfor %}
+   </ul>
+  <input type="submit" class="button" value="Проверить"/>
+</form>
+
+<div id="answered" style="display:none">
+{% for k in answers %}
+<p>{{k}}</p>
+{% endfor%}
+</div>
+
+<div id="unansw_quest" style="display:none">
+{% for q in unansw_quest %}
+<p>{{q}}</p>
+{% endfor %}
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

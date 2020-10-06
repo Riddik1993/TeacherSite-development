@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Конспекты {% endblock %}
+{% block header-content %} Конспекты  {% endblock %}
+
+{% block article-header %}
+  Конспекты
+{% endblock %}
+
+
+{% block article-content %}
+
+<style>
+#btn2:active {
+   margin-right:8.5px;
+ }
+</style>
+  {% for category in category_list %}
+      <a class="button" id="btn2" href="{% url "conspects" category.id %}">{{category.category_name}}</a>
+  {% endfor %}
+  <br />
+  <br />
+
+  <p>Конспекты:</p>
+  {% if Conspect_list %}
+    <table>
+      <tr class="table_header">
+         <th>Конспект</th>
+         <th>Описание </th>
+         <th>Направление </th>
+         <th>Ссылка для скачивания</th>
+      </tr>
+      {% for  cns in Conspect_list %}
+      <tr>
+         <td>{{cns.cons_name}}</td>
+         <td>{{cns.cons_descr}}</td>
+         <td>{{cns.cons_direct}}</td>
+         <td>{% if cns.file %} <a href="{{cns.file.url}}" class="simple_href">{{cns.cons_name}}</a>{% endif %}</td>
+      </tr>
+          {% endfor %}
+    </table>
+  {% else %}
+  <p>Конспектов пока нет...</p>
+  {% endif %}
+{% endblock %}

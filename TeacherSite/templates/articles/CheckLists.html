@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %} CHECK-листы {% endblock %}
+{% block header-content %} CHECK-листы  {% endblock %}
+
+
+
+
+
+
+{% block article-content %}
+
+
+<script type="text/javascript">
+  $('document').ready(function() {
+        var qty_dir=parseInt({{qty_dir}})
+        $('#next_direct').click(function() {
+
+            var direct_number=parseInt($(this).attr('dir_num'))
+            if(direct_number<qty_dir) {
+            direct_number+=1
+
+            window.location.href='{% url 'chlists2'  %}'+direct_number
+              }
+
+
+
+         });
+
+         $('#prev_direct').click(function() {
+           var direct_number=parseInt($(this).attr('dir_num'))
+           if(direct_number>1) {
+           direct_number-=1
+
+           window.location.href='{% url 'chlists2'  %}'+direct_number
+             }
+
+          });
+
+
+
+
+
+  });
+
+</script>
+
+<style>
+
+
+  #prev_direct:active {
+     margin-right:2.2px;
+   }
+
+</style>
+
+
+
+
+    <a class="button" id='prev_direct'  dir_num='{{current_dir.id}}' style=""><<</a>
+    {{current_dir.direction_name}}
+    <a class="button" id='next_direct' dir_num='{{current_dir.id}}'>>></a>
+
+
+  {% if chl_list %}
+    <table>
+      <tr class="table_header">
+         <th>CHECK-лист</th>
+         <th>Описание </th>
+         <th>Ссылка для скачивания</th>
+      </tr>
+      {% for  chl in chl_list %}
+      <tr>
+         <td>{{chl.chl_name}}</td>
+         <td>{{chl.chl_descr}}</td>
+         <td>{% if chl.file %} <a href="{{chl.file.url}}" class="simple_href">{{chl.chl_name}}</a>{% endif %}</td>
+      </tr>
+          {% endfor %}
+    </table>
+  {% else %}
+  <p>Чек-листов пока нет...</p>
+  {% endif %}
+{% endblock %}

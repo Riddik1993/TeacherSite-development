@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(61844380, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/61844380" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+    <title>{% block title %} Персональный сайт учителя {% endblock %}</title>
+    <!-- Подключаем стили-->
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <link rel="stylesheet" href="{% static "css/media-queries.css" %}" />
+    <!-- Подключаем jquery-->
+    <script type="text/javascript" src="{% static "js\jquery-3.4.1.min.js" %}"> </script>
+    <!-- файл с JS-->
+    <script type="text/javascript" src="{% static "js\Main.js" %}">   </script>
+    <script type="text/javascript" src="{% static "js\show_adaptive_menu.js" %}">   </script>
+
+
+
+  </head>
+  <body id="pagewrap">
+      <div id="head">{% block header-content %} {% endblock %}
+
+      {% block reg_content %}
+      {% if user.is_authenticated %}
+
+
+      <span id="authent_panel" style="font-size:0.7em; float:right;">
+
+           <button id="mobile_menu_button" class="button">Меню</button>
+
+        Пользователь: {{ user.get_username }} &nbsp
+      <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
+        <a href="{% url 'main'%}" class="simple_href" >Вернуться на сайт</a>
+    {% endif %}
+      </span>
+      {% endblock %}
+
+      </div>
+
+    <aside>
+      <ul id="main_menu">
+      <li><a href="{% url 'Profile'%}" >Мой профиль</a></li>
+      <li><a href="{% url 'LK_Tests'%}" >Мои тесты</a></li>
+      <li> <a href="{% url 'LK_favor'%}"> Избранное</a>
+
+
+
+
+
+    </aside>
+
+    <article>
+
+    <h1>{% block article-header %}{% endblock %}</h1>
+    <p>{% block article-content %} В настоящий момент раздел в разработке {% endblock %}</p>
+    </article>
+
+    {% block out-of-article %}{% endblock %}
+
+  </body>
+
+<footer>
+  <p style="margin-top:-0.3em;">Персональный сайт учителя А.О.Фроловой </p>
+</footer>
+
+</html>

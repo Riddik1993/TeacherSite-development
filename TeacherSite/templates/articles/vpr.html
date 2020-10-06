@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} ВПР {% endblock %}
+{% block header-content %} ВПР  {% endblock %}
+
+{% block article-header %}
+  ВПР
+{% endblock %}
+
+
+{% block article-content %}
+
+<style>
+#btn2:active {
+   margin-right:8.5px;
+ }
+</style>
+  {% for category in category_list %}
+      <a class="button" id="btn2" href="{% url "vpr" category.id %}">{{category.category_name}}</a>
+  {% endfor %}
+  <br />
+  <br />
+
+  {% if VPR_list %}
+    <table>
+      <tr class="table_header">
+         <th>Название </th>
+         <th>Описание </th>
+         <th>Направление </th>
+         <th>Ссылка для скачивания</th>
+      </tr>
+      {% for  v in VPR_list %}
+      <tr>
+         <td>{{v.name}}</td>
+         <td>{{v.descr}}</td>
+         <td>{{v.direct}}</td>
+         <td>{% if v.file %} <a href="{{v.file.url}}" class="simple_href">{{v.name}}</a>{% endif %}</td>
+      </tr>
+          {% endfor %}
+    </table>
+
+    <div class="paginator_reminders">
+        {% if VPR_list.has_previous %}
+          <a href='?page={{VPR_list.previous_page_number}}' class="button" id="btn2"><<</a>
+        {% endif %}
+          Страница {{VPR_list.number}} из {{VPR_list.paginator.num_pages}}
+        {% if VPR_list.has_next %}
+          <a href='?page={{VPR_list.next_page_number}}' class="button">>></a>
+        {% endif %}
+    </div>
+
+
+
+  {% else %}
+  <p>ВПР пока нет...</p>
+  {% endif %}
+
+
+{% endblock %}

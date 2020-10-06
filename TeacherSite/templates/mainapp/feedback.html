@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Отзывы {% endblock %}
+{% block header-content %} Отзывы {% endblock %}
+{% block article-header %}
+ Отзывы
+{% endblock %}
+
+{% block article-content %}
+
+{% if feedback_list %}
+  {% for feed in feedback_list %}
+  <div class="feedback">
+      <div class="feed_text">
+      {{feed.comments}}
+      </div>
+
+      <div class="feedback_sign">
+      <em>{{feed.Person_name}}</em><BR/>
+      <em>{{feed.pub_date}}</em>
+      </div>
+  </div>
+
+  {% endfor %}
+{% else %}
+<p>Пока отзывов нет...</p>
+{% endif %}
+<br/>
+<hr>
+<div style="clear: both">
+<p>Оставьте свой отзыв:</p>
+<form  method="POST" class="comments_form">
+  {% csrf_token %}
+
+  {% for field in feedback_form %}
+
+        <p>{{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </p>
+        {% endfor %}
+
+  <input type="submit" class="button"  value="Оставить отзыв"/>
+</form>
+</div>
+
+
+ {% endblock %}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(61844380, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/61844380" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>{% block title %} Персональный сайт учителя {% endblock %}</title>
+    <meta name=description content="{% block meta-content %} {% endblock %}" />
+    <!-- Подключаем стили-->
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <link rel="stylesheet" href="{% static "css/media-queries.css" %}" />
+    <!-- Подключаем jquery-->
+    <script type="text/javascript" src="{% static "js\jquery-3.4.1.min.js" %}"> </script>
+    <!-- файл с JS-->
+    <script type="text/javascript" src="{% static "js\Main.js" %}">   </script>
+    <script type="text/javascript" src="{% static "js\show_adaptive_menu.js" %}">   </script>
+
+    <!--[if lt IE 9]>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+
+  </head>
+  <body id="pagewrap">
+      <div id="head"><div id="header_content">{% block header-content %} {% endblock %}</div>
+
+      {% block reg_content %}
+
+
+      {% if user.is_authenticated %}
+
+
+      <span id="authent_panel" style="float:right;font-size:0.7em;">
+            <button id="mobile_menu_button" >Меню</button>
+
+                 Пользователь: {{ user.get_username }} &nbsp
+         <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
+         <a href="{% url 'Profile'%}" class="simple_href" >Личный кабинет</a>
+       </span>
+
+    {% else %}
+       <span id="authent_panel" style="font-size:0.7em; float:right;">
+         <button id="mobile_menu_button" >Меню</button>
+      <a href="{% url 'login'%}?next={{request.path}}" class="simple_href"  >Вход на сайт</a>&nbsp
+      <a href="{% url 'signup'%}" class="simple_href"  >Зарегистрироваться</a>
+        </span>
+
+
+
+
+    {% endif %}
+      </span>
+      {% endblock %}
+</div>
+
+{% block aside %}
+    <aside>
+      <ul id="main_menu">
+      <li><a href="{% url 'main' %}" >Главная страница</a></li>
+      <li><a href="{% url 'SelfInfo' %}" >Обо мне</a> </li>
+      <li><a href="#"  > Копилка знаний </a>
+             <ul >
+            <li><a  href="{% url 'shemas_subcat' 1 %}" >Схемы и таблицы</a></li>
+            <li><a  href="{% url 'MemHistory' %}">Памятки по истории</a></li>
+            <li><a  href="{% url 'MemSocialList' %}" >Памятки по обществознанию</a></li>
+            <li><a  href="{% url 'taskinfo' 1  %}" >Задания</a></li>
+              </ul>
+      </li>
+      <li> <a href="#"> Готовимся к экзаменам</a>
+        <ul >
+       <li><a  href="{% url 'examinfo' 3 1 %}" >ОГЭ</a></li>
+       <li><a  href="{% url 'examinfo' 4 1 %}" >ЕГЭ</a></li>
+
+         </ul>
+
+      </li>
+
+      <li> <a href="#">Учителям</a>
+         <ul >
+       <li><a  href="{% url 'conspects' 1 %}" >Конспекты</a></li>
+       <li><a  href="{% url 'teacherls' 1  %}" >УМК</a></li>
+         </ul>
+      </li>
+      <li> <a href="{% url 'vpr' 1 %}"> ВПР</a></li>
+      <li> <a href="{% url 'chlists' 1 %}"> CHECK-листы</a></li>
+      <li> <a href="{% url 'tests' 1 %}"> ONLINE-тесты</a></li>
+      <li> <a href="{% url 'getlesson' %}"> Записаться на занятие</a></li>
+      <li><a href="{% url 'FeedBackListing' %}" > Отзывы</a></li>
+      </ul>
+    </aside>
+{% endblock %}
+    <article>
+
+    <h1 class="article_header">{% block article-header %}{% endblock %}</h1>
+    <p>{% block article-content %} В настоящий момент раздел в разработке {% endblock %}</p>
+    </article>
+
+    {% block out-of-article %}{% endblock %}
+
+  </body>
+
+<footer>
+  <p style="margin-top:-0.3em;">Персональный сайт учителя Фроловой А.О.</p>
+</footer>
+
+</html>

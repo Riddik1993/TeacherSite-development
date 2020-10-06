@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load add_temp_tags %}
+{% block title %} Online-тесты {% endblock %}
+{% block header-content %} Online-тесты {% endblock %}
+{% block article-header %}
+
+{% endblock %}
+
+
+{% block article-content %}
+<style>
+
+
+  #btn2:active {
+     margin-right:4px;
+   }
+
+</style>
+<script type="text/javascript" src="{% static 'js\test_atmp_counter.js' %}">   </script>
+
+{% if alltest_att_dict %}
+{{alltest_att_dict|json_script:"attempts"}}
+{% endif %}
+
+  {% for direction in direction_list %}
+      <a class="button" id="btn2" href="{{ direction.id }}">{{direction.direction_name}}</a>
+   {% endfor %}
+
+<br/><br/>
+  {% for category in category_list %}
+
+
+    {% if category_test_list|index:category.id %}
+    <p>{{category.category_name}}</p>
+        <table>
+        {% for test in category_test_list|index:category.id %}
+
+            <tr><td> <a class="simple_href" style="font-size:1.1em;" href="{% url 'GoTest' test.id%}" test_id={{test.id}}>{{test.test_name}}</a> </td></tr>
+
+        {% endfor %}
+       </table>
+    <br/>
+    {% endif %}
+
+
+  {% endfor %}
+
+
+
+
+
+{% endblock %}

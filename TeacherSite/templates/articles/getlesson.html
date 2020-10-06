@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Запись на занятие {% endblock %}
+{% block header-content %}
+ Запись на занятие {% endblock %}
+ {% block article-header %}Записаться на занятие можно здесь:{% endblock %}
+
+
+
+
+{% block article-content %}
+<script type="text/javascript" src="{% static 'js\calendar_format.js' %}">   </script>
+
+
+<script type="text/javascript">
+     $('document').ready(function() {
+
+              var now=new Date();
+              var now_month=+now.getMonth()+1;
+              $('#calendar').click(function(event) {
+                          var elem = $(event.target);
+                          if (elem.hasClass('next_month')) {
+                          var month_num=+$('#calendar').attr("data_month");
+                          if (month_num<12){
+                          month_num+=1;}
+                          $('#calendar').attr("data_month",month_num);
+                          if(month_num<=12) {
+                          $.get('{% url 'MonthChanger' %}',{month_number:month_num},function(html_out) {
+                                                                     $('#calendar_data').html(html_out);
+                                                                     addScript('{% static 'js\calendar_format.js' %}');
+                                });
+                           }
+                         }
+                          });
+               $('#calendar').click(function(event) {
+                          var elem = $(event.target);
+                          if (elem.hasClass('prev_month')) {
+                          var month_num=+$('#calendar').attr("data_month");
+                          if (month_num>now_month){
+                          month_num-=1;}
+                          $('#calendar').attr("data_month",month_num);
+
+                             if(month_num>=now_month&&month_num<=12) {
+                           $.get('{% url 'MonthChanger' %}',{month_number:month_num},function(html_out) {
+                               $('#calendar_data').html(html_out);
+                               addScript('{% static 'js\calendar_format.js' %}');
+                                                                                                     });
+                                                }
+                                              }
+                                     });
+
+
+
+
+
+     });
+     function addScript(src){
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = false; // чтобы гарантировать порядок
+      document.head.appendChild(script);
+     }
+ </script>
+
+
+
+
+
+
+
+      <form method="POST" class="comments_form" style="top:70px">
+          {% csrf_token %}
+
+
+          {% for field in form %}
+
+                <p>{{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </p>
+                {% endfor %}
+          <input type="submit" class="button" value="Отправить заявку">
+
+
+      </form>
+
+  <div id='calendar' data_month="{{month_num}}">
+  <b>Выберите свободную дату:</b>
+  <div id='calendar_data'>
+  {{html_calendar|safe}}
+  </div>
+  <div id='hint'> </div>
+  </div>
+
+
+
+
+
+
+{% endblock %}

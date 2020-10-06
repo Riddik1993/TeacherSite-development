@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} Информация об экзаменах {% endblock %}
+{% block header-content %} Информация об экзаменах  {% endblock %}
+
+{% block article-header %}
+ Полезные материалы для подготовки к {{exam_info.exam_direct}}
+{% endblock %}
+
+{% block article-content %}
+<style>
+#btn2:active {
+   margin-right:8.5px;
+ }
+</style>
+<br/>
+{% for category in category_list %}
+    <a class="button"  id="btn2" href="{{ category.id }}">{{category.category_name}}</a>
+{% endfor %}
+
+
+<br />
+<hr>
+<p>Информация об экзамене: {{exam_info.exam_name}}</p>
+<a href="{{exam_info.file.url}}" class="simple_href">Скачать</a>
+<br />
+<br />
+
+<hr>
+<p>Список литературы: {{exam_info.exam_name}}</p>
+ {% if lit_src %}
+   <a href="{{lit_src.file.url}}" class="simple_href">Скачать</a>
+  {% else %}
+  <p>Литературы пока нет...</p>
+  {% endif %}
+<br />
+
+<hr>
+<p>Тренировочные задания:</p>
+{% if task_list %}
+  <table>
+    <tr class="table_header">
+       <th>Название задания</th>
+       <th>Описание задания</th>
+       <th>Ссылка для скачивания</th>
+    </tr>
+    {% for task in task_list %}
+    <tr>
+       <td>{{task.task_name}}</td>
+       <td>{{task.task_descr}}</td>
+       <td>{% if task.file %} <a href="{{task.file.url}}" class="simple_href">{{task.task_name}}</a>{% endif %}</td>
+    </tr>
+        {% endfor %}
+  </table>
+
+
+
+
+  {% else %}
+  <p>Пока нет заданий по данному направлению...</p>
+  {% endif %}
+
+
+  {% endblock %}

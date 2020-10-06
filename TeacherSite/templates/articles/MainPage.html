@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load articles_templ_tags %}
+
+{% block title %} Персональный сайт Анастасии Олеговны Фроловой {% endblock %}
+{% block meta-content %}
+Добро пожаловать на сайт учителя  Анастасии Фроловой!
+Ресурс адресован учителям истории и обществознания, учащимся школ, а также их родителям.
+Здесь вы можете найти полезные материалы по истории и обществознанию, пройти онлайн-тесты,
+записаться на занятие.{% endblock %}
+
+{% block header-content %} Главная  {% endblock %}
+
+{% block article-header %}
+    {{article.article_title}}
+{% endblock %}
+
+
+{% block article-content %}
+
+
+<script type="text/javascript" src="{% static "js\img_chg_main_page.js" %}"> </script>
+
+
+<script type="text/javascript" src="{% static "js\img_chg_main_page.js" %}"> </script>
+
+
+<script type="text/javascript" src="{% static "js\img_chg_main_page.js" %}"> </script>
+
+
+<div id="main_info_block" style="width:69%">
+    <div style="clear:both;">
+      <img  id="main_foto1" alt="Фото А.О.Фроловой" src="{{MEDIA_URL}}{{article.image.url}}" />
+      <p>{{article.article_text|linebreaks}}</p>
+    </div>
+
+
+    <div style="clear:both;">
+      <img  id="main_foto2" alt="Фото А.О.Фроловой" src="{{MEDIA_URL}}{{article.image2.url}}" />
+      <p>{{article.article_text2|linebreaks}}</p>
+    </div>
+    <div style="float:right">
+      <p><em>{{article.signature|linebreaks}}</em></p>
+    </div>
+
+
+</div>
+
+
+<div id="mp_news_block">
+  {% if news_list %}
+    <div id="main_page_news">
+        <div id="area_for_new" >
+        </div>
+        {% for n in news_list %}
+          <div class="ind_new">
+              <b style="color:red;">{{n.new_title}}</b>
+              <br/>
+              <em>{{n.new_description}}</em>
+              <br/><br/>
+              {% if n.new_image %}
+              <img  class="news_img" alt="{{n.new_title}}" src="{{MEDIA_URL}}{{n.new_image.url}}" />
+              {% endif %}
+          </div>
+        {% endfor %}
+
+  </div>
+  {% endif %}
+    <br/>
+    <br/>
+    <div id="publications">
+        <hr size="4" color="brown">
+        <p style="margin-bottom:0.4em;">Последние публикации:</p>
+        {% for p in publications_list %}
+            <b style="color:red">{{ p|get_class }}</b>:
+              {% if p.file %}
+                  <a class="simple_href" href="{{p.file.url}}">{{p}}</a>
+              {% elif p.shema_image %}
+
+                <a class="simple_href" href="{{p.shema_image.url}}">{{p}}</a>
+              {% else %}
+                {{p}}
+              {% endif %}
+
+              {% if p.pub_date %}
+                <i>({{ p.pub_date }})</i>
+              {% endif %}
+              <br/>
+
+        {% endfor %}
+     </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
