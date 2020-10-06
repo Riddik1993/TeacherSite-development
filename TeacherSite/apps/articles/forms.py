@@ -33,6 +33,7 @@ class SignUpForm(UserCreationForm):
 
 #form for VPR-filter
 class VPRchoiceform(ModelForm):
+
     class Meta:
         model=VPR
         exclude=('name','descr','file','pub_date')

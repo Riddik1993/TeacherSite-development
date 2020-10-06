@@ -333,7 +333,49 @@ article, aside{
   min-height: 750px;
 }
 
+.vpr_form {
+position: relative;
 
+
+}
+.vpr_form div {
+margin: 2%;
+float:left;
+width:15%;
+
+}
+
+.vpr_form div select {
+  width:95%;
+  box-sizing: border-box;
+  background-color: rgb(255, 242, 245);
+  border: 1px solid rgb(148, 84, 96);
+  font-size:0.9em;
+  border-radius: 3px;
+  color:rgb(110, 20, 36);
+  margin-right:30%;
+
+  /*color:rgb(255, 235, 248);*/
+}
+
+.paginator_reminders {
+  position:absolute;
+  top:45%;
+  color:rgba(85, 24, 0, 0.932);
+  font-weight: bold;
+}
+.paginator_shemas{
+  position: relative;
+  margin-top:50%;
+  color:rgba(85, 24, 0, 0.932);
+  font-weight: bold;
+}
+.paginator_ls{
+  position:absolute;
+  bottom:2px;
+  color:rgba(85, 24, 0, 0.932);
+  font-weight: bold;
+}
 
 
 }

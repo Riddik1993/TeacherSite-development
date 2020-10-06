@@ -15,11 +15,11 @@
 </style>
 
 
-  <form method="POST" class="comments_form" style="position:relative">
+  <form method="POST" class="vpr_form">
       {% csrf_token %}
       {% for field in form %}
 
-            <div style="float:left">{{ field.label_tag }}
+            <div>{{ field.label_tag }}
                 {{ field }}
                 {{ field.errors }}
             </div>
@@ -66,7 +66,8 @@
 
   {% else %}
   <br/>
-  <p style="float:left;margin-top:15px;">ВПР по заданным параметрам нет ...</p>
+  <br/>
+  <p style="margin-top:15px;">ВПР по заданным параметрам нет ...</p>
   {% endif %}
 
 

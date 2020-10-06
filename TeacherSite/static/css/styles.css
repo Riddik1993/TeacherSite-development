@@ -833,3 +833,28 @@ text-align:center;
 #publications {
   font-size:1.1em;
 }
+
+.vpr_form {
+position: relative;
+
+
+}
+.vpr_form div {
+margin: 5px;
+float:left;
+width:15%;
+
+}
+
+.vpr_form div select {
+  width:150px;
+  box-sizing: border-box;
+  background-color: rgb(255, 242, 245);
+  border: 1px solid rgb(148, 84, 96);
+  font-size:0.9em;
+  border-radius: 3px;
+  color:rgb(110, 20, 36);
+  margin-right:30%;
+
+  /*color:rgb(255, 235, 248);*/
+}
