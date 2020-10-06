@@ -246,9 +246,20 @@ def MonthChanger(request):
 def ShowConspects(request,cat_id):
     category_list=Category.objects.all()
     try:
-        Conspect_list=Conspect.objects.all().filter(cons_category=cat_id)
+        Conspects=Conspect.objects.all().filter(cons_category=cat_id)
     except:
-        Conspect_list=None
+        Conspects=None
+
+    paginator=Paginator(Conspects,5)
+    num_page=request.GET.get('page')
+
+    try:
+        Conspect_list=paginator.page(num_page)
+    except EmptyPage:
+        Conspect_list=paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        Conspect_list=paginator.page(1)
+
     return render(request,'articles/Conspects.html',{'Conspect_list':Conspect_list,'category_list':category_list,})
 
 

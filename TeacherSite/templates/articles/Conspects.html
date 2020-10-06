@@ -39,6 +39,17 @@
       </tr>
           {% endfor %}
     </table>
+
+    <div class="paginator_shemas">
+        {% if Conspect_list.has_previous %}
+          <a href='?page={{Conspect_list.previous_page_number}}' class="button" id="btn2"><<</a>
+        {% endif %}
+          Страница {{Conspect_list.number}} из {{Conspect_list.paginator.num_pages}}
+        {% if Conspect_list.has_next %}
+          <a href='?page={{Conspect_list.next_page_number}}' class="button">>></a>
+        {% endif %}
+    </div>
+
   {% else %}
   <p>Конспектов пока нет...</p>
   {% endif %}
