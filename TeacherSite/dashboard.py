@@ -13,6 +13,7 @@ from grappelli.dashboard import modules, Dashboard
 from grappelli.dashboard.utils import get_admin_site_name
 
 
+
 class CustomIndexDashboard(Dashboard):
     """
     Custom index dashboard for www.
@@ -84,7 +85,12 @@ class CustomIndexDashboard(Dashboard):
             collapsible=False,
             models=('articles.models.MainInfo','articles.models.SelfInfo','articles.models.MP_new'),
         ))
-
+        self.children.append(modules.ModelList(
+                _('Задачи по расписанию и отложенные'),
+                column=3,
+                collapsible=False,
+                models=('django_q.models.*',),
+            ))
 
 
 
