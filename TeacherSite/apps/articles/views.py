@@ -4,7 +4,7 @@ from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
 Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory, \
 Img_reminder,AnswerRecieved,VPR
-from .services import generate_context_for_test_by_testid
+from .services import generate_context_for_test_by_testid,send_mail_to_teacher
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.edit import CreateView
@@ -217,7 +217,8 @@ def GetLessonCreateView(request):
             message_template='Поступила новая заявка на занятие! \n Клиент:{cl_name}  \n Предмет:{subject} \n Хочет начать заниматься:{d} \
             \n\nТелефон:{tel} \n Почта:{em} \n Комментарий от клиента:\n\t{com} '
             message=message_template.format(cl_name=client,subject=subj,d=date_f,tel=phone,em=email,com=comment)
-            send_mail('Новый запрос на занятие', message, settings.EMAIL_HOST_USER, ['Na5tyu5ha@mail.ru'],fail_silently=True)
+            topic='Новый запрос на занятие'
+            send_mail_to_teacher(topic, message)
             return redirect('success_lesson')
 
     d = datetime.date.today()
