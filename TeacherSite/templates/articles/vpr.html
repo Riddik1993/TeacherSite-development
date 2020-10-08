@@ -29,17 +29,18 @@
 
 
   </form>
-
+<br/>
+<br/>
 
 
   {% if VPR_list %}
-    <table style="position:absolute;top:12%;">
+    <table style="position:relative;margin-top:5%;float:left;width:60%;">
       <tr class="table_header">
          <th>Название </th>
-         <th>Описание </th>
-         <th>Направление </th>
+         <th style="width:40%;">Описание </th>
+         <th >Направление </th>
          <th>Тип </th>
-         <th>Ссылка для скачивания</th>
+         <th >Ссылка для скачивания</th>
       </tr>
       {% for  v in VPR_list %}
       <tr>
