@@ -18,3 +18,4 @@ def generate_context_for_test_by_testid(test_id):
 
 def send_mail_to_teacher(topic,message):
     send_mail(topic,message, settings.EMAIL_HOST_USER, [str(settings.TEACHER_EMAIL),],fail_silently=True)
+ 

@@ -19,6 +19,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from itertools import chain
 from operator import attrgetter
+from django_q.tasks import AsyncTask,async_task, result
 import os
 
 #памятки по истории и обществознанию
@@ -218,7 +219,8 @@ def GetLessonCreateView(request):
             \n\nТелефон:{tel} \n Почта:{em} \n Комментарий от клиента:\n\t{com} '
             message=message_template.format(cl_name=client,subject=subj,d=date_f,tel=phone,em=email,com=comment)
             topic='Новый запрос на занятие'
-            send_mail_to_teacher(topic, message)
+            async_task('articles.services.send_mail_to_teacher',topic, message)
+
             return redirect('success_lesson')
 
     d = datetime.date.today()
