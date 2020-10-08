@@ -34,7 +34,7 @@ class SignUpForm(UserCreationForm):
 #form for VPR-filter
 class VPRchoiceform(ModelForm):
     direct=forms.ModelChoiceField(queryset=Direction.objects.exclude(direction_name='ОГЭ').
-                                    exclude(direction_name='ЕГЭ'))
+                                    exclude(direction_name='ЕГЭ'),label='Направление')
 
     class Meta:
         model=VPR
