@@ -85,7 +85,8 @@ def MemHistoryDetail(request,article_id):
             message_template='Оставлен новый комментарий к памятке по истории! \n\n Памятка:{rem} \n Посетитель: {pers} \
             \n Комментарий:\n\t {com} \n Зайдите в админ-панель и определите, публиковать или нет'
             message=message_template.format(rem=art_name,pers=person,com=text)
-            send_mail('новый комментарий к памятке по истории', message, settings.EMAIL_HOST_USER, ['Na5tyu5ha@mail.ru'],fail_silently=True)
+            topic='новый комментарий к памятке по истории'
+            async_task('articles.services.send_mail_to_teacher',topic, message)
 
             return redirect('success_comment')
     try:

@@ -7,6 +7,9 @@ from .forms import GuestFeedBackForm
 from django.urls import reverse_lazy,reverse
 from django.core.mail import send_mail
 from django.conf import settings
+from django_q.tasks import AsyncTask,async_task, result
+from articles.services import send_mail_to_teacher
+
 
 
 def index(request):
@@ -57,7 +60,8 @@ def FeedBackListing(request):
             message_template='Оставлен новый отзыв о сайте! \n\n  Посетитель: {pers} \
             \n Отзыв:\n\t {com} \n Зайдите в админ-панель и определите, публиковать отзыв или нет'
             message=message_template.format(pers=person,com=text)
-            send_mail('Оставлен новый отзыв о сайте', message, settings.EMAIL_HOST_USER, ['Na5tyu5ha@mail.ru'],fail_silently=True)
+            topic='Оставлен новый отзыв о сайте'
+            async_task('articles.services.send_mail_to_teacher',topic, message)
             return redirect('success_feedback')
 
     feedback_list=FeedBack.objects.filter(publish='Y').order_by('pub_date')
