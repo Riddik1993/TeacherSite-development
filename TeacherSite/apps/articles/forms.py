@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Lesson,ArticleComment,VPR,Category
+from .models import Lesson,ArticleComment,VPR,Category,Direction
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from captcha . fields import CaptchaField
@@ -33,8 +33,9 @@ class SignUpForm(UserCreationForm):
 
 #form for VPR-filter
 class VPRchoiceform(ModelForm):
+    direct=forms.ModelChoiceField(queryset=Direction.objects.exclude(direction_name='ОГЭ').
+                                    exclude(direction_name='ЕГЭ'))
 
     class Meta:
         model=VPR
         exclude=('name','descr','file','pub_date')
-        
