@@ -66,6 +66,7 @@
 
 
 
+
 .paginator_reminders {
 
 top:95%;
@@ -340,13 +341,14 @@ position: relative;
 }
 .vpr_form div {
 margin: 2%;
-float:left;
-width:15%;
+float:none;
+width:70%;
 
 }
 
 .vpr_form div select {
   width:95%;
+  float:none;
   box-sizing: border-box;
   background-color: rgb(255, 242, 245);
   border: 1px solid rgb(148, 84, 96);
@@ -356,6 +358,10 @@ width:15%;
   margin-right:30%;
 
   /*color:rgb(255, 235, 248);*/
+}
+
+.vpr_form input.button {
+
 }
 
 .paginator_reminders {

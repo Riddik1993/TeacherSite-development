@@ -19,12 +19,13 @@
       {% csrf_token %}
       {% for field in form %}
 
-            <div>{{ field.label_tag }}
+            <div >{{ field.label_tag }}
                 {{ field }}
-                {{ field.errors }}
+
             </div>
             {% endfor %}
       <br/>
+      
       <input type="submit" class="button" style="float:left;margin-top:5px;" value="применить фильтр">
 
 
