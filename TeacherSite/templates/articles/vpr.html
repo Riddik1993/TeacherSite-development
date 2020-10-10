@@ -34,7 +34,7 @@
 
 
   {% if VPR_list %}
-    <table style="position:relative;margin-top:5%;float:left;width:60%;">
+    <table style="position:relative;margin-top:5%;width:65%;">
       <tr class="table_header">
          <th>Название </th>
          <th style="width:40%;">Описание </th>
@@ -42,7 +42,7 @@
          <th>Тип </th>
          <th >Ссылка для скачивания</th>
       </tr>
-      {% for  v in VPR_list %} 
+      {% for  v in VPR_list %}
       <tr>
          <td>{{v.name}}</td>
          <td>{{v.descr}}</td>
