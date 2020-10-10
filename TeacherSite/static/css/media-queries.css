@@ -365,8 +365,8 @@ width:15%;
   font-weight: bold;
 }
 .paginator_shemas{
-  position: absolute;
-  margin-bottom:65%;
+  position: relative;
+  margin-top:2%;
   color:rgba(85, 24, 0, 0.932);
   font-weight: bold;
 }
