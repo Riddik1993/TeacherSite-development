@@ -164,7 +164,7 @@ def   ShowVpr(request):
         VPRs=VPR.objects.all()
         form=VPRchoiceform()
 
-    paginator=Paginator(VPRs,10)
+    paginator=Paginator(VPRs,5)
     num_page=request.GET.get('page')
 
     try:
