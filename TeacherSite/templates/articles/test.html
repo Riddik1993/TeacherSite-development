@@ -62,7 +62,7 @@
   <ul>
   {% for ans in answer_list2 %}
 
-        <li quest='{{ans.grouper.id}}' style="width:50%;padding:2px;font-size:1.1em;" ><b>{{ ans.grouper }} </b><br/>
+        <li quest='{{ans.grouper.id}}' ><b>{{ ans.grouper }} </b><br/>
             {% for item in ans.list %}
               <input type="checkbox" name='{{item.id}}' style="font-size:1.0em;" />  {{item.answer}} <br/>
             {% endfor %}
