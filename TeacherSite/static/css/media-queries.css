@@ -139,8 +139,12 @@ aside ul li a {
 .feedback {
   width:90%;
 }
-#test_form{
-  width:90%;
+
+
+#test_form li{
+width:95%;
+padding:2px;
+font-size:1.1em;
 }
 
 .button{
