@@ -19,7 +19,8 @@ jquery-3.4.1.min.js
 !manage.py
 !.gitignore
 !requirements.txt
-
+!wsgi.py
+!asgi.py
 **/__pycache__/**
 **/migrations/**
 **/media/**
