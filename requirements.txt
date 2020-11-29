@@ -2,7 +2,7 @@ arrow==0.17.0
 asgiref==3.2.3
 blessed==1.17.10
 captcha==0.3
-Django==3.0
+Django==3.0.7
 django-cors-headers==3.2.1
 django-debug-toolbar==2.2
 django-grappelli==2.14.1
