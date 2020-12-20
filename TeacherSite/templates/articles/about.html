@@ -12,7 +12,7 @@
 
 <script type="text/javascript" src="{% static 'js\image-change.js' %}">   </script>
 
-
+{% cache 120 about %}
 
 <div id='imgarea' class='main_foto' >
   <img id='main_foto_ab' src="{{article.image.url}}"/>
@@ -46,6 +46,7 @@
   <p style="white-space:pre-wrap">{{article.article_text|linebreaks}}</p>
 </div>
 
+{% endcache %}
 
 
 {% endblock %}
