@@ -109,7 +109,6 @@ def ShowMainInfo(request):
         a=MainInfo.objects.first()
     except:
         raise Http404("Информация на главную страницу пока не добавлена")
-
     task_list=Task.objects.all()
     MemHistory_list=Memhis_Article.objects.all()
     MemSocial_list=MemSocial_Article.objects.all()
