@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load articles_templ_tags %}
+{% load cache %} 
 
 {% block title %} Персональный сайт Анастасии Олеговны Фроловой {% endblock %}
 {% block meta-content %}
@@ -27,7 +28,7 @@
 
 <script type="text/javascript" src="{% static "js\img_chg_main_page.js" %}"> </script>
 
-
+{% cache 300 mainpage %}
 <div id="main_info_block" style="width:69%">
     <div style="clear:both;">
       <img  id="main_foto1" alt="Фото А.О.Фроловой" src="{{MEDIA_URL}}{{article.image.url}}" />
@@ -45,8 +46,10 @@
 
 
 </div>
+{% endcache %}
 
 
+{% cache 120 mainpage_news %}
 <div id="mp_news_block">
   {% if news_list %}
     <div id="main_page_news">
@@ -66,6 +69,8 @@
 
   </div>
   {% endif %}
+  {% endcache %}
+  {% cache 120 mainpage_news %}
     <br/>
     <br/>
     <div id="publications">
@@ -89,6 +94,7 @@
 
         {% endfor %}
      </div>
+    {% endcache %}
 </div>
 
 
