@@ -4,6 +4,7 @@ Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,A
 Img_reminder
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 #генерит контекст для шаблона онлайн-теста на основании номера теста в базе
 def generate_context_for_test_by_testid(test_id):
@@ -18,4 +19,18 @@ def generate_context_for_test_by_testid(test_id):
 
 def send_mail_to_teacher(topic,message):
     send_mail(topic,message, settings.EMAIL_HOST_USER, [str(settings.TEACHER_EMAIL),],fail_silently=True)
+
+def paginate(request,obj_list,obj_per_page):
+    page_num=request.GET.get('page')
+    paginator=Paginator(obj_list,obj_per_page)
+    try:
+        pag_list=paginator.page(page_num)
+    except EmptyPage:
+        pag_list=paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        pag_list=paginator.page(1)
+    return pag_list
+
+
+
  
