@@ -8,7 +8,9 @@ from django.urls import reverse_lazy,reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django_q.tasks import AsyncTask,async_task, result
-from articles.services import send_mail_to_teacher
+from articles.services import send_mail_to_teacher,paginate
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+
 
 
 
@@ -64,10 +66,12 @@ def FeedBackListing(request):
             async_task('articles.services.send_mail_to_teacher',topic, message)
             return redirect('success_feedback')
 
-    feedback_list=FeedBack.objects.filter(publish='Y').order_by('pub_date')
+    feedback_list=FeedBack.objects.filter(publish='Y').order_by('-pub_date')
+
+    fd_pag_list=paginate(request,feedback_list,4)
 
 
-    return render(request,"mainapp/feedback.html",{'feedback_list':feedback_list,'feedback_form':feedback_form})
+    return render(request,"mainapp/feedback.html",{'feedback_list':fd_pag_list,'feedback_form':feedback_form})
 
 
 
