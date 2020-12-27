@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from articles.models import Test_result,AnswerRecieved,OnlineTest
 from articles.services import generate_context_for_test_by_testid
 from django.contrib.admin.views.decorators import staff_member_required
+import json
 
 @login_required
 def ShowProfile(request):
@@ -19,8 +20,22 @@ def ShowProfile(request):
 @login_required
 def Show_LK_Tests(request):
     results=Test_result.objects.filter(tested_user=request.user)
-
-    return render(request,'lk/mytests.html',{'results':results})
+    #записываем результаты в json для диаграммы
+    bad=0;
+    good=0;
+    excellent=0;
+    for res in results:
+        r=res.result_percentage
+        print(r)
+        if r<=30:
+            bad+=1
+        elif 30<r<=75:
+            good+=1
+        else:
+            excellent+=1
+    res_counter={'b':bad,'g':good,'e':excellent}
+    print(res_counter)   
+    return render(request,'lk/mytests.html',{'results':results,'res_counter':res_counter})
 
 @login_required
 def Show_LK_Favor(request):

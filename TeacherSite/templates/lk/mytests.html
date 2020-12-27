@@ -6,36 +6,10 @@
 
 {% block header-content %} Мои результаты{% endblock %}
 {% block article-content %}
-<script>
-$('document').ready(function() {
 
-    var array = $(".res");
-        for(var i=0;i<array.length;i++){
-            var result=array.eq(i).text();
-            var result2=result.replace(',','.');
-
-            if (result2<30) {
-              array.eq(i).css('background-color','red');
-            }
-            if (result2>75) {
-              array.eq(i).css('background-color','rgb(87, 250, 72)');
-            }
-            if (result2>=30&&result2<50) {
-              array.eq(i).css('background-color','rgb(146, 187, 247)');
-            }
-            if (result2>=50&&result2<70) {
-              array.eq(i).css('background-color','yellow');
-            }
-        }
-
-  
-
-});
-
-
-</script>
 <script src="{% static 'js/chart.js' %}">   </script>
-
+<script type="text/javascript" src="{% static 'js/chart_lk_tests.js' %}">   </script>
+{{res_counter|json_script:"dia_data" }}
 
 
 
@@ -73,5 +47,5 @@ $('document').ready(function() {
 
 {% endif %}
 
-<script type="text/javascript" src="{% static 'js/chart_lk_tests.js' %}">   </script>
+
  {% endblock %}
