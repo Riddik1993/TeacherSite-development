@@ -30,6 +30,17 @@
    {% endfor %}
 
 </table>
+<br/>
+ <div class="reminders">
+                        {% if results.has_previous %}
+                          <a href='?page={{results.previous_page_number}}' class="button" id="btn2"><<</a>
+                        {% endif %}
+                          Страница {{results.number}} из {{results.paginator.num_pages}}
+                        {% if results.has_next %}
+                          <a href='?page={{results.next_page_number}}' class="button">>></a>
+                        {% endif %}
+ </div>
+
 {% else %}
 <p>Пока нет пройденных тестов</p>
 {% endif %}

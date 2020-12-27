@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from articles.models import Test_result,AnswerRecieved,OnlineTest
-from articles.services import generate_context_for_test_by_testid
+from articles.services import generate_context_for_test_by_testid,paginate
 from django.contrib.admin.views.decorators import staff_member_required
 import json
 
@@ -19,12 +19,12 @@ def ShowProfile(request):
 
 @login_required
 def Show_LK_Tests(request):
-    results=Test_result.objects.filter(tested_user=request.user)
+    u_results=Test_result.objects.filter(tested_user=request.user)
     #записываем результаты в json для диаграммы
     bad=0;
     good=0;
     excellent=0;
-    for res in results:
+    for res in u_results:
         r=res.result_percentage
         print(r)
         if r<=30:
@@ -34,7 +34,8 @@ def Show_LK_Tests(request):
         else:
             excellent+=1
     res_counter={'b':bad,'g':good,'e':excellent}
-    print(res_counter)   
+    #пагинация результатов
+    results=paginate(request,u_results,7)
     return render(request,'lk/mytests.html',{'results':results,'res_counter':res_counter})
 
 @login_required
