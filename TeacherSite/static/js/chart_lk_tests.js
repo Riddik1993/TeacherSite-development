@@ -24,19 +24,14 @@ $(document).ready(function(){
             }
         }
 
-
-	
-
-
-
-
-
-
+/*Парсим json для получения данных для диаграммы и строим её*/
+let data_dia=$('#dia_data').html();
+let json_dia=$.parseJSON(data_dia);
 
 let ctx = document.getElementById('testResChart');
 data = {
     datasets: [{
-        data: [10, 20, 30],
+        data: [json_dia.b,json_dia.g, json_dia.e],
         backgroundColor:['#faa0a0','#f2f7ad','#affaa0'],
         borderColor:['black','black','black']
     }],
