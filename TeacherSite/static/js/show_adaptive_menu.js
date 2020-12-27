@@ -1,8 +1,8 @@
 $(document).ready(function(){
   
    if (document.body.clientWidth<=650){
-	   $('#authent_panel>a').removeClass('simple_href');
-	   $('#authent_panel>a').addClass('button');
+	   $('#authent_panel>div>a').removeClass('simple_href');
+	   $('#authent_panel>div>a').addClass('button');
     };
 
   $('#mobile_menu_button').click(function() {

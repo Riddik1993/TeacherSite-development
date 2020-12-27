@@ -48,9 +48,11 @@
 
            <button id="mobile_menu_button">Меню</button>
 
-        Пользователь: {{ user.get_username }} &nbsp
+        <div>Пользователь: {{ user.get_username }} &nbsp</div>
+      <div>
       <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
         <a href="{% url 'main'%}" class="simple_href" >Вернуться на сайт</a>
+      </div>
     {% endif %}
       </span>
       {% endblock %}
