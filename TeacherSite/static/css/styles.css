@@ -4,12 +4,19 @@
 html
 {
   background: url('../media/images/main_background.jpg'),rgba(255,255,255,0.85);
- background-blend-mode: color;
+  background-blend-mode: color;
 
 }
 /*https://html5book.ru/wp-content/uploads/2015/05/svetlye_fony.jpg*/
 
-
+#diagram_lk_tests {
+  width:50%;
+  float:left;
+  background-color: #faeded;
+  border:1px solid #ff6666;
+  text-align: center;
+  padding:5px;
+}
 
 #pagewrap {
    width: 1400px;
