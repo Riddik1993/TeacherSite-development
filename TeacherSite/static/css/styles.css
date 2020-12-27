@@ -16,6 +16,11 @@ html
   border:1px solid #ff6666;
   text-align: center;
   padding:5px;
+  float:right top;
+
+}
+#lk_test_results{
+  width:50%;
 }
 
 #pagewrap {

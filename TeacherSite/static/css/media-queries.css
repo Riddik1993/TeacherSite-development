@@ -16,6 +16,22 @@
       width: 95%;
    }
 
+#diagram_lk_tests {
+  width:95%;
+  float:left;
+  background-color: #faeded;
+  border:1px solid #ff6666;
+  text-align: center;
+  padding:5px;
+  float:right top;
+
+}
+
+#lk_test_results{
+  width:95%;
+}
+
+
    article  {
 
          padding:10px;
