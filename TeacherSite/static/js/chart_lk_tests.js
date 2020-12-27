@@ -2,6 +2,15 @@
 /*получаем массив данных*/
 $(document).ready(function(){
 
+
+
+     
+/*меняем местами диаграмму и список тестов для мобильных устройств*/
+if (document.body.clientWidth<=950) {
+    $('#lk_test_results').insertBefore('#diagram_lk_tests');
+    $('.reminders').insertBefore('#diagram_lk_tests');
+    $('.reminders').css("margin","10px 0px");
+}
 	/*Раскрашиваем результаты тестов*/
 	
     var array = $(".res");

@@ -14,6 +14,20 @@
 
 
 {% if results %}
+
+<div id="diagram_lk_tests">
+  <H3>Свод по пройденным тестам</h3>
+    <canvas id="testResChart">
+      
+    </canvas>
+
+</div>
+<br/>
+
+{% endif %}
+
+
+{% if results %}
 <table id="lk_test_results">
   <tr class="table_header">
      <th >Название теста</th><th >Попытка</th><th >Предмет</th><th >Результат</th><th >Дата прохождения</th>
@@ -46,17 +60,6 @@
 {% endif %}
 <br/>
 
-{% if results %}
-
-<div id="diagram_lk_tests">
-  <H3>Свод по пройденным тестам</h3>
-    <canvas id="testResChart">
-      
-    </canvas>
-
-</div>
-
-{% endif %}
 
 
  {% endblock %}
