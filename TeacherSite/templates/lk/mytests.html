@@ -6,42 +6,28 @@
 
 {% block header-content %} Мои результаты{% endblock %}
 {% block article-content %}
-<script>
-$('document').ready(function() {
 
-    var array = $(".res");
-        for(var i=0;i<array.length;i++){
-            var result=array.eq(i).text();
-            var result2=result.replace(',','.');
-
-            if (result2<30) {
-              array.eq(i).css('background-color','red');
-            }
-            if (result2>75) {
-              array.eq(i).css('background-color','rgb(87, 250, 72)');
-            }
-            if (result2>=30&&result2<50) {
-              array.eq(i).css('background-color','rgb(146, 187, 247)');
-            }
-            if (result2>=50&&result2<70) {
-              array.eq(i).css('background-color','yellow');
-            }
-        }
-
-  /*
-    if (result<30) {
-      $('.res').css('background-color','red');
-    };*/
-
-});
-
-
-</script>
+<script src="{% static 'js/chart.js' %}">   </script>
+<script type="text/javascript" src="{% static 'js/chart_lk_tests.js' %}">   </script>
+{{res_counter|json_script:"dia_data" }}
 
 
 
 {% if results %}
-<table style="width:50%;">
+
+<div id="diagram_lk_tests">
+  <H3>Свод по пройденным тестам</h3>
+    <canvas id="testResChart">
+      
+    </canvas>
+
+</div>
+
+{% endif %}
+
+
+{% if results %}
+<table id="lk_test_results">
   <tr class="table_header">
      <th >Название теста</th><th >Попытка</th><th >Предмет</th><th >Результат</th><th >Дата прохождения</th>
     </tr>
@@ -57,8 +43,22 @@ $('document').ready(function() {
    {% endfor %}
 
 </table>
+<br/>
+ <div class="reminders">
+                        {% if results.has_previous %}
+                          <a href='?page={{results.previous_page_number}}' class="button" id="btn2"><<</a>
+                        {% endif %}
+                          Страница {{results.number}} из {{results.paginator.num_pages}}
+                        {% if results.has_next %}
+                          <a href='?page={{results.next_page_number}}' class="button">>></a>
+                        {% endif %}
+ </div>
+
 {% else %}
 <p>Пока нет пройденных тестов</p>
 {% endif %}
+<br/>
+
+
 
  {% endblock %}
