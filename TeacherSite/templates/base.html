@@ -53,10 +53,10 @@
       {% if user.is_authenticated %}
 
 
-      <div id="authent_panel" style="float:right;font-size:0.7em;">
+      <div id="authent_panel" >
             <button id="mobile_menu_button" >Меню</button>
 
-                <div> Пользователь1: {{ user.get_username }} &nbsp</div>
+                <div> Пользователь: {{ user.get_username }} &nbsp</div>
       <div>
          <a href="{% url 'logout'%}?next={{request.path}}" class="simple_href" >Выйти</a>&nbsp&nbsp
          <a href="{% url 'Profile'%}" class="simple_href" >Личный кабинет</a>
