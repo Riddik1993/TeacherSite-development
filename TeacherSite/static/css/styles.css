@@ -709,6 +709,12 @@ font-size:1.1em;
 
 #authent_panel{
   display:inline;
+  font-size:0.9rem;
+  float:right;
+}
+
+#authent_panel>div{
+  display:inline;
 }
 
 .article_header{

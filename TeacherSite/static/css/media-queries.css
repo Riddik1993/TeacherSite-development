@@ -125,7 +125,7 @@ aside ul li a {
 }
 
 #authent_panel{
-
+  float:right;
   font-size:0.7em;
   margin-top:13px;
   width:100%;
@@ -139,6 +139,10 @@ aside ul li a {
   border-bottom:2px solid rgba(85, 24, 0, 0.932);
   overflow:hidden;
 
+}
+
+#authent_panel>div{
+  display:block;
 }
 .comments_form {
   position:relative;
