@@ -21,6 +21,7 @@ from itertools import chain
 from operator import attrgetter
 from django_q.tasks import AsyncTask,async_task, result    
 from django.contrib.admin.views.decorators import staff_member_required
+import psutil
 import os
 
 #памятки по истории и обществознанию
@@ -478,7 +479,13 @@ def PassTest(request,test_id):
 
     return render(request,'articles/test.html',context)
 
-
+#вывод информации о состоянии сервера
 @staff_member_required
 def showServerInfo(request):
+    all_memory=psutil.virtual_memory()
+    avail_memory=all_memory[1]/8/1024/1024
+    total_memory=all_memory[2]/8/1024/1024
+    print(all_memory)
+    print('total: '+str(total_memory))
+    print('avail: '+str(avail_memory))
     return render(request,'admin/serverinfo.html')
