@@ -91,7 +91,20 @@ class CustomIndexDashboard(Dashboard):
                 collapsible=False,
                 models=('django_q.models.*',),
             ))
-
+        #ссылка на графики по использованию сервера
+        self.children.append(modules.LinkList(
+            title='Ресурсы сервера',
+            column=2,
+            children=(
+                {
+                    'title': 'Смотреть состояние сервера',
+                    'url': '/serverinfo',
+                    'external': False,
+                    'description': 'Проверьте свободную память и текущую нагрузку',
+                    'target': '_blank',
+                },
+                            )
+        ))
 
 
 
