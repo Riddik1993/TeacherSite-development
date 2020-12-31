@@ -97,7 +97,7 @@ class CustomIndexDashboard(Dashboard):
             column=2,
             children=(
                 {
-                    'title': 'Смотреть состояние сервера',
+                    'title': 'Просмотреть состояние сервера',
                     'url': '/serverinfo',
                     'external': False,
                     'description': 'Проверьте свободную память и текущую нагрузку',

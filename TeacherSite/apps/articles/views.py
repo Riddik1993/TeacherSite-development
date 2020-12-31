@@ -19,7 +19,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from itertools import chain
 from operator import attrgetter
-from django_q.tasks import AsyncTask,async_task, result
+from django_q.tasks import AsyncTask,async_task, result    
+from django.contrib.admin.views.decorators import staff_member_required
 import os
 
 #памятки по истории и обществознанию
@@ -476,3 +477,8 @@ def PassTest(request,test_id):
 
 
     return render(request,'articles/test.html',context)
+
+
+@staff_member_required
+def showServerInfo(request):
+    return render(request,'admin/serverinfo.html')

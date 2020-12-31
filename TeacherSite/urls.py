@@ -27,6 +27,7 @@ urlpatterns = [
     path('lk/',include('lk.urls')),
     path('captcha/', include('captcha.urls')),
     path('signup/', views.signup, name='signup'),
+    path('serverinfo/',views.showServerInfo),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
