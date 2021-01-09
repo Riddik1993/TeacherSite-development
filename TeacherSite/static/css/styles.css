@@ -883,3 +883,7 @@ width:15%;
 
   /*color:rgb(255, 235, 248);*/
 }
+
+#memory_used_diagram{
+  border:1px solid black;
+}

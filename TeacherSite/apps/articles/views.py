@@ -482,10 +482,11 @@ def PassTest(request,test_id):
 #вывод информации о состоянии сервера
 @staff_member_required
 def showServerInfo(request):
-    all_memory=psutil.virtual_memory()
-    avail_memory=all_memory[1]/8/1024/1024
-    total_memory=all_memory[2]/8/1024/1024
-    print(all_memory)
-    print('total: '+str(total_memory))
-    print('avail: '+str(avail_memory))
-    return render(request,'admin/serverinfo.html')
+    disc_usage=psutil.disk_usage('/')
+    free_space=disc_usage.free/1024/1024/1024
+    used_space=disc_usage.used/1024/1024/1024
+    disk_info={'free_space':free_space,'used_space':used_space,
+               'percent':disc_usage.percent}
+     
+    return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
+    
