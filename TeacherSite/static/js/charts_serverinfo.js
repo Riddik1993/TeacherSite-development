@@ -58,32 +58,3 @@ document.addEventListener("DOMContentLoaded", ready);
 
 
 
-
-/*
-}
-	
-	
-    var array = $(".res");
-    let array_bad;
-        for(var i=0;i<array.length;i++){
-            var result=array.eq(i).text();
-            var result2=result.replace(',','.');
-
-            if (result2<30) {
-              array.eq(i).css('background-color','red');
-            }
-            if (result2>75) {
-              array.eq(i).css('background-color','rgb(87, 250, 72)');
-            }
-            if (result2>=30&&result2<50) {
-              array.eq(i).css('background-color','rgb(146, 187, 247)');
-            }
-            if (result2>=50&&result2<70) {
-              array.eq(i).css('background-color','yellow');
-            }
-        }
-
-
-let data_dia=$('#dia_data').html();
-let json_dia=$.parseJSON(data_dia);
-*/
