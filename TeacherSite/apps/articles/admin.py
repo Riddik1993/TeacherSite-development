@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Shema,Category,Lesson,ArticleComment,Direction,Event,Conspect,\
@@ -14,8 +15,6 @@ class EditLinkToInlineObject(object):
             return mark_safe(u'<a href="{u}">Редактировать</a>'.format(u=url))
         else:
             return ''
-
-
 
 class EventAdmin(admin.ModelAdmin):
     list_display=('day','notes')

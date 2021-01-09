@@ -1,0 +1,40 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+
+
+ {% block content_title %}<h1>Сведения о состоянии сервера</h1>{% endblock %}
+
+
+
+
+{% block content %}
+{{disk_info|json_script:"disk_info" }}
+<style>
+#memory_used_diagram {
+	border: 1px solid black;
+	padding:5px;
+	width:25%;
+	text-align: center;
+
+}
+
+</style>
+
+
+<div>
+		<div id="memory_used_diagram" >
+		  <H3>Свободное место на диске</h3>
+		  	<p id="d_msg">В настоящий момент занято <span id='perc' style="font-weight: bold;"></span> % диска</p>
+		    <canvas id="pie_memory_used">
+		      
+		    </canvas>
+
+		</div>
+</div>
+
+<script src="{% static 'js/chart.js' %}">   </script>
+<script type="text/javascript" src="{% static 'js/charts_serverinfo.js' %}">   </script>
+ {% endblock %}
+
+

@@ -19,7 +19,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from itertools import chain
 from operator import attrgetter
-from django_q.tasks import AsyncTask,async_task, result
+from django_q.tasks import AsyncTask,async_task, result    
+from django.contrib.admin.views.decorators import staff_member_required
+import psutil
 import os
 
 #памятки по истории и обществознанию
@@ -476,3 +478,15 @@ def PassTest(request,test_id):
 
 
     return render(request,'articles/test.html',context)
+
+#вывод информации о состоянии сервера
+@staff_member_required
+def showServerInfo(request):
+    disc_usage=psutil.disk_usage('/')
+    free_space=disc_usage.free/1024/1024/1024
+    used_space=disc_usage.used/1024/1024/1024
+    disk_info={'free_space':free_space,'used_space':used_space,
+               'percent':disc_usage.percent}
+     
+    return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
+    

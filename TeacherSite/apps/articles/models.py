@@ -388,3 +388,4 @@ class Img_reminder(models.Model):
 @receiver(post_delete, sender=Img_reminder)
 def submission_delete_MP_new(sender, instance, **kwargs):
     instance.img.delete(False)
+
