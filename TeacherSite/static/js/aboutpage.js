@@ -48,6 +48,14 @@ $('#ach_show').click(function() {
     $('#about_modal').fadeIn();
     $.getJSON('/articles/achievements',function(data) {
             console.log(data);
+            $('#am_content').empty();
+            for (cat in data) {
+              let cat_name=data[cat];
+              let id=cat;
+              $('#am_content').append(`<a class="button" style="margin:5px;" cat_id=${id}>${cat_name}</a>`)
+            }
+
+           
     });
     
 });
