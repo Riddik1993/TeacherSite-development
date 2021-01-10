@@ -82,8 +82,9 @@ class CustomIndexDashboard(Dashboard):
         self.children.append(modules.ModelList(
             _('Личная информация'),
             column=3,
-            collapsible=False,
-            models=('articles.models.MainInfo','articles.models.SelfInfo','articles.models.MP_new'),
+            collapsible=True,
+            models=('articles.models.MainInfo','articles.models.SelfInfo','articles.models.MP_new',
+                    'articles.models.Achievement','articles.models.AchievementCategory'),
         ))
         self.children.append(modules.ModelList(
                 _('Задачи по расписанию и отложенные'),

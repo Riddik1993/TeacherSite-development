@@ -389,3 +389,32 @@ class Img_reminder(models.Model):
 def submission_delete_MP_new(sender, instance, **kwargs):
     instance.img.delete(False)
 
+#абстрактная модель для статей, публикаций и т.д.
+class ContentObject(models.Model):
+    name=models.CharField(max_length=100,verbose_name='Название')
+    short_description=models.TextField(max_length=100,blank=True,verbose_name='Краткое описание')
+    description=models.TextField(blank=True,verbose_name='Описание')
+    pub_date=models.DateField(auto_now_add=True,verbose_name='Дата_публикации')
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        abstract = True
+
+#достижения
+class AchievementCategory(ContentObject):
+    class Meta:
+        verbose_name='Категория достижений'
+        verbose_name_plural='Категории достижений'
+
+class Achievement(ContentObject):
+    img1=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_1')
+    img2=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_2')
+    img3=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_3')
+    category=models.ForeignKey('articles.AchievementCategory',null=False,on_delete=models.PROTECT,
+                                verbose_name='Категория достижений')
+
+    class Meta:
+        verbose_name='Достижение'
+        verbose_name_plural='Достижения'
