@@ -2,8 +2,6 @@ from django.db import models
 from  datetime import datetime
 from django.utils import timezone
 from articles.models import Category,Direction
-from django.db.models.signals import post_delete
-from django.dispatch import receiver
 
 class ExamInfo(models.Model):
     exam_name=models.CharField('название экзамена', max_length=150)
@@ -19,9 +17,6 @@ class ExamInfo(models.Model):
         verbose_name='Информация об экзаменах'
         verbose_name_plural='Информация об экзаменах'
 
-@receiver(post_delete, sender=ExamInfo)
-def submission_delete_exam_info(sender, instance, **kwargs):
-    instance.file.delete(False)
 
 class LiteratureList(models.Model):
     lit_name=models.CharField('название списка', max_length=150)
@@ -35,11 +30,6 @@ class LiteratureList(models.Model):
     class Meta:
         verbose_name='Список литературы'
         verbose_name_plural='Список литературы'
-
-@receiver(post_delete, sender=LiteratureList)
-def submission_delete_teach_ls(sender, instance, **kwargs):
-    instance.file.delete(False)
-
 
 class Task(models.Model):
         task_name=models.CharField('название задания', max_length=200)
@@ -55,12 +45,7 @@ class Task(models.Model):
             verbose_name='Задание'
             verbose_name_plural='Задания'
 
-@receiver(post_delete, sender=Task)
-def submission_delete_task(sender, instance, **kwargs):
-    instance.file.delete(False)
-
 # отзывы
-
 class FeedBack(models.Model):
     Person_name=models.CharField('Имя',max_length=100)
     Person_email=models.EmailField('Email',max_length=100)
