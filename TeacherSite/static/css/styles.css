@@ -28,6 +28,8 @@ html
 #pagewrap {
    width: 1400px;
    margin: 0 auto;
+   position:relative;
+
 }
 
 #link_register {
@@ -402,11 +404,14 @@ footer {width:calc(100% - 20px);
       padding:5px;
       font-size: 0.8em;
       text-align:left;
+      /*background-color:transparent;*/
+      border:1px solid black;
       float:left;
-      background-color:transparent;
-      border-top:1px solid rgb(211, 86, 14);
+      /*border-top:1px solid rgb(211, 86, 14);*/
       color:rgba(85, 24, 0, 0.932);
       font-weight:bold;
+      position:relative;
+      bottom:1px;
 }
 
  #getles_name , #getles_number,#Quest_name,#Quest_number{
@@ -880,10 +885,47 @@ width:15%;
   border-radius: 3px;
   color:rgb(110, 20, 36);
   margin-right:30%;
-
-  /*color:rgb(255, 235, 248);*/
 }
 
-#memory_used_diagram{
-  border:1px solid black;
+
+
+#about_modal {
+  position:absolute;
+  width:90%;
+  background-color: #fae8e8;
+  min-height:500px;
+  border:2px solid brown;
+  border-radius:5%;
+  top:20px;
+  left:5%;
+  display:none;
 }
+
+
+.close_btn {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close_btn:hover {
+  opacity: 1;
+}
+.close_btn:before, .close_btn:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close_btn:before {
+  transform: rotate(45deg);
+}
+.close_btn:after {
+  transform: rotate(-45deg);
+}
+
+

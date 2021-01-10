@@ -42,4 +42,22 @@ $(document).ready(function () {
 },5000);
 
 
+/*работа со всплывающим окном по достижениям*/
+
+$('#ach_show').click(function() {
+  $('#about_modal').fadeIn();
+
+});
+
+$('close_btn').click(function() {
+  $('#about_modal').fadeOut();
+
+});
+
+
+
+
+
+
+
 });

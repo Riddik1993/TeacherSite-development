@@ -22,8 +22,6 @@ class MemSocial_Article(models.Model):
         verbose_name='Памятка по обществознанию'
         verbose_name_plural='Памятки по обществознанию'
 
-
-
 class Memhis_Article(models.Model):
     article_title=models.CharField('название статьи', max_length=200)
     article_description=models.TextField('Краткая информация',blank=True)
@@ -70,9 +68,7 @@ class MainInfo(models.Model):
         verbose_name='Информация на главной странице'
         verbose_name_plural='Информация на главной странице'
 
-
 #таблицы и схемы
-
 class Shema(models.Model):
     shema_title=models.CharField('Название_схемы',max_length=200)
     shema_description=models.TextField('Краткое описание',max_length=400)

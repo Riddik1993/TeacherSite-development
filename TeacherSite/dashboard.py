@@ -34,9 +34,6 @@ class CustomIndexDashboard(Dashboard):
 
         )
 
-
-
-
         self.children.append(modules.ModelList(
                     title='Информация для учителей',
                     column=2,
