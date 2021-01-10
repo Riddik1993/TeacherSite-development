@@ -404,10 +404,9 @@ footer {width:calc(100% - 20px);
       padding:5px;
       font-size: 0.8em;
       text-align:left;
-      /*background-color:transparent;*/
-      border:1px solid black;
+      background-color:transparent;
       float:left;
-      /*border-top:1px solid rgb(211, 86, 14);*/
+      border-top:1px solid rgb(211, 86, 14);
       color:rgba(85, 24, 0, 0.932);
       font-weight:bold;
       position:relative;
@@ -919,7 +918,7 @@ width:15%;
   content: ' ';
   height: 33px;
   width: 2px;
-  background-color: #333;
+  background-color: red;
 }
 .close_btn:before {
   transform: rotate(45deg);

@@ -49,9 +49,8 @@ $('#ach_show').click(function() {
 
 });
 
-$('close_btn').click(function() {
-  $('#about_modal').fadeOut();
-
+$('.close_btn').click(function() {
+    $('#about_modal').fadeOut();
 });
 
 
