@@ -45,13 +45,17 @@ $(document).ready(function () {
 /*работа со всплывающим окном по достижениям*/
 
 $('#ach_show').click(function() {
-  $('#about_modal').fadeIn();
-
+    $('#about_modal').fadeIn();
+    $.getJSON('/articles/achievements',function(data) {
+            console.log(data);
+    });
+    
 });
 
 $('.close_btn').click(function() {
     $('#about_modal').fadeOut();
 });
+
 
 
 

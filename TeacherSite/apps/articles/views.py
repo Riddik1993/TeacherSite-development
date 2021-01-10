@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
 Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory, \
-Img_reminder,AnswerRecieved,VPR
+Img_reminder,AnswerRecieved,VPR,AchievementCategory,Achievement
 from .services import generate_context_for_test_by_testid,send_mail_to_teacher
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -21,6 +21,7 @@ from itertools import chain
 from operator import attrgetter
 from django_q.tasks import AsyncTask,async_task, result    
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import JsonResponse
 import psutil
 import os
 
@@ -489,4 +490,17 @@ def showServerInfo(request):
                'percent':disc_usage.percent}
      
     return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
+#обработка запросов по достижениям/методике (ajax)
+def SendAchievInfo(request):
+    ach_categories=AchievementCategory.objects.only('id','name')
+    id_list=[]
+    for c in ach_categories:
+        id_list.append(c.id)
+    cat_dict=dict.fromkeys(id_list)
+
+    for key in cat_dict:
+        for cat in ach_categories:
+            if cat.id==key:
+                cat_dict[key]=cat.name
+    return JsonResponse(cat_dict)
     
