@@ -492,6 +492,19 @@ def showServerInfo(request):
     return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
 #обработка запросов по достижениям/методике (ajax)
 def SendAchievInfo(request):
+    category_id=request.GET['cat_id']
+    if category_id!='N':
+        try:
+            achs=Achievement.objects.only('name').filter(category=category_id)
+            ach_list=[]
+            for a in achs:
+                ach_list.append(a.name)
+                ach_dict={'achs':ach_list}
+            return JsonResponse(ach_dict)
+        except:
+            pass
+
+    
     ach_categories=AchievementCategory.objects.only('id','name')
     id_list=[]
     for c in ach_categories:
@@ -502,5 +515,6 @@ def SendAchievInfo(request):
         for cat in ach_categories:
             if cat.id==key:
                 cat_dict[key]=cat.name
+
     return JsonResponse(cat_dict)
     
