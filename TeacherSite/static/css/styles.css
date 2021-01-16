@@ -588,7 +588,7 @@ footer {width:calc(100% - 20px);
 
   margin-bottom:25px;
   display:inline-block;
-
+  position:relative;
   }
 
 
@@ -599,6 +599,7 @@ footer {width:calc(100% - 20px);
 
   color:rgba(85, 24, 0, 0.932);
   font-weight: bold;
+  width:50%;
 }
 .paginator_reminders {
   position:absolute;
