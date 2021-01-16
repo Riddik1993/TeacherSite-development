@@ -26,10 +26,8 @@ $(document).ready(function () {
               });
 
 		/* показ инфо по достижению на всплывающем окне*/
-        $('.scheme_block').click(function(){
-         	$('#achiev_modal').fadeIn();
-        });
-
+        $('#ach_block').on ('click','.scheme_block',()=>$('#achiev_modal').fadeIn());
+        
         $('.close_btn').click(function() {
           $('#achiev_modal').fadeOut();
         });
