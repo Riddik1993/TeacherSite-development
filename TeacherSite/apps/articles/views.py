@@ -499,10 +499,11 @@ def ShowAchievements(request):
     achs=Achievement.objects.only('name','img1').filter(category=1)
     return render(request,'articles/achievements.html',{'ach_cat':ach_cat,'achs':achs})
 
-#обработка ajax
+#обработка ajax для списка достижений по категории
 def SendAchievListJSON(request):
     category_id=request.GET['cat_id']
-    achs=Achievement.objects.only('id','name','img1').filter(category=category_id)
+    achs=Achievement.objects.only('id','name','img1'). \
+    filter(category=category_id)
     ach_list=[]
     for a in achs:
         ach_params={'id':a.id,'name':a.name}
@@ -511,6 +512,13 @@ def SendAchievListJSON(request):
         ach_list.append(ach_params)
     ach_dict={'achs':ach_list}
     return JsonResponse(ach_dict)
+
+def ShowAchInfo(request):
+    ach_id=request.GET['ach_id']
+    ach=Achievement.objects.only('description') \
+     .get(id=ach_id)
+    ach_info={'desc':ach.description}
+    return JsonResponse(ach_info)
 
 
 

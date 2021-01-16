@@ -955,3 +955,15 @@ width:15%;
 }
 
 
+#ach_img {
+  float:right;
+  width:50%;
+  min-height: 90%;
+  border:1px solid black;
+
+}
+
+#ach_img>img{
+  width:100%;
+
+}

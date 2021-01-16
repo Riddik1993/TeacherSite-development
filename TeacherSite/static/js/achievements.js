@@ -26,11 +26,32 @@ $(document).ready(function () {
               });
 
 		/* показ инфо по достижению на всплывающем окне*/
-        $('#ach_block').on ('click','.scheme_block',()=>$('#achiev_modal').fadeIn());
-        
-        $('.close_btn').click(function() {
-          $('#achiev_modal').fadeOut();
-        });
+        $('#ach_block').on ('click','.scheme_block',function(event) {
+                                                        $('#achiev_modal').fadeIn();
+                                                        let target=event.currentTarget;
+                                                                                                                                                                     
+                                                        /*вставляем заголовок*/
+                                                        let header_el=target.querySelector('.sheme_title');
+                                                        $('#am_header h3').empty();
+                                                        $('#am_header h3').html(header_el.innerHTML);
+
+                                                        /*вставляем картинку*/
+                                                        let image_el=target.querySelector('.scheme_image>img');
+                                                        let image_src=image_el.getAttribute('src');
+                                                        $('#ach_img>img').attr('src',image_src);
+                                                        
+                                                        /*отправляем запрос на сервер и вставляем получ.описание*/
+                                                        let ach_id=target.getAttribute('id');
+                                                        $.getJSON('/articles/ach_info/', {'ach_id':ach_id},function(data) {
+                                                                    console.log(data);
+                                                                    $('#am_desc').empty();
+                                                                    $('#am_desc').append(data.desc);
+
+                                                               });
+                                                    });
+
+        $('.close_btn').click(()=> $('#achiev_modal').fadeOut());
+
 
 
 
