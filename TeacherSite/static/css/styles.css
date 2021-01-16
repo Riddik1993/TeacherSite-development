@@ -567,17 +567,23 @@ footer {width:calc(100% - 20px);
         position: absolute;
         top:10px;
         width:100%;
-        height:150%;
+        height:1000px;
         z-index:100;
         background-color: rgba(0,0,0,0.5);
         margin:0;
+        display:none;
         
       }
 
+.fadeBlock > .content {
+
+      top:100px;
+}
 .fadeBlock > .content img {
          max-width:50%;
          max-height:75%;
-         margin:0 25% 0 25%;
+         margin:5% 25% 0 25%;
+     
 
  }
 
