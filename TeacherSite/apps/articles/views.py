@@ -492,47 +492,26 @@ def showServerInfo(request):
     return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
 
 #страница с достижениями
+
+#первая страница
 def ShowAchievements(request):
     ach_cat=AchievementCategory.objects.only('id','name')
-    achs=Achievement.objects.only('name').filter(category=1)
+    achs=Achievement.objects.only('name','img1').filter(category=1)
     return render(request,'articles/achievements.html',{'ach_cat':ach_cat,'achs':achs})
 
+#обработка ajax
 def SendAchievListJSON(request):
     category_id=request.GET['cat_id']
-    achs=Achievement.objects.only('name').filter(category=category_id)
+    achs=Achievement.objects.only('name','img1').filter(category=category_id)
     ach_list=[]
     for a in achs:
-        ach_list.append(a.name)
-        ach_dict={'achs':ach_list}
+        ach_params={'name':a.name}
+        if a.img1:
+            ach_params.update({'img':a.img1.url})
+        ach_list.append(ach_params)
+    ach_dict={'achs':ach_list}
+    print(ach_dict)
     return JsonResponse(ach_dict)
 
 
 
-#обработка запросов по достижениям/методике (ajax)
-def SendAchievInfo(request):
-    category_id=request.GET['cat_id']
-    if category_id!='N':
-        try:
-            achs=Achievement.objects.only('name').filter(category=category_id)
-            ach_list=[]
-            for a in achs:
-                ach_list.append(a.name)
-                ach_dict={'achs':ach_list}
-            return JsonResponse(ach_dict)
-        except:
-            pass
-
-    
-    ach_categories=AchievementCategory.objects.only('id','name')
-    id_list=[]
-    for c in ach_categories:
-        id_list.append(c.id)
-    cat_dict=dict.fromkeys(id_list)
-
-    for key in cat_dict:
-        for cat in ach_categories:
-            if cat.id==key:
-                cat_dict[key]=cat.name
-
-    return JsonResponse(cat_dict)
-    

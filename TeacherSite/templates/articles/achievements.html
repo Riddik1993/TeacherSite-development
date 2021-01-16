@@ -18,13 +18,22 @@
   <a class="button" style="margin:5px;" cat_id="{{a.id}}">{{a.name}}</a>
 {% endfor %}
 
-<div id="ach_block">
+<div id="ach_block" class="list_of_blocks">
+
    {% for a in achs %}
-       <p>{{a.name}}</p>
+    <div class="scheme_block">
+       <div class="scheme_image"> 
+          {% if a.img1 %}
+           <img width=50%  src='{{a.img1.url}}'/> <br/> 
+          {% endif %}
+           </div> 
+       <div class="sheme_title">{{a.name}}</div>
+    </div>
    {% endfor %}
 
 
 </div>
+
 
 {% endblock %}
 
