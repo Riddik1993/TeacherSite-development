@@ -1,5 +1,7 @@
 {% load staticfiles %}
-
+body {
+  height:100%;
+}
 
 html
 {
@@ -590,21 +592,31 @@ footer {width:calc(100% - 20px);
 
 .scheme_block {
   width:32%;
-  height:17%;
+  height:30vh;
   margin-bottom:25px;
   display:inline-block;
-
+  overflow: hidden;
+  border:1px solid black;
+  
   }
 
 
 .scheme_image{
   float:left;
+  height:70%;
+  overflow: hidden;
+  margin-bottom: 5px;
 }
+
+.scheme_image img{ 
+  width:60%;
+}
+
 .sheme_title {
 
   color:rgba(85, 24, 0, 0.932);
   font-weight: bold;
-  width:50%;
+  width:60%;
 }
 .paginator_reminders {
   position:absolute;
@@ -898,34 +910,56 @@ width:15%;
   position:absolute;
   width:90%;
   background-color: #fae8e8;
-  min-height:500px;
+  height:90vh;
   border:2px solid brown;
   border-radius:5%;
   top:20px;
   left:5%;
   display:none;
   padding:5px;
+  overflow: auto;
 }
 
 #am_header {
   width:95%;
   height:30px;
   top:50px;
-  border:1px solid black;
   padding:5px;
   position:relative;
-  margin:5px;
+  color:brown;
+  text-align: center;
   
 }
+#am_desc {
+  width:45%;
+  text-align: justify;
+  color:brown;
+  overflow: auto;
+}
+
 #am_content {
   width:95%;
-  border:1px solid red;
   padding:5px;
   position:relative;
   margin:5px;
   top:75px;
-  min-height: 100px;
+  height: 90%;
+
   }
+
+
+#ach_img {
+  float:right;
+  width:50%;
+  max-height:70vh ;
+  overflow: auto;
+  
+}
+
+#ach_img>img{
+  width:100%;
+
+}
 
 
 .close_btn {
@@ -954,16 +988,3 @@ width:15%;
   transform: rotate(-45deg);
 }
 
-
-#ach_img {
-  float:right;
-  width:50%;
-  min-height: 90%;
-  border:1px solid black;
-
-}
-
-#ach_img>img{
-  width:100%;
-
-}

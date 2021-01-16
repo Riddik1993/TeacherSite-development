@@ -13,7 +13,7 @@ $(document).ready(function () {
                               content=`
                               <div class="scheme_block" id='${ach_id}'>
                               		<div class="scheme_image"> \
-                              			<img width=50%  src='${ach_img}'/> <br/> \
+                              			<img src='${ach_img}'/> <br/> \
                               		</div> \
                               		<div class="sheme_title">${ach_name}</div> \
                               </div>`;
@@ -43,14 +43,13 @@ $(document).ready(function () {
                                                         /*отправляем запрос на сервер и вставляем получ.описание*/
                                                         let ach_id=target.getAttribute('id');
                                                         $.getJSON('/articles/ach_info/', {'ach_id':ach_id},function(data) {
-                                                                    console.log(data);
                                                                     $('#am_desc').empty();
                                                                     $('#am_desc').append(data.desc);
 
                                                                });
                                                     });
 
-        $('.close_btn').click(()=> $('#achiev_modal').fadeOut());
+        $('.close_btn').click(()=>$('#achiev_modal').fadeOut());
 
 
 
