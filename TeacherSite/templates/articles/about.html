@@ -45,7 +45,7 @@
 
 <div style="width:69%">
   <p style="white-space:pre-wrap">{{article.article_text|linebreaks}}</p>
-  <a class="simple_href" href="#" id="ach_show"> Мои достижения</a>
+  <a class="simple_href" href="{% url 'achievements'%}"> Мои достижения</a>
 </div>
 
 {% endcache %}
@@ -53,19 +53,4 @@
 
 {% endblock %}
 
-{% block out-of-article %}
-<div id="about_modal">
-	<a href="#" class="close_btn"></a>
-
-	<div id="am_header">
-
-	</div>
-
-	<div id="am_content">
-           test
-	</div>
-	
-</div>
-
-{% endblock %}
 

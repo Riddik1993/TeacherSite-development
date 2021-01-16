@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cache %} 
+{% block title %} Мои достижения {% endblock %}
+{% block header-content %} Мои достижения  {% endblock %}
+
+{% block article-header %}
+    
+{% endblock %}
+
+
+{% block article-content %}
+
+<script type="text/javascript" src="{% static 'js\achievements.js' %}">   </script>
+
+
+{% for a in ach_cat %}
+  <a class="button" style="margin:5px;" cat_id="{{a.id}}">{{a.name}}</a>
+{% endfor %}
+
+<div id="ach_block">
+   {% for a in achs %}
+       <p>{{a.name}}</p>
+   {% endfor %}
+
+
+</div>
+
+{% endblock %}
+
+{% block out-of-article %}
+
+
+<div id="about_modal">
+	<a href="#" class="close_btn"></a>
+
+	<div id="am_header">
+
+	</div>
+
+	<div id="am_content">
+           test
+	</div>
+	
+</div>
+
+{% endblock %}
+

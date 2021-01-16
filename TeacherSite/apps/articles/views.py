@@ -490,6 +490,24 @@ def showServerInfo(request):
                'percent':disc_usage.percent}
      
     return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
+
+#страница с достижениями
+def ShowAchievements(request):
+    ach_cat=AchievementCategory.objects.only('id','name')
+    achs=Achievement.objects.only('name').filter(category=1)
+    return render(request,'articles/achievements.html',{'ach_cat':ach_cat,'achs':achs})
+
+def SendAchievListJSON(request):
+    category_id=request.GET['cat_id']
+    achs=Achievement.objects.only('name').filter(category=category_id)
+    ach_list=[]
+    for a in achs:
+        ach_list.append(a.name)
+        ach_dict={'achs':ach_list}
+    return JsonResponse(ach_dict)
+
+
+
 #обработка запросов по достижениям/методике (ajax)
 def SendAchievInfo(request):
     category_id=request.GET['cat_id']
