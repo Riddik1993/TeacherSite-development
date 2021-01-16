@@ -21,13 +21,13 @@
 <div id="ach_block" class="list_of_blocks">
 
    {% for a in achs %}
-    <div class="scheme_block">
+    <div class="scheme_block" id='{{a.id}}'>
        <div class="scheme_image"> 
           {% if a.img1 %}
            <img width=50%  src='{{a.img1.url}}'/> <br/> 
           {% endif %}
            </div> 
-       <div class="sheme_title">{{a.name}}</div>
+       <div class="sheme_title" >{{a.name}}</div>
     </div>
    {% endfor %}
 
@@ -40,7 +40,7 @@
 {% block out-of-article %}
 
 
-<div id="about_modal">
+<div id="achiev_modal">
 	<a href="#" class="close_btn"></a>
 
 	<div id="am_header">

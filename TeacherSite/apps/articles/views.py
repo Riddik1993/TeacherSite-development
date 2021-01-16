@@ -502,15 +502,14 @@ def ShowAchievements(request):
 #обработка ajax
 def SendAchievListJSON(request):
     category_id=request.GET['cat_id']
-    achs=Achievement.objects.only('name','img1').filter(category=category_id)
+    achs=Achievement.objects.only('id','name','img1').filter(category=category_id)
     ach_list=[]
     for a in achs:
-        ach_params={'name':a.name}
+        ach_params={'id':a.id,'name':a.name}
         if a.img1:
             ach_params.update({'img':a.img1.url})
         ach_list.append(ach_params)
     ach_dict={'achs':ach_list}
-    print(ach_dict)
     return JsonResponse(ach_dict)
 
 

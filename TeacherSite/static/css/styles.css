@@ -563,32 +563,31 @@ footer {width:calc(100% - 20px);
 
 }
 
-      .fadeBlock {
+.fadeBlock {
         position: absolute;
-
-        width:95%;
-
+        top:10px;
+        width:100%;
         height:150%;
         z-index:100;
         background-color: rgba(0,0,0,0.5);
         margin:0;
-        display:none;
+        
       }
 
-      .fadeBlock > .content img {
+.fadeBlock > .content img {
          max-width:50%;
          max-height:75%;
          margin:0 25% 0 25%;
 
-      }
+ }
+
 
 .scheme_block {
   width:32%;
   height:17%;
-
   margin-bottom:25px;
   display:inline-block;
-  position:relative;
+
   }
 
 
@@ -889,7 +888,7 @@ width:15%;
 
 
 
-#about_modal {
+#achiev_modal {
   position:absolute;
   width:90%;
   background-color: #fae8e8;
