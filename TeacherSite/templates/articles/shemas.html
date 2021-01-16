@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %} Таблицы и схемы {% endblock %}
 {% block header-content %} Таблицы и схемы  {% endblock %}
 
@@ -11,6 +11,7 @@
 
 
 {% block article-content %}
+ <script type="text/javascript" src="{% static "js\show_schema.js" %}">   </script>
 
 <style>
  #btn1:active {
