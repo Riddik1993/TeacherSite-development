@@ -605,9 +605,17 @@ footer {width:calc(100% - 20px);
   display:inline-block;
   overflow: hidden;
  
-
-
 }
+
+.scheme_sub_block:hover {
+  width:25%;
+  height:15vh;
+  display:inline-block;
+  overflow: hidden;
+  opacity: 0.7;
+ 
+}
+
 
 
 .scheme_block {
