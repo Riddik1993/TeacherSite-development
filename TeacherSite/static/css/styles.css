@@ -599,6 +599,16 @@ footer {width:calc(100% - 20px);
 
  }
 
+.scheme_sub_block {
+  width:25%;
+  height:15vh;
+  display:inline-block;
+  overflow: hidden;
+ 
+
+
+}
+
 
 .scheme_block {
   width:32%;
@@ -609,6 +619,9 @@ footer {width:calc(100% - 20px);
   /*transition: 1s;*/
   
   }
+.scheme_block:hover {
+  /*border-bottom:3px solid red;*/
+}
 
 
 
@@ -620,6 +633,7 @@ footer {width:calc(100% - 20px);
   margin-bottom: 5px;
   transition: 1s;
 }
+
 
 .scheme_image:hover {
   transform:scale(1.3);
