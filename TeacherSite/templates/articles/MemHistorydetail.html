@@ -10,16 +10,16 @@
 
 {% block article-content %}
   <p>{{article.article_text|linebreaks}}</p>
+   <em>Дата публикации: <br/>{{article.pub_date}}</em>
   {% if article.file %}
+  <br/>
+  <br/>
   <a href="{{article.file.url}}" class="button">Скачать памятку</a>
   {% endif %}
+  
+    <a class="button" href="{% url 'MemHistory' %}">Вернуться к списку памяток</a>
   <br/>
   <br/>
-
-  <em>Дата публикации: <br/>{{article.pub_date}}</em>
-  <br/>
-  <a href="{% url 'MemHistory' %}">Скачать памятку</a>
-  <a href="{% url 'MemHistory' %}">Вернуться к списку памяток</a>
   <hr>
   <br>
   <p>Комментарии:</p>
