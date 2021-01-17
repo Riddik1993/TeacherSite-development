@@ -14,25 +14,33 @@
 <script type="text/javascript" src="{% static 'js\achievements.js' %}">   </script>
 
 
-{% for a in ach_cat %}
-  <a class="button" style="margin:5px;" cat_id="{{a.id}}">{{a.name}}</a>
-{% endfor %}
+{% if ach_cat %}
+  {% for a in ach_cat %}
+    <a class="button" style="margin:5px;" cat_id="{{a.id}}">{{a.name}}</a>
+  {% endfor %}
+{% endif %}
 
-<div id="ach_block" class="list_of_blocks">
 
-   {% for a in achs %}
-    <div class="scheme_block" id='{{a.id}}'>
-       <div class="scheme_image"> 
-          {% if a.img1 %}
-           <img   src='{{a.img1.url}}'/> <br/> 
-          {% endif %}
-           </div> 
-       <div class="sheme_title" >{{a.name}}</div>
+
+    <div id="ach_block" class="list_of_blocks">
+    {% if achs %}
+       {% for a in achs %}
+        <div class="scheme_block" id='{{a.id}}'>
+           <div class="scheme_image"> 
+              {% if a.img1 %}
+               <img   src='{{a.img1.url}}'/> <br/> 
+              {% endif %}
+               </div> 
+           <div class="sheme_title" >{{a.name}}</div>
+        </div>
+
+       {% endfor %}
+    {% else %}
+        <p>Информация будет добавлена в ближайшее время</p>
+
+    {% endif %}
+
     </div>
-   {% endfor %}
-
-
-</div>
 
 
 {% endblock %}

@@ -367,8 +367,8 @@ class Achievement(ContentObject):
     img1=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_1')
     img2=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_2')
     img3=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_3')
-    category=models.ForeignKey('articles.AchievementCategory',null=False,on_delete=models.PROTECT,
-                                verbose_name='Категория достижений')
+    category=models.ForeignKey('articles.AchievementCategory',blank=True,
+                                on_delete=models.PROTECT,verbose_name='Категория достижений')
 
     class Meta:
         verbose_name='Достижение'

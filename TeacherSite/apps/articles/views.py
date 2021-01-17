@@ -496,7 +496,8 @@ def showServerInfo(request):
 #первая страница
 def ShowAchievements(request):
     ach_cat=AchievementCategory.objects.only('id','name')
-    achs=Achievement.objects.only('name','img1').filter(category=1)
+    fst_cat=ach_cat.first()
+    achs=Achievement.objects.only('name','img1').filter(category=fst_cat.id)
     return render(request,'articles/achievements.html',{'ach_cat':ach_cat,'achs':achs})
 
 #обработка ajax для списка достижений по категории
@@ -505,6 +506,7 @@ def SendAchievListJSON(request):
     achs=Achievement.objects.only('id','name','img1'). \
     filter(category=category_id)
     ach_list=[]
+
     for a in achs:
         ach_params={'id':a.id,'name':a.name}
         if a.img1:
