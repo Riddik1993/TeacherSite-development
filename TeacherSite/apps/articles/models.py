@@ -5,8 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.contrib.auth.models import User,Group
-from django.db.models.signals import post_delete
-from django.dispatch import receiver
 from django.contrib.postgres.fields import ArrayField
 
 #памятки по истории и обществознанию
@@ -24,13 +22,6 @@ class MemSocial_Article(models.Model):
         verbose_name='Памятка по обществознанию'
         verbose_name_plural='Памятки по обществознанию'
 
-@receiver(post_delete, sender=MemSocial_Article)
-def submission_delete4(sender, instance, **kwargs):
-    instance.file.delete(False)
-
-
-
-
 class Memhis_Article(models.Model):
     article_title=models.CharField('название статьи', max_length=200)
     article_description=models.TextField('Краткая информация',blank=True)
@@ -45,9 +36,6 @@ class Memhis_Article(models.Model):
         verbose_name='Памятка по истории'
         verbose_name_plural='Памятки по истории'
 
-@receiver(post_delete, sender=Memhis_Article)
-def submission_delete3(sender, instance, **kwargs):
-    instance.file.delete(False)
 #информация о себе
 class SelfInfo(models.Model):
     article_title=models.CharField('Название статьи',max_length=200)
@@ -80,9 +68,7 @@ class MainInfo(models.Model):
         verbose_name='Информация на главной странице'
         verbose_name_plural='Информация на главной странице'
 
-
 #таблицы и схемы
-
 class Shema(models.Model):
     shema_title=models.CharField('Название_схемы',max_length=200)
     shema_description=models.TextField('Краткое описание',max_length=400)
@@ -97,10 +83,6 @@ class Shema(models.Model):
     class Meta:
         verbose_name='Схема'
         verbose_name_plural='Схемы'
-
-@receiver(post_delete, sender=Shema)
-def submission_delete2(sender, instance, **kwargs):
-    instance.shema_image.delete(False)
 
 class Category(models.Model):
     category_name=models.CharField('Предмет',max_length=100)
@@ -184,9 +166,6 @@ class Conspect(models.Model):
             verbose_name='Конспект'
             verbose_name_plural='Конспекты'
 
-@receiver(post_delete, sender=Conspect)
-def submission_delete_consp(sender, instance, **kwargs):
-    instance.file.delete(False)
 
 #впр
 class VPR(models.Model):
@@ -203,10 +182,6 @@ class VPR(models.Model):
         class Meta:
             verbose_name='ВПР'
             verbose_name_plural='ВПР'
-
-@receiver(post_delete, sender=VPR)
-def submission_delete_VPR(sender, instance, **kwargs):
-    instance.file.delete(False)
 
 #типы впр
 class VPRtype(models.Model):
@@ -237,10 +212,6 @@ class LiterSource(models.Model):
             verbose_name='УМК'
             verbose_name_plural='УМК'
 
-@receiver(post_delete, sender=LiterSource)
-def submission_delete_ls(sender, instance, **kwargs):
-    instance.file.delete(False)
-    instance.img.delete(True)
 #чек-листы
 class CHeckList(models.Model):
     chl_name=models.CharField('название', max_length=200)
@@ -256,10 +227,6 @@ class CHeckList(models.Model):
         verbose_name='CHECK-лист'
         verbose_name_plural='CHECK-листы'
 
-@receiver(post_delete, sender=CHeckList)
-def submission_delete_chk_list(sender, instance, **kwargs):
-    instance.file.delete(False)
-
 class Direction_CHL(models.Model):
     direction_name=models.CharField('Направление чек-листа',max_length=100)
 
@@ -269,8 +236,6 @@ class Direction_CHL(models.Model):
     class Meta:
         verbose_name='Направление чек-листов'
         verbose_name_plural='Направления чек-листов'
-
-
 
 
 #онлайн тесты
@@ -331,7 +296,6 @@ class Test_result(models.Model):
     test_points=models.FloatField('Максим.баллы в тесте')
     result_percentage=models.FloatField('Результат в процентах')
 
-
     def __str__(self):
        return self.test.test_name
 
@@ -359,11 +323,6 @@ class MP_new(models.Model):
         verbose_name='Новость'
         verbose_name_plural='Новости'
 
-@receiver(post_delete, sender=MP_new)
-def submission_delete_MP_new(sender, instance, **kwargs):
-    instance.new_image.delete(False)
-
-
 class Schema_subcategory(models.Model):
     category=models.ForeignKey('articles.Category',null=False,on_delete=models.CASCADE,verbose_name='Предмет')
     subcategory_name=models.CharField('Название_подкатегории',max_length=100)
@@ -385,7 +344,32 @@ class Img_reminder(models.Model):
         verbose_name='Картинка к странице памяток'
         verbose_name_plural='Картинки к странице памяток'
 
-@receiver(post_delete, sender=Img_reminder)
-def submission_delete_MP_new(sender, instance, **kwargs):
-    instance.img.delete(False)
+#абстрактная модель для статей, публикаций и т.д.
+class ContentObject(models.Model):
+    name=models.CharField(max_length=100,verbose_name='Название')
+    short_description=models.TextField(max_length=100,blank=True,verbose_name='Краткое описание')
+    description=models.TextField(blank=True,verbose_name='Описание')
+    pub_date=models.DateField(auto_now_add=True,verbose_name='Дата_публикации')
+    
+    def __str__(self):
+        return self.name
 
+    class Meta:
+        abstract = True
+
+#достижения
+class AchievementCategory(ContentObject):
+    class Meta:
+        verbose_name='Категория достижений'
+        verbose_name_plural='Категории достижений'
+
+class Achievement(ContentObject):
+    img1=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_1')
+    img2=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_2')
+    img3=models.ImageField(upload_to='images/achiev_photo',blank=True,verbose_name='Картинка_3')
+    category=models.ForeignKey('articles.AchievementCategory',blank=True,
+                                on_delete=models.PROTECT,verbose_name='Категория достижений')
+
+    class Meta:
+        verbose_name='Достижение'
+        verbose_name_plural='Достижения'

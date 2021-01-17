@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 from django.urls import reverse
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Shema,Category,Lesson,ArticleComment,Direction,Event,Conspect,\
 LiterSource,CHeckList,Direction_CHL,OnlineTest,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory,Img_reminder, \
-VPR,VPRtype
+VPR,VPRtype,Achievement,AchievementCategory
 
 # класс, позволяющий вкладывать ссылки в админке на форму другой модели
 class EditLinkToInlineObject(object):
@@ -113,6 +113,13 @@ class VPRtypeAdmin(admin.ModelAdmin):
     list_display=('name',)
     list_display_links=('name',)
 
+class AchievementAdmin(admin.ModelAdmin):
+    list_display=('name','short_description','category')
+    list_display_links=('name','short_description')
+    list_filter=('category',)
+    search_fields=('short_description','name','description'
+                    'category')
+
 
 
 admin.site.register(MemSocial_Article)
@@ -137,3 +144,5 @@ admin.site.register(Schema_subcategory,Schema_subcategoryAdmin)
 admin.site.register(Img_reminder,Img_reminderAdmin)
 admin.site.register(VPR,VPRAdmin)
 admin.site.register(VPRtype,VPRtypeAdmin)
+admin.site.register(AchievementCategory)
+admin.site.register(Achievement,AchievementAdmin)

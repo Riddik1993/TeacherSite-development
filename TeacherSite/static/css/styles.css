@@ -1,5 +1,7 @@
 {% load staticfiles %}
-
+body {
+  height:100%;
+}
 
 html
 {
@@ -28,6 +30,8 @@ html
 #pagewrap {
    width: 1400px;
    margin: 0 auto;
+   position:relative;
+
 }
 
 #link_register {
@@ -402,11 +406,13 @@ footer {width:calc(100% - 20px);
       padding:5px;
       font-size: 0.8em;
       text-align:left;
-      float:left;
       background-color:transparent;
+      float:left;
       border-top:1px solid rgb(211, 86, 14);
       color:rgba(85, 24, 0, 0.932);
       font-weight:bold;
+      position:relative;
+      bottom:1px;
 }
 
  #getles_name , #getles_number,#Quest_name,#Quest_number{
@@ -559,42 +565,68 @@ footer {width:calc(100% - 20px);
 
 }
 
-      .fadeBlock {
+.fadeBlock {
         position: absolute;
-
-        width:95%;
-
-        height:150%;
+        width:100%;
+        height:100vh;
         z-index:100;
         background-color: rgba(0,0,0,0.5);
         margin:0;
         display:none;
+
+        
       }
 
-      .fadeBlock > .content img {
-         max-width:50%;
-         max-height:75%;
-         margin:0 25% 0 25%;
+.fadeBlock > .content {
 
-      }
+      display: block;    
+      margin-left:auto;
+      margin-right: auto;
+      width:95%;
+      height: 100%;
+
+}
+.fadeBlock > .content >img {
+      margin-left:auto;
+      margin-right: auto;
+      display: block;
+      max-width: 95%;
+      position: relative;
+      transform: translate(0, -50%);
+      top: 50%; 
+
+     
+
+ }
+
 
 .scheme_block {
   width:32%;
-  height:17%;
-
+  height:30vh;
   margin-bottom:25px;
   display:inline-block;
-
+  overflow: hidden;
+  
+  
   }
 
 
 .scheme_image{
   float:left;
+  height:70%;
+  overflow: hidden;
+  margin-bottom: 5px;
 }
+
+.scheme_image img{ 
+  width:60%;
+}
+
 .sheme_title {
 
   color:rgba(85, 24, 0, 0.932);
   font-weight: bold;
+  width:60%;
 }
 .paginator_reminders {
   position:absolute;
@@ -880,10 +912,91 @@ width:15%;
   border-radius: 3px;
   color:rgb(110, 20, 36);
   margin-right:30%;
-
-  /*color:rgb(255, 235, 248);*/
 }
 
-#memory_used_diagram{
-  border:1px solid black;
+
+
+#achiev_modal {
+  position:absolute;
+  width:90%;
+  background-color: #fae8e8;
+  height:90vh;
+  border:2px solid brown;
+  border-radius:5%;
+  top:20px;
+  left:5%;
+  display:none;
+  padding:5px;
+  
 }
+
+#am_header {
+  width:95%;
+  height:30px;
+  top:50px;
+  padding:5px;
+  position:relative;
+  color:brown;
+  text-align: center;
+  
+}
+#am_desc {
+  width:45%;
+  text-align: justify;
+  color:brown;
+  overflow: auto;
+  max-height:70vh;
+  white-space: pre-wrap;
+}
+
+#am_content {
+  width:95%;
+  padding:5px;
+  position:relative;
+  margin:5px;
+  top:75px;
+  height: 90%;
+
+  }
+
+
+#ach_img {
+  float:right;
+  width:50%;
+  max-height:70vh ;
+  overflow: auto;
+  
+}
+
+#ach_img>img{
+  width:100%;
+
+}
+
+
+.close_btn {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close_btn:hover {
+  opacity: 1;
+}
+.close_btn:before, .close_btn:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: red;
+}
+.close_btn:before {
+  transform: rotate(45deg);
+}
+.close_btn:after {
+  transform: rotate(-45deg);
+}
+

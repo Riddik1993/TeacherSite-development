@@ -11,7 +11,7 @@
 
 {% block article-content %}
 
-<script type="text/javascript" src="{% static 'js\image-change.js' %}">   </script>
+<script type="text/javascript" src="{% static 'js\aboutpage.js' %}">   </script>
 
 {% cache 120 about %}
 
@@ -45,9 +45,12 @@
 
 <div style="width:69%">
   <p style="white-space:pre-wrap">{{article.article_text|linebreaks}}</p>
+  <a class="simple_href" href="{% url 'achievements'%}"> Мои достижения</a>
 </div>
 
 {% endcache %}
 
 
 {% endblock %}
+
+

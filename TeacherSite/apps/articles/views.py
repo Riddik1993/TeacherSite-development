@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import MemSocial_Article,Memhis_Article,SelfInfo,MainInfo,Category,Shema,Lesson,ArticleComment,Event,\
 Conspect,LiterSource,CHeckList,Direction_CHL,OnlineTest,Direction,TestQuestion,Answer,Test_result,MP_new,Schema_subcategory, \
-Img_reminder,AnswerRecieved,VPR
+Img_reminder,AnswerRecieved,VPR,AchievementCategory,Achievement
 from .services import generate_context_for_test_by_testid,send_mail_to_teacher
 from mainapp.models import Task
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -21,6 +21,7 @@ from itertools import chain
 from operator import attrgetter
 from django_q.tasks import AsyncTask,async_task, result    
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import JsonResponse
 import psutil
 import os
 
@@ -489,4 +490,37 @@ def showServerInfo(request):
                'percent':disc_usage.percent}
      
     return render(request,'admin/serverinfo.html',{'disk_info':disk_info})
-    
+
+#страница с достижениями
+
+#первая страница
+def ShowAchievements(request):
+    ach_cat=AchievementCategory.objects.only('id','name')
+    fst_cat=ach_cat.first()
+    achs=Achievement.objects.only('name','img1').filter(category=fst_cat.id)
+    return render(request,'articles/achievements.html',{'ach_cat':ach_cat,'achs':achs})
+
+#обработка ajax для списка достижений по категории
+def SendAchievListJSON(request):
+    category_id=request.GET['cat_id']
+    achs=Achievement.objects.only('id','name','img1'). \
+    filter(category=category_id)
+    ach_list=[]
+
+    for a in achs:
+        ach_params={'id':a.id,'name':a.name}
+        if a.img1:
+            ach_params.update({'img':a.img1.url})
+        ach_list.append(ach_params)
+    ach_dict={'achs':ach_list}
+    return JsonResponse(ach_dict)
+
+def ShowAchInfo(request):
+    ach_id=request.GET['ach_id']
+    ach=Achievement.objects.only('description') \
+     .get(id=ach_id)
+    ach_info={'desc':ach.description}
+    return JsonResponse(ach_info)
+
+
+

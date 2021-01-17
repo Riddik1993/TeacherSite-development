@@ -27,6 +27,11 @@ urlpatterns = [
     path('onlinetests/<int:direct_id>',views.OnlineTestList,name='tests'),
     path('vpr/',views.ShowVpr,name='vpr'),
     path('test/<int:test_id>',views.PassTest,name='GoTest'),
+    path('achievelist/',views.SendAchievListJSON,name='achieve_list'),
+    path('achievements/',views.ShowAchievements,name='achievements'),
+    path('ach_info/',views.ShowAchInfo,name='achiev_info')
+    
+
 
 
 ]
