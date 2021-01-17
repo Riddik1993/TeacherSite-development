@@ -496,8 +496,11 @@ def showServerInfo(request):
 #первая страница
 def ShowAchievements(request):
     ach_cat=AchievementCategory.objects.only('id','name')
-    fst_cat=ach_cat.first()
-    achs=Achievement.objects.only('name','img1').filter(category=fst_cat.id)
+    try:
+        fst_cat=ach_cat.first()
+        achs=Achievement.objects.only('name','img1').filter(category=fst_cat.id)
+    except:
+        achs=[]
     return render(request,'articles/achievements.html',{'ach_cat':ach_cat,'achs':achs})
 
 #обработка ajax для списка достижений по категории
