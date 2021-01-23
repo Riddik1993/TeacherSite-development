@@ -66,8 +66,11 @@
     {% else %}
        <div id="authent_panel" style="font-size:0.7em; float:right;">
          <button id="mobile_menu_button" >Меню</button>
-      <a href="{% url 'login'%}?next={{request.path}}" class="simple_href"  >Вход на сайт</a>&nbsp
-      <a href="{% url 'signup'%}" class="simple_href"  >Зарегистрироваться</a>
+
+      <div>
+          <a href="{% url 'login'%}?next={{request.path}}" class="simple_href"  >Вход на сайт</a>&nbsp
+          <a href="{% url 'signup'%}" class="simple_href"  >Зарегистрироваться</a>
+      </div>
         </div>
 
 
